@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\soulshyv\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\soulshyv\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Luna.1176388583.00" t="ExcludeRecursive" />
+    <e p="F:\Dev\Luna" t="IncludeFlat">
+      <e p="Luna.sln" t="IncludeFlat" />
+      <e p="Luna.Web" t="IncludeRecursive">
+        <e p=".gitignore" t="Include" />
+        <e p="_wwwsrc" t="Include">
+          <e p="css" t="Include">
+            <e p="site.scss" t="Include" />
+          </e>
+          <e p="index.ts" t="Include" />
+          <e p="js" t="Include">
+            <e p="Global" t="Include">
+              <e p="index.ts" t="Include" />
+              <e p="interface.d.ts" t="Include" />
+              <e p="site.d.ts" t="Include" />
+              <e p="Window" t="Include">
+                <e p="jquery.ts" t="Include" />
+                <e p="moment.ts" t="Include" />
+                <e p="vue.ts" t="Include" />
+              </e>
+            </e>
+            <e p="index.ts" t="Include" />
+          </e>
+        </e>
+        <e p="app.db" t="Include" />
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="Areas" t="Include">
+          <e p="Identity" t="Include">
+            <e p="Pages" t="Include">
+              <e p="_ViewStart.cshtml" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="HomeController.cs" t="Include" />
+        </e>
+        <e p="Data" t="Include">
+          <e p="ApplicationDbContext.cs" t="Include" />
+          <e p="Migrations" t="Include">
+            <e p="00000000000000_CreateIdentitySchema.cs" t="Include" />
+            <e p="00000000000000_CreateIdentitySchema.Designer.cs" t="Include" />
+            <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Luna.Web.csproj" t="IncludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="ErrorViewModel.cs" t="Include" />
+        </e>
+        <e p="node_modules\@babel\core" t="IncludeRecursive" />
+        <e p="node_modules\@babel\plugin-proposal-decorators" t="IncludeRecursive" />
+        <e p="node_modules\@babel\polyfill" t="IncludeRecursive" />
+        <e p="node_modules\@babel\preset-env" t="IncludeRecursive" />
+        <e p="node_modules\@parcel\fs" t="IncludeRecursive" />
+        <e p="node_modules\@types" t="IncludeRecursive">
+          <e p="bootstrap-datepicker" t="IncludeRecursive" />
+          <e p="eonasdan-bootstrap-datetimepicker" t="IncludeRecursive" />
+          <e p="jquery" t="IncludeRecursive" />
+          <e p="jquery-validation-unobtrusive" t="IncludeRecursive" />
+          <e p="jquery.timepicker" t="IncludeRecursive" />
+          <e p="jquery.validation" t="IncludeRecursive" />
+          <e p="jqueryui" t="IncludeRecursive" />
+          <e p="lodash" t="IncludeRecursive" />
+          <e p="moment" t="IncludeRecursive" />
+          <e p="node" t="IncludeRecursive" />
+          <e p="sizzle" t="IncludeRecursive" />
+        </e>
+        <e p="node_modules\@vue\component-compiler-utils" t="IncludeRecursive" />
+        <e p="node_modules\acorn" t="IncludeRecursive" />
+        <e p="node_modules\babel-plugin-lodash" t="IncludeRecursive" />
+        <e p="node_modules\babel-preset-env" t="IncludeRecursive" />
+        <e p="node_modules\bootstrap" t="IncludeRecursive" />
+        <e p="node_modules\bootstrap-editable" t="IncludeRecursive" />
+        <e p="node_modules\bootstrap-sass" t="IncludeRecursive" />
+        <e p="node_modules\bootstrap-scss" t="IncludeRecursive" />
+        <e p="node_modules\chalk" t="IncludeRecursive" />
+        <e p="node_modules\commander" t="IncludeRecursive" />
+        <e p="node_modules\eonasdan-bootstrap-datetimepicker" t="IncludeRecursive" />
+        <e p="node_modules\font-awesome" t="IncludeRecursive" />
+        <e p="node_modules\guid-typescript" t="IncludeRecursive" />
+        <e p="node_modules\jquery" t="IncludeRecursive" />
+        <e p="node_modules\jquery-numeric" t="IncludeRecursive" />
+        <e p="node_modules\jquery-ui" t="IncludeRecursive" />
+        <e p="node_modules\jquery-ui-dist" t="IncludeRecursive" />
+        <e p="node_modules\jquery-validation" t="IncludeRecursive" />
+        <e p="node_modules\jquery-validation-unobtrusive" t="IncludeRecursive" />
+        <e p="node_modules\jquery.marquee" t="IncludeRecursive" />
+        <e p="node_modules\lodash" t="IncludeRecursive" />
+        <e p="node_modules\moment" t="IncludeRecursive" />
+        <e p="node_modules\moment-locale-fr" t="IncludeRecursive" />
+        <e p="node_modules\parcel-bundler" t="IncludeRecursive" />
+        <e p="node_modules\parcel-plugin-clean-dist" t="IncludeRecursive" />
+        <e p="node_modules\postcss" t="IncludeRecursive" />
+        <e p="node_modules\postcss-selector-parser" t="IncludeRecursive" />
+        <e p="node_modules\pump" t="IncludeRecursive" />
+        <e p="node_modules\sass" t="IncludeRecursive" />
+        <e p="node_modules\spin" t="IncludeRecursive" />
+        <e p="node_modules\terser" t="IncludeRecursive" />
+        <e p="node_modules\timepicker" t="IncludeRecursive" />
+        <e p="node_modules\ts-loader" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.dom.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.dom.iterable.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2015.collection.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2015.core.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2015.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2015.generator.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2015.iterable.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2015.promise.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2015.proxy.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2015.reflect.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2015.symbol.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2015.symbol.wellknown.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2016.array.include.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2016.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2016.full.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2017.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2017.full.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2017.intl.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2017.object.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2017.sharedmemory.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2017.string.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2017.typedarrays.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2018.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2018.full.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2018.intl.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2018.promise.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es2018.regexp.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es5.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.es6.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.esnext.array.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.esnext.asynciterable.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.esnext.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.esnext.full.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.scripthost.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\typescript\lib\lib.webworker.d.ts" t="IncludeRecursive" />
+        <e p="node_modules\vue" t="IncludeRecursive" />
+        <e p="node_modules\vue-bootstrap-datetimepicker" t="IncludeRecursive" />
+        <e p="node_modules\vue-class-component" t="IncludeRecursive" />
+        <e p="node_modules\vue-hot-reload-api" t="IncludeRecursive" />
+        <e p="node_modules\vue-router" t="IncludeRecursive" />
+        <e p="node_modules\vue-select" t="IncludeRecursive" />
+        <e p="node_modules\vue-template-compiler" t="IncludeRecursive" />
+        <e p="node_modules\vue2-daterange-picker" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Luna.Web.AssemblyInfo.cs" t="Include" />
+              <e p="Luna.Web.RazorAssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="package-lock.json" t="Include" />
+        <e p="package.json" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="tsconfig.json" t="Include" />
+        <e p="Views" t="Include">
+          <e p="_ViewImports.cshtml" t="Include" />
+          <e p="_ViewStart.cshtml" t="Include" />
+          <e p="Home" t="Include">
+            <e p="Index.cshtml" t="Include" />
+            <e p="Privacy.cshtml" t="Include" />
+          </e>
+          <e p="Shared" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
+            <e p="_LoginPartial.cshtml" t="Include" />
+            <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+            <e p="Error.cshtml" t="Include" />
+          </e>
+        </e>
+        <e p="wwwroot" t="Include">
+          <e p="bundle" t="Include">
+            <e p="clear.b2237ac2.png" t="Include" />
+            <e p="fontawesome-webfont.80db1567.eot" t="Include" />
+            <e p="fontawesome-webfont.9ab71dbb.svg" t="Include" />
+            <e p="fontawesome-webfont.c3cf7ef2.woff" t="Include" />
+            <e p="fontawesome-webfont.cda54bb3.woff2" t="Include" />
+            <e p="fontawesome-webfont.cf80d36a.ttf" t="Include" />
+            <e p="index.css" t="Include" />
+            <e p="index.js" t="Include" />
+            <e p="loading.f32ef49c.gif" t="Include" />
+            <e p="ui-icons_444444_256x240.03f315c1.png" t="Include" />
+            <e p="ui-icons_555555_256x240.abc04f9b.png" t="Include" />
+            <e p="ui-icons_777620_256x240.17b0cafe.png" t="Include" />
+            <e p="ui-icons_777777_256x240.c1909d3d.png" t="Include" />
+            <e p="ui-icons_cc0000_256x240.56edf018.png" t="Include" />
+            <e p="ui-icons_ffffff_256x240.ab956bf3.png" t="Include" />
+          </e>
+          <e p="css" t="Include">
+            <e p="site.css" t="Include" />
+          </e>
+          <e p="favicon.ico" t="Include" />
+          <e p="js" t="Include">
+            <e p="index.js" t="Include" />
+          </e>
+          <e p="lib" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p="dist" t="Include">
+                <e p="css" t="Include">
+                  <e p="bootstrap-grid.css" t="Include" />
+                  <e p="bootstrap-grid.css.map" t="Include" />
+                  <e p="bootstrap-grid.min.css" t="Include" />
+                  <e p="bootstrap-grid.min.css.map" t="Include" />
+                  <e p="bootstrap-reboot.css" t="Include" />
+                  <e p="bootstrap-reboot.css.map" t="Include" />
+                  <e p="bootstrap-reboot.min.css" t="Include" />
+                  <e p="bootstrap-reboot.min.css.map" t="Include" />
+                  <e p="bootstrap.css" t="Include" />
+                  <e p="bootstrap.css.map" t="Include" />
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="js" t="Include">
+                  <e p="bootstrap.bundle.js" t="Include" />
+                  <e p="bootstrap.bundle.js.map" t="Include" />
+                  <e p="bootstrap.bundle.min.js" t="Include" />
+                  <e p="bootstrap.bundle.min.js.map" t="Include" />
+                  <e p="bootstrap.js" t="Include" />
+                  <e p="bootstrap.js.map" t="Include" />
+                  <e p="bootstrap.min.js" t="Include" />
+                  <e p="bootstrap.min.js.map" t="Include" />
+                </e>
+              </e>
+              <e p="LICENSE" t="Include" />
+            </e>
+            <e p="jquery" t="Include">
+              <e p="dist" t="Include">
+                <e p="jquery.js" t="Include" />
+                <e p="jquery.min.js" t="Include" />
+                <e p="jquery.min.map" t="Include" />
+              </e>
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+            <e p="jquery-validation" t="Include">
+              <e p="dist" t="Include">
+                <e p="additional-methods.js" t="Include" />
+                <e p="additional-methods.min.js" t="Include" />
+                <e p="jquery.validate.js" t="Include" />
+                <e p="jquery.validate.min.js" t="Include" />
+              </e>
+              <e p="LICENSE.md" t="Include" />
+            </e>
+            <e p="jquery-validation-unobtrusive" t="Include">
+              <e p="jquery.validate.unobtrusive.js" t="Include" />
+              <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
