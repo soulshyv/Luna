@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.19" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.19" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.19" />
@@ -28,6 +29,10 @@
       <TypeScriptCompile Include="_wwwsrc\js\Global\Window\moment.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\Window\vue.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\index.ts" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Luna.Commons\Luna.Commons.csproj" />
     </ItemGroup>
 
 </Project>
