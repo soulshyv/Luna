@@ -3,10 +3,28 @@
   <component name="ContentModelStore">
     <e p="C:\Users\soulshyv\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
     <e p="C:\Users\soulshyv\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Luna.1176388583.00" t="ExcludeRecursive" />
+    <e p="C:\Users\soulshyv\AppData\Roaming\JetBrains\Rider2020.3\consoles\db" t="IncludeRecursive" />
     <e p="F:\Dev\Luna" t="IncludeFlat">
       <e p="Luna.Commons" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Enums" t="Include">
+          <e p="TypeCustomPropertyEnum.cs" t="Include" />
+        </e>
         <e p="Luna.Commons.csproj" t="IncludeRecursive" />
+        <e p="Migrations" t="Include">
+          <e p="20210922213850_Init.cs" t="Include" />
+          <e p="20210922213850_Init.Designer.cs" t="Include" />
+          <e p="LunaDbContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="Character.cs" t="Include" />
+          <e p="CharacterType.cs" t="Include" />
+          <e p="CustomProperty.cs" t="Include" />
+          <e p="CustomPropertyType.cs" t="Include" />
+          <e p="LunaDbContext.cs" t="Include" />
+          <e p="ModelBase.cs" t="Include" />
+          <e p="Race.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -16,6 +34,17 @@
         </e>
         <e p="Services" t="Include">
           <e p="TestService.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Luna.Migrations" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Luna.Migrations.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Luna.Migrations.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
         </e>
       </e>
       <e p="Luna.sln" t="IncludeFlat" />
@@ -53,14 +82,6 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="HomeController.cs" t="Include" />
-        </e>
-        <e p="Data" t="Include">
-          <e p="ApplicationDbContext.cs" t="Include" />
-          <e p="Migrations" t="Include">
-            <e p="00000000000000_CreateIdentitySchema.cs" t="Include" />
-            <e p="00000000000000_CreateIdentitySchema.Designer.cs" t="Include" />
-            <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
-          </e>
         </e>
         <e p="Luna.Web.csproj" t="IncludeRecursive" />
         <e p="Models" t="Include">
@@ -189,7 +210,6 @@
           </e>
           <e p="Shared" t="Include">
             <e p="_Layout.cshtml" t="Include" />
-            <e p="_LoginPartial.cshtml" t="Include" />
             <e p="_ValidationScriptsPartial.cshtml" t="Include" />
             <e p="Error.cshtml" t="Include" />
           </e>

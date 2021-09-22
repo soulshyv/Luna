@@ -1,13 +1,16 @@
+using System.Data;
 using Autofac;
+using Luna.Commons.Models;
 using Luna.Commons.Services;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Luna.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MySql.Data.MySqlClient;
+using MySqlConnector;
+using Pomelo.EntityFrameworkCore.MySql.Storage;
 
 namespace Luna
 {
@@ -30,18 +33,23 @@ namespace Luna
             PopulateServices(services);
         }
         
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-        }
-
         private void PopulateServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            services.AddSingleton<IDbConnection>(_ => 
+                new MySqlConnection(connectionString)
+            );
+            
+            services.AddDbContext<LunaDbContext>(options =>
+            {
+                options
+                    .UseMySql(connectionString)
+                    .EnableDetailedErrors();
+            });
+            
             services.AddScoped<TestService>();
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -52,7 +60,6 @@ namespace Luna
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
