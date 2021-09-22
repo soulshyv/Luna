@@ -36,4 +36,9 @@
       <ProjectReference Include="..\Luna.Commons\Luna.Commons.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Areas" />
+      <Folder Include="ViewModels" />
+    </ItemGroup>
+
 </Project>

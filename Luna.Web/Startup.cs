@@ -1,7 +1,7 @@
 using System.Data;
 using Autofac;
 using Luna.Commons.Models;
-using Luna.Commons.Services;
+using Luna.Commons.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MySql.Data.MySqlClient;
-using MySqlConnector;
-using Pomelo.EntityFrameworkCore.MySql.Storage;
 
 namespace Luna
 {
@@ -48,7 +46,7 @@ namespace Luna
                     .EnableDetailedErrors();
             });
             
-            services.AddScoped<TestService>();
+            services.AddScoped<CharacterRepository>();
             
             services.AddControllersWithViews();
             services.AddRazorPages();

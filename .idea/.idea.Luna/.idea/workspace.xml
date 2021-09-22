@@ -7,31 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4b2bea2-7262-400c-b7eb-6e63a092db4f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Enums/TypeCustomPropertyEnum.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Migrations/20210922213850_Init.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Migrations/20210922213850_Init.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Migrations/LunaDbContextModelSnapshot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Models/Character.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Models/CharacterType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Models/CustomProperty.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Models/CustomPropertyType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Models/LunaDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Models/ModelBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Models/Race.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Migrations/Luna.Migrations.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Commons/Models/Dtos/CharacterDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Commons/Repositories/BaseRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Commons/Repositories/CharacterRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Web/Controllers/CharacterController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Web/Views/Character/Edit.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Commons/Luna.Commons.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Commons/Luna.Commons.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/Data/ApplicationDbContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/Data/Migrations/00000000000000_CreateIdentitySchema.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/Data/Migrations/00000000000000_CreateIdentitySchema.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/Data/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Commons/Services/TestService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Areas/Identity/Pages/_ViewStart.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Controllers/HomeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/Luna.Web.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Luna.Web.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Views/Home/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Views/Home/Index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Views/Shared/_Layout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/Views/Shared/_LoginPartial.cshtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,13 +51,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwroot/js/Global/site.d.ts" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwroot/js/Global/Window/vue.ts" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwroot/js/Global/Window/jquery.ts" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwroot/js/Global/Window/moment.ts" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwroot/js/Global/index.ts" />
-      <option value="$PROJECT_DIR$/Luna.Web/tsconfig.ts" />
-      <option value="$PROJECT_DIR$/Luna.Web/tsconfig.json" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwroot/index.ts" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwroot/js/index.ts" />
       <option value="$PROJECT_DIR$/Luna.Web/node_modules/parcel-bundler/src/Bundler.js" />
@@ -81,10 +64,7 @@
       <option value="$PROJECT_DIR$/Luna.Commons/Program.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/Program.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Services/TestService.cs" />
-      <option value="$PROJECT_DIR$/Luna.Web/Views/Home/Index.cshtml" />
       <option value="$PROJECT_DIR$/Luna.Commons/Mvc/BaseController.cs" />
-      <option value="$PROJECT_DIR$/Luna.Web/Mvc/BaseController.cs" />
-      <option value="$PROJECT_DIR$/Luna.Web/Controllers/HomeController.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Models/DbContext.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Models/clas.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Models/Caracs.cs" />
@@ -110,8 +90,18 @@
       <option value="$PROJECT_DIR$/Luna.Migrations/Migrations/LunaDbContextModelSnapshot.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/Luna.Web.csproj" />
       <option value="$PROJECT_DIR$/Luna.Commons/Luna.Commons.csproj" />
-      <option value="$PROJECT_DIR$/Luna.Web/Startup.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/Views/Shared/_Layout.cshtml" />
+      <option value="$PROJECT_DIR$/Luna.Web/Mvc/BaseController.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/ViewModels/CharactersListViewModel.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/Controllers/CharacterController.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/Pages/Character/Edit.cshtml" />
+      <option value="$PROJECT_DIR$/Luna.Web/Views/Character/Edit.cshtml" />
+      <option value="$PROJECT_DIR$/Luna.Commons/Repositories/BaseRepository.cs" />
+      <option value="$PROJECT_DIR$/Luna.Commons/Repositories/CharacterRepository.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/Startup.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/Controllers/HomeController.cs" />
+      <option value="$PROJECT_DIR$/Luna.Commons/Models/Dtos/CharacterDto.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/Views/Home/Index.cshtml" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yPvVDPVo2wfKPbWy8TqOwuKDTF" />
@@ -259,7 +249,7 @@
       <workItem from="1632245885610" duration="2024000" />
       <workItem from="1632247948288" duration="16956000" />
       <workItem from="1632329292577" duration="3068000" />
-      <workItem from="1632333757924" duration="10328000" />
+      <workItem from="1632333757924" duration="13796000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1632166224440</created>
@@ -303,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632249726552</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ajout Database">
+      <created>1632348575802</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1632348575802</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,6 +330,7 @@
     <MESSAGE value="init project" />
     <MESSAGE value="Ajout Luna.Commons" />
     <MESSAGE value="Ajout Autofac" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout Autofac" />
+    <MESSAGE value="Ajout Database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout Database" />
   </component>
 </project>

@@ -21,6 +21,9 @@
           <e p="CharacterType.cs" t="Include" />
           <e p="CustomProperty.cs" t="Include" />
           <e p="CustomPropertyType.cs" t="Include" />
+          <e p="Dtos" t="Include">
+            <e p="CharacterDto.cs" t="Include" />
+          </e>
           <e p="LunaDbContext.cs" t="Include" />
           <e p="ModelBase.cs" t="Include" />
           <e p="Race.cs" t="Include" />
@@ -32,9 +35,11 @@
             </e>
           </e>
         </e>
-        <e p="Services" t="Include">
-          <e p="TestService.cs" t="Include" />
+        <e p="Repositories" t="Include">
+          <e p="BaseRepository.cs" t="Include" />
+          <e p="CharacterRepository.cs" t="Include" />
         </e>
+        <e p="Services" t="Include" />
       </e>
       <e p="Luna.Migrations" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -72,15 +77,10 @@
         <e p="app.db" t="Include" />
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
-        <e p="Areas" t="Include">
-          <e p="Identity" t="Include">
-            <e p="Pages" t="Include">
-              <e p="_ViewStart.cshtml" t="Include" />
-            </e>
-          </e>
-        </e>
+        <e p="Areas" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
+          <e p="CharacterController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
         </e>
         <e p="Luna.Web.csproj" t="IncludeRecursive" />
@@ -201,9 +201,13 @@
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="tsconfig.json" t="Include" />
+        <e p="ViewModels" t="Include" />
         <e p="Views" t="Include">
           <e p="_ViewImports.cshtml" t="Include" />
           <e p="_ViewStart.cshtml" t="Include" />
+          <e p="Character" t="Include">
+            <e p="Edit.cshtml" t="Include" />
+          </e>
           <e p="Home" t="Include">
             <e p="Index.cshtml" t="Include" />
             <e p="Privacy.cshtml" t="Include" />
