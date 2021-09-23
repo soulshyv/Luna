@@ -45,8 +45,8 @@ namespace Luna
                     .UseMySql(connectionString)
                     .EnableDetailedErrors();
             });
-            
-            services.AddScoped<CharacterRepository>();
+
+            services.AddRepositories();
             
             services.AddControllersWithViews();
             services.AddRazorPages();

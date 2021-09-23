@@ -14,11 +14,6 @@ namespace Luna.Controllers
     public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
-        
-        private CharacterRepository _characterRepository { get; set; }
-
-        private CharacterRepository CharacterRepository =>
-            _characterRepository ??= _scope.Resolve<CharacterRepository>();
 
         public HomeController(ILogger<HomeController> logger, ILifetimeScope scope) : base(scope)
         {
@@ -27,9 +22,7 @@ namespace Luna.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var characters = await CharacterRepository.GetAll();
-            
-            return View(characters.Select(_ => new CharacterDto(_)));
+            return View();
         }
 
         public IActionResult Privacy()

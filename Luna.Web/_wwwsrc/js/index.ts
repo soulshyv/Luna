@@ -1,3 +1,4 @@
 import "@babel/polyfill";
 
-import "./Global/index"
+import "./Addons/index";
+import "./Global/index";

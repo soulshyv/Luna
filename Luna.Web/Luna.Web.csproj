@@ -23,6 +23,13 @@
     <ItemGroup>
       <TypeScriptCompile Include="tsconfig.json" />
       <TypeScriptCompile Include="_wwwsrc\index.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Components\Character\index.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\index.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\Character.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CharacterType.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomProperty.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomPropertyType.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\Race.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\interface.d.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\site.d.ts" />
@@ -38,7 +45,8 @@
 
     <ItemGroup>
       <Folder Include="Areas" />
-      <Folder Include="ViewModels" />
+      <Folder Include="_wwwsrc\js\Addons\Mixins" />
+      <Folder Include="_wwwsrc\js\Addons\SharedComponents" />
     </ItemGroup>
 
 </Project>

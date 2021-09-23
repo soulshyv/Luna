@@ -6,6 +6,9 @@ namespace Luna.Commons.Models
     {
         public DbSet<Character> Characters { get; set; }
         public DbSet<CustomProperty> CustomProperties { get; set; }
+        public DbSet<CharacterType> CharacterTypes { get; set; }
+        public DbSet<CustomPropertyType> CustomerPropertyTypes { get; set; }
+        public DbSet<Race> Races { get; set; }
 
         // public LunaDbContext()
         // {

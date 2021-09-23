@@ -38,6 +38,9 @@
         <e p="Repositories" t="Include">
           <e p="BaseRepository.cs" t="Include" />
           <e p="CharacterRepository.cs" t="Include" />
+          <e p="CharacterTypeRepository.cs" t="Include" />
+          <e p="RaceRepository.cs" t="Include" />
+          <e p="RegistrationExtensions.cs" t="Include" />
         </e>
         <e p="Services" t="Include" />
       </e>
@@ -61,6 +64,24 @@
           </e>
           <e p="index.ts" t="Include" />
           <e p="js" t="Include">
+            <e p="Addons" t="Include">
+              <e p="Components" t="Include">
+                <e p="Character" t="Include">
+                  <e p="Character.vue" t="Include" />
+                  <e p="index.ts" t="Include" />
+                </e>
+              </e>
+              <e p="index.ts" t="Include" />
+              <e p="Mixins" t="Include" />
+              <e p="Models" t="Include">
+                <e p="Character.ts" t="Include" />
+                <e p="CharacterType.ts" t="Include" />
+                <e p="CustomProperty.ts" t="Include" />
+                <e p="CustomPropertyType.ts" t="Include" />
+                <e p="Race.ts" t="Include" />
+              </e>
+              <e p="SharedComponents" t="Include" />
+            </e>
             <e p="Global" t="Include">
               <e p="index.ts" t="Include" />
               <e p="interface.d.ts" t="Include" />
@@ -201,12 +222,16 @@
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="tsconfig.json" t="Include" />
-        <e p="ViewModels" t="Include" />
+        <e p="ViewModels" t="Include">
+          <e p="CharacterViewModel.cs" t="Include" />
+        </e>
         <e p="Views" t="Include">
           <e p="_ViewImports.cshtml" t="Include" />
           <e p="_ViewStart.cshtml" t="Include" />
           <e p="Character" t="Include">
+            <e p="Create.cshtml" t="Include" />
             <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Home" t="Include">
             <e p="Index.cshtml" t="Include" />

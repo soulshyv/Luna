@@ -1,5 +1,3 @@
-using Luna.Commons.Enums;
-
 namespace Luna.Commons.Models
 {
     public class CustomProperty : ModelBase
