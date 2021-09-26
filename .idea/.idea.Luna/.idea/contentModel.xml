@@ -80,7 +80,12 @@
                 <e p="CustomPropertyType.ts" t="Include" />
                 <e p="Race.ts" t="Include" />
               </e>
-              <e p="SharedComponents" t="Include" />
+              <e p="SharedComponents" t="Include">
+                <e p="CustomSelect" t="Include">
+                  <e p="index.ts" t="Include" />
+                  <e p="SelectCustom.vue" t="Include" />
+                </e>
+              </e>
             </e>
             <e p="Global" t="Include">
               <e p="index.ts" t="Include" />

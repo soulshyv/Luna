@@ -1,9 +1,6 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
-using Luna.Commons.Models.Dtos;
-using Luna.Commons.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Luna.Models;

@@ -1,25 +1,70 @@
 <template>
-    <div class="row form-group">
-        <div class="col-md-12">
-            <label for="name" class="control-label col-md-2">Nom :</label>
-            <div class="col-md-8">
-                <input type="text" v-model="character.name" id="name" class="form-control required" />
+    <form>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="row form-group mb-2">
+                    <div class="col-md-12">
+                        <input type="text" v-model="character.name" class="form-control required" placeholder="Nom du personnage"/>
+                    </div>
+                </div>
+                <div class="row form-group mb-2">
+                    <div class="col-md-12">
+                        <textarea type="text" v-model="character.description" class="form-control required" placeholder="Description du personnage"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <select-custom
+                            v-model="character.type"
+                            url="/Character/GetAllCharacterTypesForSelect"
+                            placeholder="Type du personnage"
+                            url-new-option="/Character/AddNewCharacterType"
+                            name="type"
+                            class="required">
+                        </select-custom>
+                    </div>
+                    <div class="col-md-6">
+                        <select-custom
+                            v-model="character.race"
+                            url="/Character/GetAllRacesForSelect"
+                            placeholder="Race du personnage"
+                            url-new-option="/Character/AddNewRace"
+                            name="race"
+                            class="required">
+                        </select-custom>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </template>
 
 <script>
     import {Character} from "../../Models/Character";
+    import SelectCustom from "../../SharedComponents/CustomSelect/SelectCustom";
 
     export default {
+        components: {SelectCustom},
+        props: {
+            id: Number
+        },
         data() {
             return {
-                character: new Character()
+                character: Character
             };
         },
         mounted() {
-            
+            if (this.id) {
+                let $this = this;
+                $.ajax({
+                    url: '/Character/GetCharacterById',
+                    type: 'GET'
+                }).done(function(data) {
+                    $this.character = data;
+                });
+            } else {
+                this.character = new Character();
+            }
         },
         methods: {
             

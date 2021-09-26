@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
+using Luna.Commons.Models;
 using Luna.Commons.Models.Dtos;
 using Luna.Commons.Repositories;
 using Luna.Mvc;
@@ -45,11 +46,41 @@ namespace Luna.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetCharacterById(int id)
+        {
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+            
+            var character = await CharacterRepository.GetById(id);
+            
+            return Ok(character);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetAllRacesForSelect()
         {
             var races = await RaceRepository.GetAll();
             
             return Ok(races.Select(_ => new SelectListItem(_.Name, _.Id.ToString())));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNewRace(string name, string description)
+        {
+            var race = await RaceRepository.Insert(new Race
+            {
+                Name = name,
+                Description = description
+            });
+
+            if (race != null)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
         }
 
         [HttpGet]
@@ -58,6 +89,23 @@ namespace Luna.Controllers
             var types = await CharacterTypeRepository.GetAll();
             
             return Ok(types.Select(_ => new SelectListItem(_.Name, _.Id.ToString())));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNewCharacterType(string name, string description)
+        {
+            var type = await CharacterTypeRepository.Insert(new CharacterType
+            {
+                Name = name,
+                Description = description
+            });
+
+            if (type != null)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
         }
     }
 }
