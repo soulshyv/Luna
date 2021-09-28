@@ -2,15 +2,15 @@
     <div>
         <div class="row">
             <div class="col-md-1">
-                <button v-if="urlNewOption" type="button" class="btn btn-sm btn-primary" @click="toggleModal" style="height: 100%"><i class="fa fa-plus"></i></button>
+                <button v-if="urlNewOption" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" :data-bs-target="`#addNewOptionModal-${name}`" style="height: 100%"><i class="fa fa-plus"></i></button>
             </div>
             <div :class="`col-md-${urlNewOption ? '11' : '12'}`">
-                <v-select class="" v-model="selection" :id="id" :name="name" :multiple="multiple" :options="options" :placeholder="placeholder" @chance="select" v-on:reset="reset">
+                <v-select :value="selection" class="" v-model="selection" :id="id" :name="name" :multiple="multiple" :options="options" label="text" :placeholder="placeholder" @input="select" v-on:reset="reset">
                     <template slot="option" slot-scope="option">
                         <span>{{ option.text }}</span>
                     </template>
                 </v-select>
-                <input v-if="selection" type="hidden" :value="selection.map(_ => _.value)">
+                <input v-if="selection" type="hidden" :value="multiple ? selection.map(_ => _.value) : selection.value">
             </div>
         </div>
         <div class="modal fade" :id="`addNewOptionModal-${name}`" tabindex="-1" role="dialog" :aria-labelledby="`addNewOptionModal-${name}Label`" aria-hidden="true">
@@ -18,17 +18,28 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" :id="`addNewOptionModal-${name}Label`">Ajouter un nouvel élément</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <input type="text" v-model="newOptionName"/>
-                        <textarea type="text" v-model="newOptionDescription"></textarea>
+                    <div class="modal-body form-group">
+                        <div v-if="errorMessage" class="row mb-2">
+                            <div class="col-md-12 alert alert-danger">
+                                <span>{{ errorMessage }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" v-model="newOptionName" placeholder="Nom" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea type="text" class="form-control" v-model="newOptionDescription" placeholder="Description" ></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" @click="add">Ajouter</button>
+                        <button type="button" class="btn btn-success" @click="add">Ajouter</button>
                     </div>
                 </div>
             </div>
@@ -59,7 +70,10 @@
                 type: String,
                 default: ""
             },
-            value: {
+            optionsList: {
+                type: Array
+            },
+            defaultValue: {
                 type: String,
                 default: ""
             },
@@ -77,7 +91,8 @@
                 options: [],
                 selection: null,
                 newOptionName: null,
-                newOptionDescription: null
+                newOptionDescription: null,
+                errorMessage: null
             }
         },
         mounted() {
@@ -89,28 +104,46 @@
                 });
             }
 
-            if (this.value && this.value !== "") {
-                this.selection = this.value;
+            if (this.defaultValue && this.defaultValue !== "") {
+                this.selection = this.defaultValue;
             }
         },
         methods: {
-            select(evt) {
-                this.$emit('input', evt.target.value);
+            select() {
+                this.$emit('input', this.multiple ? this.selection.map(_ => _.value) : this.selection.value);
             },
             reset() {
                 this.selection = null;
             },
             toggleModal() {
-                $(`#addNewOptionModal-${name}`).modal('toggle');
+                $(`#addNewOptionModal-${this.name}`).modal('toggle');
             },
             add() {
+                if (!this.newOptionName || !this.newOptionName.length) {
+                    return;
+                }
+                
+                let $this = this;
+                
                 $.ajax({
                     url: this.urlNewOption,
                     type: 'POST',
                     data: {
-                        name: this.newOptionName,
-                        description: this.newOptionDescription,
+                        name: $this.newOptionName,
+                        description: $this.newOptionDescription,
                     }
+                }).done(function(data) {
+                    $this.errorMessage = null;
+
+                    if ($this.url) {
+                        fetch($this.url).then(res => {
+                            res.json().then(json => ($this.options = json));
+                        });
+                    }
+
+                    $this.toggleModal();
+                }).fail(function(data) {
+                    $this.errorMessage = "L'entité n'a pas pu être ajoutée";
                 });
             }
         }

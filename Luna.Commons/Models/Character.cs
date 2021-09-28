@@ -9,6 +9,6 @@ namespace Luna.Commons.Models
         
         public virtual CharacterType Type { get; set; }
         public virtual Race Race { get; set; }
-        public virtual IList<CustomProperty> CustomProperties { get; set; }
+        public virtual IList<CustomSection> CustomSections { get; set; }
     }
 }

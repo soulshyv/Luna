@@ -44,6 +44,7 @@
     import SelectCustom from "../../SharedComponents/CustomSelect/SelectCustom";
 
     export default {
+        name: "Character",
         components: {SelectCustom},
         props: {
             id: Number
@@ -78,7 +79,7 @@
                 }).done(function(data) {
                     races = data;
                 });
-                
+                    
                 return races;
             },
             characterTypes() {

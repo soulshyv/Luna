@@ -14,6 +14,10 @@
         <e p="Migrations" t="Include">
           <e p="20210922213850_Init.cs" t="Include" />
           <e p="20210922213850_Init.Designer.cs" t="Include" />
+          <e p="20210928225311_AddCustomSection.cs" t="Include" />
+          <e p="20210928225311_AddCustomSection.Designer.cs" t="Include" />
+          <e p="20210928230247_AddUniqueConstraints.cs" t="Include" />
+          <e p="20210928230247_AddUniqueConstraints.Designer.cs" t="Include" />
           <e p="LunaDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -21,6 +25,7 @@
           <e p="CharacterType.cs" t="Include" />
           <e p="CustomProperty.cs" t="Include" />
           <e p="CustomPropertyType.cs" t="Include" />
+          <e p="CustomSection.cs" t="Include" />
           <e p="Dtos" t="Include">
             <e p="CharacterDto.cs" t="Include" />
           </e>
@@ -81,6 +86,11 @@
                 <e p="Race.ts" t="Include" />
               </e>
               <e p="SharedComponents" t="Include">
+                <e p="CustomProperties" t="Include">
+                  <e p="CustomProperty.vue" t="Include" />
+                  <e p="CustomSection.vue" t="Include" />
+                  <e p="index.ts" t="Include" />
+                </e>
                 <e p="CustomSelect" t="Include">
                   <e p="index.ts" t="Include" />
                   <e p="SelectCustom.vue" t="Include" />
@@ -121,6 +131,7 @@
         <e p="node_modules\@babel\polyfill" t="IncludeRecursive" />
         <e p="node_modules\@babel\preset-env" t="IncludeRecursive" />
         <e p="node_modules\@parcel\fs" t="IncludeRecursive" />
+        <e p="node_modules\@popperjs\core" t="IncludeRecursive" />
         <e p="node_modules\@types" t="IncludeRecursive">
           <e p="bootstrap-datepicker" t="IncludeRecursive" />
           <e p="eonasdan-bootstrap-datetimepicker" t="IncludeRecursive" />

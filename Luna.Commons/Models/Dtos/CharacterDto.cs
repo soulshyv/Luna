@@ -9,7 +9,7 @@ namespace Luna.Commons.Models.Dtos
         public string Description { get; set; }
         public CharacterType Type { get; set; }
         public Race Race { get; set; }
-        public IEnumerable<CustomProperty> CustomProperties { get; set; }
+        public IEnumerable<CustomSection> CustomProperties { get; set; }
 
         public CharacterDto(Character character)
         {
@@ -18,7 +18,7 @@ namespace Luna.Commons.Models.Dtos
             Description = character.Description;
             Type = character.Type;
             Race = character.Race;
-            CustomProperties = character.CustomProperties;
+            CustomProperties = character.CustomSections;
         }
 
         public CharacterDto()

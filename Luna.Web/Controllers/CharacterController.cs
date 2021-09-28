@@ -69,15 +69,22 @@ namespace Luna.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNewRace(string name, string description)
         {
-            var race = await RaceRepository.Insert(new Race
+            var race = await RaceRepository.GetByName(name);
+
+            if (race != null)
+            {
+                return Unauthorized();
+            }
+            
+            race = await RaceRepository.Insert(new Race
             {
                 Name = name,
                 Description = description
             });
 
-            if (race != null)
+            if (race?.Name == name)
             {
-                return Ok();
+                return Ok(race);
             }
 
             return BadRequest();
@@ -94,13 +101,20 @@ namespace Luna.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNewCharacterType(string name, string description)
         {
-            var type = await CharacterTypeRepository.Insert(new CharacterType
+            var type = await CharacterTypeRepository.GetByName(name);
+
+            if (type != null)
+            {
+                return Unauthorized();
+            }
+            
+            type = await CharacterTypeRepository.Insert(new CharacterType
             {
                 Name = name,
                 Description = description
             });
 
-            if (type != null)
+            if (type?.Name == name)
             {
                 return Ok();
             }

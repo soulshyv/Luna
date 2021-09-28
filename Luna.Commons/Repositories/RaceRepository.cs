@@ -16,5 +16,10 @@ namespace Luna.Commons.Repositories
         {
             return await DbContext.Races.SingleOrDefaultAsync(_ => _.Id == id, ctk);
         }
+
+        public async Task<Race> GetByName(string name, CancellationToken ctk = default(CancellationToken))
+        {
+            return await DbContext.Races.SingleOrDefaultAsync(_ => _.Name == name, ctk);
+        }
     }
 }
