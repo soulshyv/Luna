@@ -15869,6 +15869,28 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   opacity: 1;
 }
 
+.custom-section {
+  border: 1px solid #302f2f;
+  border-radius: 10px;
+  padding: 15px;
+}
+.custom-section .properties {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+}
+.custom-section .properties .custom-property {
+  padding: 10px;
+  margin-bottom: 5px;
+}
+.custom-section .properties .custom-property:not(.last-property) {
+  border-right: 1px solid #302f2f;
+}
+.custom-section .properties .btn-add-property {
+  vertical-align: center;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;

@@ -9,6 +9,7 @@ namespace Luna.Commons.Repositories
             sc.AddScoped<CharacterRepository>();
             sc.AddScoped<RaceRepository>();
             sc.AddScoped<CharacterTypeRepository>();
+            sc.AddScoped<CustomPropertyTypeRepository>();
 
             return sc;
         }

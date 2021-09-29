@@ -7,33 +7,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4b2bea2-7262-400c-b7eb-6e63a092db4f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Migrations/20210928225311_AddCustomSection.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Migrations/20210928225311_AddCustomSection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Models/CustomSection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomProperty.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomSection.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Commons/Repositories/CustomPropertyTypeRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/character.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/CustomSection.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Commons/Migrations/LunaDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Commons/Migrations/LunaDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Commons/Models/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Commons/Models/Character.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Commons/Models/CustomProperty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Commons/Models/CustomProperty.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Commons/Models/Dtos/CharacterDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Commons/Models/Dtos/CharacterDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Commons/Models/LunaDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Commons/Models/LunaDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Commons/Repositories/CharacterTypeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Commons/Repositories/CharacterTypeRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Commons/Repositories/RaceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Commons/Repositories/RaceRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/Controllers/CharacterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Controllers/CharacterController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/Luna.Web.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Luna.Web.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Views/Shared/_Layout.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/site.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/site.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Components/Character/Character.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Components/Character/Character.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/Character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/Character.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/CustomProperty.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/CustomProperty.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomProperty.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomProperty.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomSection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomSection.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomSelect/SelectCustom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomSelect/SelectCustom.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Global/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Global/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/wwwroot/bundle/fontawesome-webfont.9ab71dbb.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/wwwroot/bundle/fontawesome-webfont.9ab71dbb.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomSelect/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomSelect/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/wwwroot/bundle/clear.b2237ac2.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/wwwroot/bundle/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/wwwroot/bundle/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/wwwroot/bundle/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/wwwroot/bundle/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/wwwroot/bundle/loading.f32ef49c.gif" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +40,7 @@
       <list>
         <option value="TypeScript File" />
         <option value="Vue Single File Component" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
@@ -64,10 +60,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Luna.Commons/Models/CharacterType.cs" />
-      <option value="$PROJECT_DIR$/Luna.Commons/Models/CustomPropertyType.cs" />
-      <option value="$PROJECT_DIR$/Luna.Migrations/Class1.cs" />
-      <option value="$PROJECT_DIR$/Luna.Commons/Models/Character.extended.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/obj/Debug/netcoreapp3.1/Luna.Web.AssemblyInfo.cs" />
       <option value="$PROJECT_DIR$/Luna.Migrations/Migrations/LunaDbContextModelSnapshot.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/Luna.Web.csproj" />
@@ -89,32 +81,36 @@
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/Race.ts" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/CustomPropertyType.ts" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/CharacterType.ts" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/CustomProperty.ts" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/Character.ts" />
       <option value="$PROJECT_DIR$/Luna.Web/Views/Character/Create.cshtml" />
       <option value="$PROJECT_DIR$/Luna.Web/appsettings.json" />
       <option value="$PROJECT_DIR$/Luna.Web/Controllers/HomeController.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomSelect/CustomSelect.vue" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/index.ts" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Components/Character/index.ts" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomSelect/index.ts" />
       <option value="$PROJECT_DIR$/Luna.Web/Views/Shared/_Layout.cshtml" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/site.scss" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Global/index.ts" />
       <option value="$PROJECT_DIR$/Luna.Commons/Repositories/RaceRepository.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Repositories/CharacterTypeRepository.cs" />
-      <option value="$PROJECT_DIR$/Luna.Web/Controllers/CharacterController.cs" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomSelect/SelectCustom.vue" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Components/Character/Character.vue" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomProperty.cs" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomProperty.vue" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomProperties.vue" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/index.ts" />
       <option value="$PROJECT_DIR$/Luna.Commons/Models/Character.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Models/Dtos/CharacterDto.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Models/CustomSection.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Models/CustomProperty.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/Character.ts" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/CustomProperty.ts" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Models/CustomSection.ts" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/index.ts" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/index.ts" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/site.scss" />
       <option value="$PROJECT_DIR$/Luna.Commons/Models/LunaDbContext.cs" />
+      <option value="$PROJECT_DIR$/Luna.Commons/Repositories/CustomPropertyTypeRepository.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/Controllers/CharacterController.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomSelect/index.ts" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomSelect/SelectCustom.vue" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomProperty.vue" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/character.scss" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/SharedComponents/CustomProperties/CustomSection.vue" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Addons/Components/Character/Character.vue" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yPvVDPVo2wfKPbWy8TqOwuKDTF" />
@@ -136,9 +132,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="do_not_show_solution_notification" value="true" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Vue" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.SCSS" />
     <property name="ts.external.directory.path" value="F:\Dev\Luna\Luna.Web\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -266,7 +263,8 @@
       <workItem from="1632426359913" duration="10459000" />
       <workItem from="1632687644438" duration="7075000" />
       <workItem from="1632780022968" duration="1927000" />
-      <workItem from="1632851529739" duration="14752000" />
+      <workItem from="1632851529739" duration="15567000" />
+      <workItem from="1632943210648" duration="13354000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1632166224440</created>
@@ -338,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632696838922</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Ajout selects races et types + ajout custom section">
+      <created>1632870498927</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1632870498927</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,7 +377,8 @@
     <MESSAGE value="Ajout premier repository + vue index tableau des persos" />
     <MESSAGE value="feat(Character) : Déplacement de la liste des persos dans l'index de CharacterController + Début composant pour les persos" />
     <MESSAGE value="Ajout select-custom" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout select-custom" />
+    <MESSAGE value="Ajout selects races et types + ajout custom section" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout selects races et types + ajout custom section" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -44,6 +44,7 @@
           <e p="BaseRepository.cs" t="Include" />
           <e p="CharacterRepository.cs" t="Include" />
           <e p="CharacterTypeRepository.cs" t="Include" />
+          <e p="CustomPropertyTypeRepository.cs" t="Include" />
           <e p="RaceRepository.cs" t="Include" />
           <e p="RegistrationExtensions.cs" t="Include" />
         </e>
@@ -65,6 +66,7 @@
         <e p=".gitignore" t="Include" />
         <e p="_wwwsrc" t="Include">
           <e p="css" t="Include">
+            <e p="character.scss" t="Include" />
             <e p="site.scss" t="Include" />
           </e>
           <e p="index.ts" t="Include" />
@@ -83,6 +85,7 @@
                 <e p="CharacterType.ts" t="Include" />
                 <e p="CustomProperty.ts" t="Include" />
                 <e p="CustomPropertyType.ts" t="Include" />
+                <e p="CustomSection.ts" t="Include" />
                 <e p="Race.ts" t="Include" />
               </e>
               <e p="SharedComponents" t="Include">
@@ -261,7 +264,6 @@
         </e>
         <e p="wwwroot" t="Include">
           <e p="bundle" t="Include">
-            <e p="clear.b2237ac2.png" t="Include" />
             <e p="fontawesome-webfont.80db1567.eot" t="Include" />
             <e p="fontawesome-webfont.9ab71dbb.svg" t="Include" />
             <e p="fontawesome-webfont.c3cf7ef2.woff" t="Include" />
@@ -269,7 +271,6 @@
             <e p="fontawesome-webfont.cf80d36a.ttf" t="Include" />
             <e p="index.css" t="Include" />
             <e p="index.js" t="Include" />
-            <e p="loading.f32ef49c.gif" t="Include" />
             <e p="ui-icons_444444_256x240.03f315c1.png" t="Include" />
             <e p="ui-icons_555555_256x240.abc04f9b.png" t="Include" />
             <e p="ui-icons_777620_256x240.17b0cafe.png" t="Include" />

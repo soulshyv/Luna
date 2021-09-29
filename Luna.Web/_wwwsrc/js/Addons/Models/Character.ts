@@ -1,6 +1,6 @@
 import {CharacterType} from "./CharacterType";
 import {Race} from "./Race";
-import {CustomProperty} from "./CustomProperty";
+import {CustomSection} from "./CustomSection";
 
 export class Character {
     public id: number;
@@ -8,16 +8,18 @@ export class Character {
     public description: string;
     public type: CharacterType;
     public race: Race;
-    public customProperties: CustomProperty[];
+    public customSections: CustomSection[];
     
     constructor(data?) {
         if (data) {
             this.id = data.id;
             this.name = data.name;
             this.description = data.description;
-            this.type = data.type ? new CharacterType(data.type) : null;
-            this.race = data.race ? new Race(data.race) : null;
-            this.customProperties = data.customProperties ? data.customProperties.map(_ => new CustomProperty(_)) : [];
+            this.type = new CharacterType(data.type);
+            this.race = new Race(data.race);
+            this.customSections = data.customSections ? data.customSections.map(_ => new CustomSection(_)) : [];
+        } else {
+            this.customSections = [];
         }
     }
 }

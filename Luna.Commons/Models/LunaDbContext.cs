@@ -9,7 +9,7 @@ namespace Luna.Commons.Models
         public DbSet<Race> Races { get; set; }
         public DbSet<CustomSection> CustomSections { get; set; }
         public DbSet<CustomProperty> CustomProperties { get; set; }
-        public DbSet<CustomPropertyType> CustomerPropertyTypes { get; set; }
+        public DbSet<CustomPropertyType> CustomPropertyTypes { get; set; }
 
         // public LunaDbContext()
         // {

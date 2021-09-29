@@ -24,6 +24,10 @@ namespace Luna.Controllers
         private CharacterTypeRepository CharacterTypeRepository =>
             _characterTypeRepository ??= _scope.Resolve<CharacterTypeRepository>();
         
+        private CustomPropertyTypeRepository _CustomPropertyTypeRepository { get; set; }
+        private CustomPropertyTypeRepository CustomPropertyTypeRepository =>
+            _CustomPropertyTypeRepository ??= _scope.Resolve<CustomPropertyTypeRepository>();
+        
         public CharacterController(ILifetimeScope scope) : base(scope)
         {
         }
@@ -109,6 +113,38 @@ namespace Luna.Controllers
             }
             
             type = await CharacterTypeRepository.Insert(new CharacterType
+            {
+                Name = name,
+                Description = description
+            });
+
+            if (type?.Name == name)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllCustomPropertyTypesForSelect()
+        {
+            var types = await CustomPropertyTypeRepository.GetAll();
+            
+            return Ok(types.Select(_ => new SelectListItem(_.Name, _.Id.ToString())));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNewCustomPropertyType(string name, string description)
+        {
+            var type = await CustomPropertyTypeRepository.GetByName(name);
+
+            if (type != null)
+            {
+                return Unauthorized();
+            }
+            
+            type = await CustomPropertyTypeRepository.Insert(new CustomPropertyType
             {
                 Name = name,
                 Description = description

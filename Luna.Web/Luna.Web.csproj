@@ -29,6 +29,7 @@
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CharacterType.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomProperty.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomPropertyType.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomSection.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\Race.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\SharedComponents\CustomProperties\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\SharedComponents\CustomSelect\index.ts" />

@@ -1,7 +1,7 @@
 <template>
     <form>
         <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-8 offset-md-2">
                 <div class="row form-group mb-2">
                     <div class="col-md-12">
                         <input type="text" v-model="character.name" class="form-control required" placeholder="Nom du personnage"/>
@@ -19,7 +19,7 @@
                             url="/Character/GetAllCharacterTypesForSelect"
                             placeholder="Type du personnage"
                             url-new-option="/Character/AddNewCharacterType"
-                            name="type"
+                            name="character_type"
                             class="required">
                         </select-custom>
                     </div>
@@ -29,10 +29,22 @@
                             url="/Character/GetAllRacesForSelect"
                             placeholder="Race du personnage"
                             url-new-option="/Character/AddNewRace"
-                            name="race"
+                            name="character_race"
                             class="required">
                         </select-custom>
                     </div>
+                </div>
+            </div>
+            <template v-if="character.customSections">
+                <div v-for="section in character.customSections" class="row mb-2">
+                    <div class="col-md-12">
+                        <custom-section :section="section"></custom-section>
+                    </div>
+                </div>
+            </template>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-primary" @click="addNewSection">Ajouter une section personnalisée</button>
                 </div>
             </div>
         </div>
@@ -41,6 +53,7 @@
 
 <script>
     import {Character} from "../../Models/Character";
+    import {CustomSection} from "../../Models/CustomSection";
     import SelectCustom from "../../SharedComponents/CustomSelect/SelectCustom";
 
     export default {
@@ -64,11 +77,15 @@
                     $this.character = data;
                 });
             } else {
-                this.character = new Character();
+                let character = new Character();
+                character.customSections.push(new CustomSection());
+                this.character = character;
             }
         },
         methods: {
-            
+            addNewSection() {
+                this.character.customSections.push(new CustomSection());
+            }
         },
         computed: {
             races() {

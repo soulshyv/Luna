@@ -9,6 +9,8 @@ $fa-font-path: '../../node_modules/font-awesome/fonts/';
 
 @import "../../node_modules/vue-select/src/scss/vue-select";
 
+@import "./character";
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
