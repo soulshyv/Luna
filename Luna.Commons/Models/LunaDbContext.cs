@@ -2,7 +2,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Luna.Commons.Models
 {
-    public class LunaDbContext : DbContext
+    // https://docs.microsoft.com/fr-fr/ef/core/cli/dotnet
+    
+    public partial class LunaDbContext : DbContext
     {
         public DbSet<Character> Characters { get; set; }
         public DbSet<CharacterType> CharacterTypes { get; set; }
@@ -27,6 +29,8 @@ namespace Luna.Commons.Models
             CustomSectionMapping(modelBuilder);
             CustomPropertyMapping(modelBuilder);
             CustomPropertyTypeMapping(modelBuilder);
+
+            CustomizeMapping(ref modelBuilder);
 
             RelationshipsMapping(modelBuilder);
         }
@@ -101,6 +105,8 @@ namespace Luna.Commons.Models
             modelBuilder.Entity<CustomPropertyType>().HasKey(_ => _.Id);
             modelBuilder.Entity<CustomPropertyType>().HasIndex(_ => _.Name).IsUnique();
         }
+
+        partial void CustomizeMapping(ref ModelBuilder modelBuilder);
 
         private void RelationshipsMapping(ModelBuilder modelBuilder)
         {

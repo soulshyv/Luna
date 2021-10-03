@@ -1,6 +1,7 @@
 using System.Data;
 using Autofac;
 using Luna.Commons.Models;
+using Luna.Commons.Models.Identity;
 using Luna.Commons.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,16 +36,16 @@ namespace Luna
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddSingleton<IDbConnection>(_ => 
-                new MySqlConnection(connectionString)
-            );
+            services.AddSingleton<IDbConnection>(_ => new MySqlConnection(connectionString));
             
-            services.AddDbContext<LunaDbContext>(options =>
+            services.AddDbContext<LunaDbContext>((options, bld) =>
             {
-                options
+                bld
                     .UseMySql(connectionString)
                     .EnableDetailedErrors();
             });
+
+            services.AddIdentity<LunaIdentityUser, LunaIdentityRole>();
 
             services.AddRepositories();
             
