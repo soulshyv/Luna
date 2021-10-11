@@ -1,10 +1,9 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Luna.Commons.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Luna.Commons.Repositories
+namespace Luna.Commons.Repositories.Implementations
 {
     public class RaceRepository : BaseRepository<Race, LunaDbContext>
     {

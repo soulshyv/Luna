@@ -1,12 +1,14 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Luna.Commons.Models;
+using Luna.Commons.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Luna.Commons.Repositories
 {
-    public abstract class BaseRepository<TModel, TDbContext>
-        where TModel : class, new()
+    public abstract class BaseRepository<TModel, TDbContext> : IBaseRepository<TModel>
+        where TModel : ModelBase
         where TDbContext : DbContext
     {
         protected TDbContext DbContext { get; set; }

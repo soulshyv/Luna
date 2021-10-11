@@ -43,6 +43,9 @@ namespace Luna.Commons.Models
             modelBuilder.Entity<Character>().Property(_ => _.Description).HasColumnName("description").HasColumnType("blob");
             modelBuilder.Entity<Character>().Property(_ => _.TypeId).HasColumnName("type_id").HasColumnType("int");
             modelBuilder.Entity<Character>().Property(_ => _.RaceId).HasColumnName("race_id").HasColumnType("int");
+            modelBuilder.Entity<Character>().Property(_ => _.Created).HasColumnName("created").HasColumnType("datetime");
+            modelBuilder.Entity<Character>().Property(_ => _.Modified).HasColumnName("modified").HasColumnType("datetime");
+            modelBuilder.Entity<Character>().Property(_ => _.Userid).HasColumnName("user_id").HasColumnType("char(32)");
             
             modelBuilder.Entity<Character>().HasKey(_ => _.Id);
         }
@@ -54,6 +57,9 @@ namespace Luna.Commons.Models
             modelBuilder.Entity<CustomSection>().Property(_ => _.Name).HasColumnName("nom").HasColumnType("varchar(255)").IsRequired();
             modelBuilder.Entity<CustomSection>().Property(_ => _.Description).HasColumnName("description").HasColumnType("blob");
             modelBuilder.Entity<CustomSection>().Property(_ => _.CharacterId).HasColumnName("character_id").HasColumnType("int");
+            modelBuilder.Entity<CustomSection>().Property(_ => _.Created).HasColumnName("created").HasColumnType("datetime");
+            modelBuilder.Entity<CustomSection>().Property(_ => _.Modified).HasColumnName("modified").HasColumnType("datetime");
+            modelBuilder.Entity<CustomSection>().Property(_ => _.Userid).HasColumnName("user_id").HasColumnType("char(32)");
             
             modelBuilder.Entity<CustomProperty>().HasKey(_ => _.Id);
         }
@@ -70,6 +76,9 @@ namespace Luna.Commons.Models
             modelBuilder.Entity<CustomProperty>().Property(_ => _.Valeur).HasColumnName("valeur").HasColumnType("int").IsRequired();
             modelBuilder.Entity<CustomProperty>().Property(_ => _.ValeurMax).HasColumnName("valeur_max").HasColumnType("int");
             modelBuilder.Entity<CustomProperty>().Property(_ => _.Unite).HasColumnName("unite").HasColumnType("varchar(100)");
+            modelBuilder.Entity<CustomProperty>().Property(_ => _.Created).HasColumnName("created").HasColumnType("datetime");
+            modelBuilder.Entity<CustomProperty>().Property(_ => _.Modified).HasColumnName("modified").HasColumnType("datetime");
+            modelBuilder.Entity<CustomProperty>().Property(_ => _.Userid).HasColumnName("user_id").HasColumnType("char(32)");
             
             modelBuilder.Entity<CustomProperty>().HasKey(_ => _.Id);
         }
@@ -80,6 +89,9 @@ namespace Luna.Commons.Models
             modelBuilder.Entity<Race>().Property(_ => _.Id).HasColumnName("id").HasColumnType("int").IsRequired().ValueGeneratedOnAdd();
             modelBuilder.Entity<Race>().Property(_ => _.Name).HasColumnName("nom").HasColumnType("varchar(255)").IsRequired();
             modelBuilder.Entity<Race>().Property(_ => _.Description).HasColumnName("description").HasColumnType("blob");
+            modelBuilder.Entity<Race>().Property(_ => _.Created).HasColumnName("created").HasColumnType("datetime");
+            modelBuilder.Entity<Race>().Property(_ => _.Modified).HasColumnName("modified").HasColumnType("datetime");
+            modelBuilder.Entity<Race>().Property(_ => _.Userid).HasColumnName("user_id").HasColumnType("char(32)");
             
             modelBuilder.Entity<Race>().HasKey(_ => _.Id);
         }
@@ -90,6 +102,9 @@ namespace Luna.Commons.Models
             modelBuilder.Entity<CharacterType>().Property(_ => _.Id).HasColumnName("id").HasColumnType("int").IsRequired().ValueGeneratedOnAdd();
             modelBuilder.Entity<CharacterType>().Property(_ => _.Name).HasColumnName("nom").HasColumnType("varchar(255)").IsRequired();
             modelBuilder.Entity<CharacterType>().Property(_ => _.Description).HasColumnName("description").HasColumnType("blob");
+            modelBuilder.Entity<CharacterType>().Property(_ => _.Created).HasColumnName("created").HasColumnType("datetime");
+            modelBuilder.Entity<CharacterType>().Property(_ => _.Modified).HasColumnName("modified").HasColumnType("datetime");
+            modelBuilder.Entity<CharacterType>().Property(_ => _.Userid).HasColumnName("user_id").HasColumnType("char(32)");
             
             modelBuilder.Entity<CharacterType>().HasKey(_ => _.Id);
             modelBuilder.Entity<CharacterType>().HasIndex(_ => _.Name).IsUnique();
@@ -101,6 +116,9 @@ namespace Luna.Commons.Models
             modelBuilder.Entity<CustomPropertyType>().Property(_ => _.Id).HasColumnName("id").HasColumnType("int").IsRequired().ValueGeneratedOnAdd();
             modelBuilder.Entity<CustomPropertyType>().Property(_ => _.Name).HasColumnName("nom").HasColumnType("varchar(255)").IsRequired();
             modelBuilder.Entity<CustomPropertyType>().Property(_ => _.Description).HasColumnName("description").HasColumnType("blob");
+            modelBuilder.Entity<CustomPropertyType>().Property(_ => _.Created).HasColumnName("created").HasColumnType("datetime");
+            modelBuilder.Entity<CustomPropertyType>().Property(_ => _.Modified).HasColumnName("modified").HasColumnType("datetime");
+            modelBuilder.Entity<CustomPropertyType>().Property(_ => _.Userid).HasColumnName("user_id").HasColumnType("char(32)");
             
             modelBuilder.Entity<CustomPropertyType>().HasKey(_ => _.Id);
             modelBuilder.Entity<CustomPropertyType>().HasIndex(_ => _.Name).IsUnique();
@@ -125,6 +143,10 @@ namespace Luna.Commons.Models
                 .HasMany(_ => _.CustomSections)
                 .WithOne(_ => _.Character)
                 .HasForeignKey("CharacterId");
+            modelBuilder.Entity<Character>()
+                .HasOne(_ => _.Author)
+                .WithMany(_ => _.Characters)
+                .HasForeignKey("UserId");
             
             // CustomSection
             modelBuilder.Entity<CustomSection>()
@@ -136,6 +158,10 @@ namespace Luna.Commons.Models
                 .HasMany(_ => _.CustomProperties)
                 .WithOne(_ => _.CustomSection)
                 .HasForeignKey("CustomSectionId");
+            modelBuilder.Entity<CustomSection>()
+                .HasOne(_ => _.Author)
+                .WithMany(_ => _.CustomSections)
+                .HasForeignKey("UserId");
             
             // CustomProperty
             modelBuilder.Entity<CustomProperty>()
@@ -153,6 +179,10 @@ namespace Luna.Commons.Models
                 .WithMany(_ => _.CustomProperties)
                 .IsRequired()
                 .HasForeignKey("RaceId");
+            modelBuilder.Entity<CustomProperty>()
+                .HasOne(_ => _.Author)
+                .WithMany(_ => _.CustomProperties)
+                .HasForeignKey("UserId");
             
             // Race
             modelBuilder.Entity<Race>()
@@ -163,18 +193,30 @@ namespace Luna.Commons.Models
                 .HasMany(_ => _.Characters)
                 .WithOne(_ => _.Race)
                 .HasForeignKey("RaceId");
+            modelBuilder.Entity<Race>()
+                .HasOne(_ => _.Author)
+                .WithMany(_ => _.Races)
+                .HasForeignKey("UserId");
             
             // CharacterType
             modelBuilder.Entity<CharacterType>()
                 .HasMany(_ => _.Characters)
                 .WithOne(_ => _.Type)
                 .HasForeignKey("TypeId");
+            modelBuilder.Entity<CharacterType>()
+                .HasOne(_ => _.Author)
+                .WithMany(_ => _.CharacterTypes)
+                .HasForeignKey("UserId");
             
             // CustomPropertyType
             modelBuilder.Entity<CustomPropertyType>()
                 .HasMany(_ => _.CustomProperties)
                 .WithOne(_ => _.Type)
                 .HasForeignKey("TypeId");
+            modelBuilder.Entity<CustomPropertyType>()
+                .HasOne(_ => _.Author)
+                .WithMany(_ => _.CustomPropertieTypes)
+                .HasForeignKey("UserId");
         }
         
         

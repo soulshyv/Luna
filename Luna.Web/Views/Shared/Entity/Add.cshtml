@@ -1,0 +1,19 @@
+@model Luna.ViewModels.EntityViewModel
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h4>@(ViewBag.Title) - Ajouter</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form asp-action="Add" method="post">
+            @if(Model.Id.HasValue)
+            {
+                <input asp-for="Id" value="@Model.Id" />
+            }
+            
+            @await Html.PartialAsync("Entity/_Form", Model)
+        </form>
+    </div>
+</div>

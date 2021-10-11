@@ -1,0 +1,22 @@
+@model Luna.ViewModels.EntityViewModel
+
+<div class="row mb-2">
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="text" asp-for="Name" class="form-control" placeholder="Nom"/>
+        </div>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-md-12">
+        <div class="form-group">
+            <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-success">Ajouter</button>
+        <a asp-action="Index" class="btn btn-secondary">Annuler</a>
+    </div>
+</div>

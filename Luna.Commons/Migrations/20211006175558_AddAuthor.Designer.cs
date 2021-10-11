@@ -3,14 +3,16 @@ using System;
 using Luna.Commons.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Luna.Commons.Migrations
 {
     [DbContext(typeof(LunaDbContext))]
-    partial class LunaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211006175558_AddAuthor")]
+    partial class AddAuthor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,10 +54,9 @@ namespace Luna.Commons.Migrations
                     b.Property<Guid?>("UserId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<int>("Userid")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -95,10 +96,9 @@ namespace Luna.Commons.Migrations
                     b.Property<Guid?>("UserId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<int>("Userid")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -153,10 +153,9 @@ namespace Luna.Commons.Migrations
                     b.Property<Guid?>("UserId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<int>("Userid")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("int");
 
                     b.Property<int>("Valeur")
                         .HasColumnName("valeur")
@@ -206,10 +205,9 @@ namespace Luna.Commons.Migrations
                     b.Property<Guid?>("UserId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<int>("Userid")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -252,10 +250,9 @@ namespace Luna.Commons.Migrations
                     b.Property<Guid?>("UserId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<int>("Userid")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -293,8 +290,8 @@ namespace Luna.Commons.Migrations
                     b.Property<Guid>("PublicId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("Userid")
-                        .HasColumnType("char(36)");
+                    b.Property<int>("Userid")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -412,10 +409,9 @@ namespace Luna.Commons.Migrations
                     b.Property<Guid?>("UserId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<int>("Userid")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

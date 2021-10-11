@@ -11,13 +11,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.19" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.19" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.19">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.19" />
     </ItemGroup>
 
     <ItemGroup>
@@ -49,6 +49,13 @@
     <ItemGroup>
       <Folder Include="Areas" />
       <Folder Include="_wwwsrc\js\Addons\Mixins" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Entity\Add.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Entity\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Entity\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Entity\_Form.cshtml" />
     </ItemGroup>
 
 </Project>

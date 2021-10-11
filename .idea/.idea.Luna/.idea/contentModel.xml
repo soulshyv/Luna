@@ -8,7 +8,11 @@
       <e p="Luna.Commons" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Enums" t="Include">
+          <e p="EntityTypeEnum.cs" t="Include" />
           <e p="TypeCustomPropertyEnum.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="ServiceCollectionExtensions.cs" t="Include" />
         </e>
         <e p="Luna.Commons.csproj" t="IncludeRecursive" />
         <e p="Migrations" t="Include">
@@ -20,6 +24,10 @@
           <e p="20210928230247_AddUniqueConstraints.Designer.cs" t="Include" />
           <e p="20211003224212_AddIdentity.cs" t="Include" />
           <e p="20211003224212_AddIdentity.Designer.cs" t="Include" />
+          <e p="20211006175558_AddAuthor.cs" t="Include" />
+          <e p="20211006175558_AddAuthor.Designer.cs" t="Include" />
+          <e p="20211006231834_UserIdGuid.cs" t="Include" />
+          <e p="20211006231834_UserIdGuid.Designer.cs" t="Include" />
           <e p="LunaDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -51,13 +59,21 @@
         </e>
         <e p="Repositories" t="Include">
           <e p="BaseRepository.cs" t="Include" />
-          <e p="CharacterRepository.cs" t="Include" />
-          <e p="CharacterTypeRepository.cs" t="Include" />
-          <e p="CustomPropertyTypeRepository.cs" t="Include" />
-          <e p="RaceRepository.cs" t="Include" />
+          <e p="Implementations" t="Include">
+            <e p="CharacterRepository.cs" t="Include" />
+            <e p="CharacterTypeRepository.cs" t="Include" />
+            <e p="CustomPropertyTypeRepository.cs" t="Include" />
+            <e p="RaceRepository.cs" t="Include" />
+          </e>
+          <e p="Interfaces" t="Include">
+            <e p="IBaseRepository.cs" t="Include" />
+          </e>
           <e p="RegistrationExtensions.cs" t="Include" />
         </e>
-        <e p="Services" t="Include" />
+        <e p="Services" t="Include">
+          <e p="CurrentUserAccessor.cs" t="Include" />
+          <e p="LunaUserManager.cs" t="Include" />
+        </e>
       </e>
       <e p="Luna.Migrations" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -129,7 +145,11 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="CharacterController.cs" t="Include" />
+          <e p="CharacterTypeController.cs" t="Include" />
+          <e p="CustomPropertyTypeController.cs" t="Include" />
+          <e p="EntityController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
+          <e p="RaceController.cs" t="Include" />
         </e>
         <e p="Luna.Web.csproj" t="IncludeRecursive" />
         <e p="Models" t="Include">
@@ -252,6 +272,8 @@
         <e p="tsconfig.json" t="Include" />
         <e p="ViewModels" t="Include">
           <e p="CharacterViewModel.cs" t="Include" />
+          <e p="EntityListViewModel.cs" t="Include" />
+          <e p="EntityViewModel.cs" t="Include" />
         </e>
         <e p="Views" t="Include">
           <e p="_ViewImports.cshtml" t="Include" />
@@ -268,24 +290,30 @@
           <e p="Shared" t="Include">
             <e p="_Layout.cshtml" t="Include" />
             <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+            <e p="Entity" t="Include">
+              <e p="_Form.cshtml" t="Include" />
+              <e p="Add.cshtml" t="Include" />
+              <e p="Edit.cshtml" t="Include" />
+              <e p="Index.cshtml" t="Include" />
+            </e>
             <e p="Error.cshtml" t="Include" />
           </e>
         </e>
         <e p="wwwroot" t="Include">
           <e p="bundle" t="Include">
-            <e p="fontawesome-webfont.80db1567.eot" t="Include" />
-            <e p="fontawesome-webfont.9ab71dbb.svg" t="Include" />
-            <e p="fontawesome-webfont.c3cf7ef2.woff" t="Include" />
-            <e p="fontawesome-webfont.cda54bb3.woff2" t="Include" />
-            <e p="fontawesome-webfont.cf80d36a.ttf" t="Include" />
+            <e p="fontawesome-webfont.152c194f.ttf" t="Include" />
+            <e p="fontawesome-webfont.4a2277d0.eot" t="Include" />
+            <e p="fontawesome-webfont.4e039e70.woff" t="Include" />
+            <e p="fontawesome-webfont.9fb3877d.woff2" t="Include" />
+            <e p="fontawesome-webfont.a9acc805.svg" t="Include" />
             <e p="index.css" t="Include" />
             <e p="index.js" t="Include" />
-            <e p="ui-icons_444444_256x240.03f315c1.png" t="Include" />
-            <e p="ui-icons_555555_256x240.abc04f9b.png" t="Include" />
-            <e p="ui-icons_777620_256x240.17b0cafe.png" t="Include" />
-            <e p="ui-icons_777777_256x240.c1909d3d.png" t="Include" />
-            <e p="ui-icons_cc0000_256x240.56edf018.png" t="Include" />
-            <e p="ui-icons_ffffff_256x240.ab956bf3.png" t="Include" />
+            <e p="ui-icons_444444_256x240.b4e66bc7.png" t="Include" />
+            <e p="ui-icons_555555_256x240.d0adf2bb.png" t="Include" />
+            <e p="ui-icons_777620_256x240.8b0090c4.png" t="Include" />
+            <e p="ui-icons_777777_256x240.5dc8ba8e.png" t="Include" />
+            <e p="ui-icons_cc0000_256x240.c6e95ab5.png" t="Include" />
+            <e p="ui-icons_ffffff_256x240.1fe1fca1.png" t="Include" />
           </e>
           <e p="css" t="Include">
             <e p="site.css" t="Include" />

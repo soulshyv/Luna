@@ -3,6 +3,8 @@ import Character from "./Character.vue";
 
 Vue.component("character", Character);
 
-let vue = new Vue({
-    el: ".character"
-});
+if (document.getElementsByClassName("character")) {
+    let vue = new Vue({
+        el: ".character"
+    });
+}

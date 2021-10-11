@@ -3,6 +3,7 @@ using Autofac;
 using Luna.Commons.Models;
 using Luna.Commons.Models.Identity;
 using Luna.Commons.Repositories;
+using Luna.Commons.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -46,8 +47,13 @@ namespace Luna
             });
 
             services.AddIdentity<LunaIdentityUser, LunaIdentityRole>();
-
+            
+            // Repositories
             services.AddRepositories();
+
+            // Services
+            services.AddScoped<LunaUserManager>();
+            services.AddScoped<CurrentUserAccessor>();
             
             services.AddControllersWithViews();
             services.AddRazorPages();
