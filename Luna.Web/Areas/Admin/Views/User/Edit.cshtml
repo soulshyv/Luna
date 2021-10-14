@@ -1,0 +1,22 @@
+@model Luna.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "Modifier un utilisateur";
+}
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h4>@ViewBag.Title</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+        
+            @await Html.PartialAsync("_Form", Model)
+            
+            <a>Désactiver cet utilisateur</a>
+        </form>
+    </div>
+</div>

@@ -5,7 +5,7 @@ namespace Luna.Commons.Models
 {
     public class AuthorBase
     {
-        public Guid Userid { get; set; }
+        public Guid UserId { get; set; }
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
 

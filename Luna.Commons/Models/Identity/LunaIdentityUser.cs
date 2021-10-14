@@ -12,6 +12,7 @@ namespace Luna.Commons.Models.Identity
         public override bool EmailConfirmed { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
+        public virtual bool IsActive { get; set; }
         public override string SecurityStamp { get; set; }
         public override string PhoneNumber { get; set; }
         public override bool PhoneNumberConfirmed { get; set; }
@@ -25,7 +26,6 @@ namespace Luna.Commons.Models.Identity
         public virtual IList<CustomSection> CustomSections { get; set; }
         public virtual IList<CustomProperty> CustomProperties { get; set; }
         public virtual IList<CustomPropertyType> CustomPropertieTypes { get; set; }
-        public virtual IList<GedDocument> GedDocuments { get; set; }
         public virtual IList<Race> Races { get; set; }
     }
 }

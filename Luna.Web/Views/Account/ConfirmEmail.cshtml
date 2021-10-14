@@ -1,0 +1,47 @@
+@model Luna.ViewModels.AccountViewModel
+
+@{
+    Layout = "_Layout.Anonymous";
+    ViewData["Title"] = "Luna - Confirmer votre mail";
+}
+
+<form asp-action="ConfirmEmail" asp-controller="Account" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Token" />
+    
+    <div class="row mb-2">
+        <div class="col-md-6 offset-md-3">
+            <h3 class="text-center">Bonjour @Model.Email</h3>
+            
+            <div class="alert alert-info">
+                Veuillez saisir votre mot de passe deux fois afin d'activer votre compte
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mb-2">
+        <div class="col-md-6 offset-md-3">
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mb-2">
+        <div class="col-md-6 offset-md-3">
+            <div class="form-group">
+                <label asp-for="PasswordValidation" class="control-label"></label>
+                <input asp-for="PasswordValidation" class="form-control"/>
+                <span asp-validation-for="PasswordValidation" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mb-2">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-success">Valider</button>
+        </div>
+    </div>
+</form>

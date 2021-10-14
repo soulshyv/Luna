@@ -1,11 +1,15 @@
 using System.Data;
 using Autofac;
+using Luna.Commons.Communication.Config;
+using Luna.Commons.Communication.Interfaces;
+using Luna.Commons.Communication.Services;
 using Luna.Commons.Models;
 using Luna.Commons.Models.Identity;
 using Luna.Commons.Repositories;
 using Luna.Commons.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,14 +50,24 @@ namespace Luna
                     .EnableDetailedErrors();
             });
 
-            services.AddIdentity<LunaIdentityUser, LunaIdentityRole>();
+            services
+                .AddIdentity<LunaIdentityUser, LunaIdentityRole>()
+                .AddEntityFrameworkStores<LunaDbContext>()
+                .AddDefaultTokenProviders()
+                .AddUserManager<LunaUserManager>();
+
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             
             // Repositories
             services.AddRepositories();
 
             // Services
-            services.AddScoped<LunaUserManager>();
             services.AddScoped<CurrentUserAccessor>();
+
+            services.AddScoped<LunaUrlBuilder>();
+            
+            services.AddSingleton(Configuration.GetSection("MailSettings").Get<MailSettings>());
+            services.AddScoped<IMailService, MailService>();
             
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -84,8 +98,13 @@ namespace Luna
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "areaDefault",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                
                 endpoints.MapRazorPages();
             });
         }

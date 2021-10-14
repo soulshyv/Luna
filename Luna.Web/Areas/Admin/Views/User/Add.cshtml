@@ -1,0 +1,23 @@
+@model Luna.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "Ajouter un utilisateur";
+}
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h4>@ViewBag.Title</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form asp-action="Add" method="post">
+            @if(Model.Id.HasValue)
+            {
+                <input asp-for="Id" value="@Model.Id" />
+            }
+            
+            @await Html.PartialAsync("_Form", Model)
+        </form>
+    </div>
+</div>

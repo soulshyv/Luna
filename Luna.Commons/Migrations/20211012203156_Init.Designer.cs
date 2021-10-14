@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Luna.Commons.Migrations
 {
     [DbContext(typeof(LunaDbContext))]
-    [Migration("20211006231834_UserIdGuid")]
-    partial class UserIdGuid
+    [Migration("20211012203156_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,13 +51,9 @@ namespace Luna.Commons.Migrations
                         .HasColumnName("type_id")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
@@ -94,13 +90,9 @@ namespace Luna.Commons.Migrations
                         .HasColumnName("nom")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
@@ -152,13 +144,9 @@ namespace Luna.Commons.Migrations
                         .HasColumnName("unite")
                         .HasColumnType("varchar(100)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("char(36)");
 
                     b.Property<int>("Valeur")
                         .HasColumnName("valeur")
@@ -205,13 +193,9 @@ namespace Luna.Commons.Migrations
                         .HasColumnName("nom")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
@@ -251,13 +235,9 @@ namespace Luna.Commons.Migrations
                         .HasColumnName("nom")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
@@ -266,43 +246,6 @@ namespace Luna.Commons.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("luna_rpg_custom_section");
-                });
-
-            modelBuilder.Entity("Luna.Commons.Models.GedDocument", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("AuthorId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Path")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<Guid>("PublicId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid>("Userid")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.ToTable("GedDocument");
                 });
 
             modelBuilder.Entity("Luna.Commons.Models.Identity.LunaIdentityRole", b =>
@@ -348,6 +291,10 @@ namespace Luna.Commons.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnName("is_active")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -411,13 +358,9 @@ namespace Luna.Commons.Migrations
                         .HasColumnName("nom")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Userid")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnName("user_id")
-                        .HasColumnType("char(32)");
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
@@ -439,6 +382,7 @@ namespace Luna.Commons.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<Guid>("RoleId")
+                        .HasColumnName("role_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
@@ -459,6 +403,7 @@ namespace Luna.Commons.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<Guid>("UserId")
+                        .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
@@ -470,6 +415,7 @@ namespace Luna.Commons.Migrations
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("LoginProvider")
@@ -489,9 +435,11 @@ namespace Luna.Commons.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
                     b.Property<Guid>("UserId")
+                        .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("RoleId")
+                        .HasColumnName("role_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("UserId", "RoleId");
@@ -503,6 +451,7 @@ namespace Luna.Commons.Migrations
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("LoginProvider")
@@ -535,14 +484,18 @@ namespace Luna.Commons.Migrations
 
                     b.HasOne("Luna.Commons.Models.Identity.LunaIdentityUser", "Author")
                         .WithMany("Characters")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Luna.Commons.Models.CharacterType", b =>
                 {
                     b.HasOne("Luna.Commons.Models.Identity.LunaIdentityUser", "Author")
                         .WithMany("CharacterTypes")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Luna.Commons.Models.CustomProperty", b =>
@@ -567,14 +520,18 @@ namespace Luna.Commons.Migrations
 
                     b.HasOne("Luna.Commons.Models.Identity.LunaIdentityUser", "Author")
                         .WithMany("CustomProperties")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Luna.Commons.Models.CustomPropertyType", b =>
                 {
                     b.HasOne("Luna.Commons.Models.Identity.LunaIdentityUser", "Author")
                         .WithMany("CustomPropertieTypes")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Luna.Commons.Models.CustomSection", b =>
@@ -587,21 +544,18 @@ namespace Luna.Commons.Migrations
 
                     b.HasOne("Luna.Commons.Models.Identity.LunaIdentityUser", "Author")
                         .WithMany("CustomSections")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Luna.Commons.Models.GedDocument", b =>
-                {
-                    b.HasOne("Luna.Commons.Models.Identity.LunaIdentityUser", "Author")
-                        .WithMany("GedDocuments")
-                        .HasForeignKey("AuthorId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Luna.Commons.Models.Race", b =>
                 {
                     b.HasOne("Luna.Commons.Models.Identity.LunaIdentityUser", "Author")
                         .WithMany("Races")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

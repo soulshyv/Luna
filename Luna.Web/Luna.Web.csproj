@@ -47,7 +47,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Areas" />
       <Folder Include="_wwwsrc\js\Addons\Mixins" />
     </ItemGroup>
 

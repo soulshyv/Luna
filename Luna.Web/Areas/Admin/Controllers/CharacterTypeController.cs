@@ -1,9 +1,11 @@
 using Autofac;
 using Luna.Commons.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Luna.Controllers
+namespace Luna.Areas.Admin.Controllers
 {
-    public class CharacterTypeController : EntityController<CharacterType>
+    [Area("Admin")]
+    public partial class CharacterTypeController : EntityController<CharacterType>
     {
         protected override string _entityName => "Type de personnage";
 

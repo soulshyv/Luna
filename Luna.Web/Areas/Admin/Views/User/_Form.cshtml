@@ -1,0 +1,27 @@
+@model Luna.ViewModels.UserViewModel
+
+<div class="row mb-2">
+    <div class="col-md-6">
+        <div class="form-group">
+            <input type="text" asp-for="FirstName" class="form-control" placeholder="Prénom"/>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <input type="text" asp-for="LastName" class="form-control" placeholder="Nom"/>
+        </div>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="text" asp-for="Email" class="form-control" placeholder="Email"/>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-success">Ajouter</button>
+        <a asp-action="Index" class="btn btn-secondary">Annuler</a>
+    </div>
+</div>

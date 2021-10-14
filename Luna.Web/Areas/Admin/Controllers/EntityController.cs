@@ -8,8 +8,9 @@ using Luna.Mvc;
 using Luna.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Luna.Controllers
+namespace Luna.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public abstract class EntityController<TModel> : BaseController
     where TModel : ModelBase, new()
     {
@@ -56,7 +57,7 @@ namespace Luna.Controllers
                 Description = model.Description,
                 Created = DateTime.Now,
                 Modified = DateTime.Now,
-                Userid = await CurrentUserAccessor.GetUserId()
+                UserId = await CurrentUserAccessor.GetUserId()
             });
             
             return RedirectToAction("Index");
@@ -84,7 +85,7 @@ namespace Luna.Controllers
             entity.Name = model.Name;
             entity.Description = model.Description;
             entity.Modified = DateTime.Now;
-            entity.Userid = await CurrentUserAccessor.GetUserId();
+            entity.UserId = await CurrentUserAccessor.GetUserId();
 
             await Repo.Update(entity);
             
