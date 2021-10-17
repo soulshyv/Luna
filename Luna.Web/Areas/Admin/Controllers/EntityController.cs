@@ -70,7 +70,7 @@ namespace Luna.Areas.Admin.Controllers
 
             var entity = await Repo.GetById(id);
             
-            return View("Entity/Edit", entity);
+            return View("Entity/Edit", new EntityViewModel(entity));
         }
 
         [HttpPost]

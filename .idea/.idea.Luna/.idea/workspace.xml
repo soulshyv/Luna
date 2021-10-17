@@ -12,8 +12,12 @@
     <list default="true" id="a4b2bea2-7262-400c-b7eb-6e63a092db4f" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/Luna.Commons/Models/GedDocument.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Areas/Admin/Controllers/EntityController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Areas/Admin/Controllers/EntityController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/User/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/User/Index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Luna.Web/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Controllers/AccountController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Views/Shared/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Views/Shared/Entity/Add.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Views/Shared/Entity/Add.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Views/Shared/Entity/Edit.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Views/Shared/Entity/Edit.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Views/Shared/Entity/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Views/Shared/Entity/Index.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,15 +55,13 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EEE949CD-1095-4293-845F-94A591D9C4FF/41/IUserTwoFactorTokenProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Dev/Luna/Luna.Commons/Services/CurrentUserAccessor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EEE949CD-1095-4293-845F-94A591D9C4FF/1D/UserManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Dev/Luna/Luna.Web/Views/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/DD7BBB1E-B6CB-4178-A82C-D5136B2606B8/0/IHttpContextAccessor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/CE92AABC-200E-459A-A967-BDE8B07B0639/A/DbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0999EFCD-3E43-48C6-A17E-5FAC06D8B9A9/3/CookieAuthenticationDefaults.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/_ViewImports.cshtml" />
-      <option value="$PROJECT_DIR$/Luna.Web/Areas/Admin/Controllers/CharacterTypeController.cs" />
-      <option value="$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/User/_Form.cshtml" />
       <option value="$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/User/Add.cshtml" />
       <option value="$PROJECT_DIR$/Luna.Commons/Migrations/20211006175558_AddAuthor.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Models/AuthorBase.cs" />
@@ -75,12 +77,10 @@
       <option value="$PROJECT_DIR$/Luna.Communication/Models/Mail.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Config/MailSettings.cs" />
       <option value="$PROJECT_DIR$/Luna.Communication/Services/MailService.cs" />
-      <option value="$PROJECT_DIR$/Luna.Web/Views/Shared/Entity/Edit.cshtml" />
       <option value="$PROJECT_DIR$/Luna.Commons/Communication/Models/Mail.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/ViewModels/UserViewModel.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/User/Edit.cshtml" />
       <option value="$PROJECT_DIR$/Luna.Web/Areas/Admin/Controllers/UserController.cs" />
-      <option value="$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/User/Index.cshtml" />
       <option value="$PROJECT_DIR$/Luna.Commons/Services/LunaUrlBuilder.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Communication/Interfaces/IMailService.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/appsettings.json" />
@@ -106,8 +106,13 @@
       <option value="$PROJECT_DIR$/Luna.Web/Startup.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/Mvc/BaseController.cs" />
       <option value="$PROJECT_DIR$/Luna.Commons/Services/CurrentUserAccessor.cs" />
-      <option value="$PROJECT_DIR$/Luna.Web/Controllers/AccountController.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/Views/Shared/_Layout.cshtml" />
+      <option value="$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/User/Index.cshtml" />
+      <option value="$PROJECT_DIR$/Luna.Web/Views/Shared/Entity/Index.cshtml" />
+      <option value="$PROJECT_DIR$/Luna.Web/Areas/Admin/Controllers/EntityController.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/Views/Shared/Entity/Add.cshtml" />
+      <option value="$PROJECT_DIR$/Luna.Web/Views/Shared/Entity/Edit.cshtml" />
+      <option value="$PROJECT_DIR$/Luna.Web/Controllers/AccountController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yPvVDPVo2wfKPbWy8TqOwuKDTF" />
@@ -271,7 +276,7 @@
       <workItem from="1634064846758" duration="10066000" />
       <workItem from="1634159616393" duration="7084000" />
       <workItem from="1634240119245" duration="11138000" />
-      <workItem from="1634403341544" duration="22704000" />
+      <workItem from="1634403341544" duration="23362000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1632166224440</created>
@@ -385,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634430614304</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Ajout du bouton de déconnexion">
+      <created>1634431363125</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1634431363125</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,7 +437,8 @@
     <MESSAGE value="Ajout des crud dynamiques pour les entités de base" />
     <MESSAGE value="Ajout gestion des users + création de user" />
     <MESSAGE value="Ajout de l'authentification" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de l'authentification" />
+    <MESSAGE value="Ajout du bouton de déconnexion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du bouton de déconnexion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -8,11 +8,6 @@
 <div class="row">
     <div class="col-md-6 offset-md-3">
         <form asp-action="Add" method="post">
-            @if(Model.Id.HasValue)
-            {
-                <input asp-for="Id" value="@Model.Id" />
-            }
-            
             @await Html.PartialAsync("Entity/_Form", Model)
         </form>
     </div>

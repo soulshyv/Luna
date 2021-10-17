@@ -63,7 +63,7 @@ namespace Luna.Controllers
         {
             await SignInManager.SignOutAsync();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
         [HttpGet]
