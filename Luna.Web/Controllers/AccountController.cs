@@ -54,7 +54,16 @@ namespace Luna.Controllers
             }
             
             return RedirectToAction("Index", "Home");
+        }
 
+
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await SignInManager.SignOutAsync();
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
