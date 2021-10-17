@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using Autofac;
+using Luna.Commons.Authentication;
 using Luna.Commons.Models;
 using Luna.Commons.Models.Identity;
-using Luna.Commons.Services;
 using Luna.Mvc;
 using Luna.ViewModels;
 using Microsoft.AspNetCore.Mvc;

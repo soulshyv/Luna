@@ -1,5 +1,7 @@
+using System;
 using System.Data;
 using Autofac;
+using Luna.Commons.Authentication;
 using Luna.Commons.Communication.Config;
 using Luna.Commons.Communication.Interfaces;
 using Luna.Commons.Communication.Services;
@@ -7,6 +9,7 @@ using Luna.Commons.Models;
 using Luna.Commons.Models.Identity;
 using Luna.Commons.Repositories;
 using Luna.Commons.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -54,10 +57,50 @@ namespace Luna
                 .AddIdentity<LunaIdentityUser, LunaIdentityRole>()
                 .AddEntityFrameworkStores<LunaDbContext>()
                 .AddDefaultTokenProviders()
-                .AddUserManager<LunaUserManager>();
-
-            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+                .AddUserManager<LunaUserManager>()
+                .AddRoleManager<LunaRoleManager>()
+                .AddSignInManager<LunaSignInManager>()
+                .AddClaimsPrincipalFactory<LunaClaimsPrincipalFactory>();
             
+            // Authentication
+            services.AddScoped<SignInManager<LunaIdentityUser>, LunaSignInManager>();
+            
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings
+                options.User.RequireUniqueEmail = true;
+            });
+           
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromHours(1);
+                options.LoginPath = CookieAuthenticationDefaults.LoginPath;
+                options.AccessDeniedPath = CookieAuthenticationDefaults.LoginPath;
+                options.SlidingExpiration = true;
+            });
+            
+            services.AddAuthentication().AddCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromHours(1);
+                options.LoginPath = CookieAuthenticationDefaults.LoginPath;
+                options.AccessDeniedPath = CookieAuthenticationDefaults.LoginPath;
+                options.SlidingExpiration = true;
+            });
+
             // Repositories
             services.AddRepositories();
 

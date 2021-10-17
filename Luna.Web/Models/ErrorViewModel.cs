@@ -1,5 +1,3 @@
-using System;
-
 namespace Luna.Models
 {
     public class ErrorViewModel

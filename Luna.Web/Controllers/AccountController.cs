@@ -1,19 +1,21 @@
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
-using Luna.Commons.Services;
+using Luna.Commons.Authentication;
 using Luna.Mvc;
 using Luna.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 
 namespace Luna.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : BaseController
     {
+        private LunaSignInManager _signInManager;
+        private LunaSignInManager SignInManager => _signInManager ??= _scope.Resolve<LunaSignInManager>();
+        
         private LunaUserManager _userManager;
         private LunaUserManager UserManager => _userManager ??= _scope.Resolve<LunaUserManager>();
         
@@ -22,6 +24,37 @@ namespace Luna.Controllers
         
         public AccountController(ILifetimeScope scope) : base(scope)
         {
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Login(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var res = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+            if (!res.Succeeded)
+            {
+                return View();
+            }
+            
+            if (Url.IsLocalUrl(model.ReturnUrl))
+            {
+                return Redirect(model.ReturnUrl);
+            }
+            
+            return RedirectToAction("Index", "Home");
+
         }
 
         [HttpGet]

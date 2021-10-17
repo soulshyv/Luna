@@ -2,7 +2,7 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Autofac;
-using Luna.Commons.Models.Identity;
+using Luna.Commons.Authentication;
 using Microsoft.AspNetCore.Http;
 
 namespace Luna.Commons.Services

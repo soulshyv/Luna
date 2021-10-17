@@ -1,11 +1,12 @@
 using Autofac;
+using Luna.Commons.Authentication;
 using Luna.Commons.Models.Identity;
-using Luna.Commons.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Luna.Mvc
 {
+    [Authorize(AuthenticationSchemes = "Identity.Application")]
     public class BaseController : Controller
     {
         protected ILifetimeScope _scope { get; set; }

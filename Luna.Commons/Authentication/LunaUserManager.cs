@@ -5,11 +5,12 @@ using Autofac;
 using Luna.Commons.Communication.Interfaces;
 using Luna.Commons.Communication.Models;
 using Luna.Commons.Models.Identity;
+using Luna.Commons.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Luna.Commons.Services
+namespace Luna.Commons.Authentication
 {
     public class LunaUserManager : UserManager<LunaIdentityUser>
     {

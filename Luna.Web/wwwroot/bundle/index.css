@@ -1065,32 +1065,32 @@ a.ui-button:active,
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-	background-image: url("ui-icons_444444_256x240.b4e66bc7.png");
+	background-image: url("ui-icons_444444_256x240.03f315c1.png");
 }
 .ui-widget-header .ui-icon {
-	background-image: url("ui-icons_444444_256x240.b4e66bc7.png");
+	background-image: url("ui-icons_444444_256x240.03f315c1.png");
 }
 .ui-button .ui-icon {
-	background-image: url("ui-icons_777777_256x240.5dc8ba8e.png");
+	background-image: url("ui-icons_777777_256x240.c1909d3d.png");
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon,
 .ui-button:hover .ui-icon,
 .ui-button:focus .ui-icon,
 .ui-state-default .ui-icon {
-	background-image: url("ui-icons_555555_256x240.d0adf2bb.png");
+	background-image: url("ui-icons_555555_256x240.abc04f9b.png");
 }
 .ui-state-active .ui-icon,
 .ui-button:active .ui-icon {
-	background-image: url("ui-icons_ffffff_256x240.1fe1fca1.png");
+	background-image: url("ui-icons_ffffff_256x240.ab956bf3.png");
 }
 .ui-state-highlight .ui-icon,
 .ui-button .ui-state-highlight.ui-icon {
-	background-image: url("ui-icons_777620_256x240.8b0090c4.png");
+	background-image: url("ui-icons_777620_256x240.17b0cafe.png");
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-	background-image: url("ui-icons_cc0000_256x240.c6e95ab5.png");
+	background-image: url("ui-icons_cc0000_256x240.56edf018.png");
 }
 
 /* positioning */
@@ -12510,8 +12510,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
  * -------------------------- */
 @font-face {
   font-family: "FontAwesome";
-  src: url("fontawesome-webfont.4a2277d0.eot?v=4.7.0");
-  src: url("fontawesome-webfont.4a2277d0.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("fontawesome-webfont.9fb3877d.woff2?v=4.7.0") format("woff2"), url("fontawesome-webfont.4e039e70.woff?v=4.7.0") format("woff"), url("fontawesome-webfont.152c194f.ttf?v=4.7.0") format("truetype"), url("fontawesome-webfont.a9acc805.svg?v=4.7.0#fontawesomeregular") format("svg");
+  src: url("fontawesome-webfont.80db1567.eot?v=4.7.0");
+  src: url("fontawesome-webfont.80db1567.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("fontawesome-webfont.cda54bb3.woff2?v=4.7.0") format("woff2"), url("fontawesome-webfont.c3cf7ef2.woff?v=4.7.0") format("woff"), url("fontawesome-webfont.cf80d36a.ttf?v=4.7.0") format("truetype"), url("fontawesome-webfont.9ab71dbb.svg?v=4.7.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -15889,6 +15889,86 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 .custom-section .properties .btn-add-property {
   vertical-align: center;
+}
+
+.login {
+  background-image: url("background.c54fc52c.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.login #login-panel {
+  margin-top: 25%;
+}
+.login #login-panel form {
+  padding: 10px 15px;
+}
+.login #login-panel form .form__group {
+  position: relative;
+  padding: 15px 0 0;
+  width: 100%;
+  /* reset input */
+}
+.login #login-panel form .form__group .form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #d2d0d0;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #d2d0d0;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.login #login-panel form .form__group .form__field::placeholder {
+  color: transparent;
+}
+.login #login-panel form .form__group .form__field:placeholder-shown ~ .form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+.login #login-panel form .form__group .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  font-size: 1rem;
+  color: #d2d0d0;
+}
+.login #login-panel form .form__group .form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image-slice: 1;
+}
+.login #login-panel form .form__group .form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #11998e;
+  font-weight: 700;
+}
+.login #login-panel form .form__group .form__field:required, .login #login-panel form .form__group .form__field:invalid {
+  box-shadow: none;
+}
+.login #login-panel form .checkbox {
+  padding-left: 12px;
+  margin-top: 10px;
+  color: #d2d0d0;
+}
+.login #login-panel form .checkbox input {
+  margin-left: 0;
+}
+.login #login-panel form .btn-login {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #d2d0d0;
+}
+.login #login-panel form .btn-login:hover {
+  background-color: grey;
 }
 
 a.navbar-brand {

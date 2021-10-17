@@ -8,7 +8,6 @@ using Luna.Commons.Communication.Config;
 using Luna.Commons.Communication.Interfaces;
 using Luna.Commons.Communication.Models;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace Luna.Commons.Communication.Services
 {

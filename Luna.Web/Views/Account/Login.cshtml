@@ -1,0 +1,44 @@
+@model Luna.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Luna - Connexion";
+    Layout = "_Layout.Login";
+}
+
+<div class="row" id="login-panel">
+    <div class="col-md-4 offset-md-4">
+        <form asp-action="Login" asp-controller="Account" method="post" autocomplete="off">
+            <input type="hidden" asp-for="ReturnUrl" value="@ViewBag.ReturnUrl" />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form__group field">
+                        <input asp-for="Email" class="form__field" id="email" placeholder="Adresse mail"/>
+                        <label for="email" class="form__label">Adresse mail</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form__group field">
+                        <input asp-for="Password" class="form__field" id="pwd" placeholder="Mot de passe"/>
+                        <label for="pwd" class="form__label">Mot de passe</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 checkbox form-switch">
+                    <label for="rememberMe">Se souvenir de moi</label>
+                    <input class="form-check-input" type="checkbox" asp-for="RememberMe" id="rememberMe"/>
+                    <span asp-validation-for="RememberMe" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-login">Se connecter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
