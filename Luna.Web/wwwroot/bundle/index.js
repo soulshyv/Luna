@@ -18571,48 +18571,28 @@ function getOuterHTML(el) {
 Vue.compile = compileToFunctions;
 var _default = Vue;
 exports.default = _default;
-},{}],"js/Addons/Models/CharacterType.ts":[function(require,module,exports) {
+},{}],"js/Addons/Models/CustomField.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CharacterType = void 0;
+exports.CustomField = void 0;
 
-var CharacterType = function () {
-  function CharacterType(data) {
+var CustomField = function () {
+  function CustomField(data) {
     if (data) {
       this.id = data.id;
       this.name = data.name;
       this.description = data.description;
+      this.valeur = data.valeur;
     }
   }
 
-  return CharacterType;
+  return CustomField;
 }();
 
-exports.CharacterType = CharacterType;
-},{}],"js/Addons/Models/Race.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Race = void 0;
-
-var Race = function () {
-  function Race(data) {
-    if (data) {
-      this.id = data.id;
-      this.name = data.name;
-      this.description = data.description;
-    }
-  }
-
-  return Race;
-}();
-
-exports.Race = Race;
+exports.CustomField = CustomField;
 },{}],"js/Addons/Models/CustomPropertyType.ts":[function(require,module,exports) {
 "use strict";
 
@@ -18621,12 +18601,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.CustomPropertyType = void 0;
 
+var _CustomField = require("./CustomField");
+
 var CustomPropertyType = function () {
   function CustomPropertyType(data) {
     if (data) {
       this.id = data.id;
       this.name = data.name;
       this.description = data.description;
+      this.fields = data.fields ? data.fields.map(function (_) {
+        return new _CustomField.CustomField(_);
+      }) : [];
+    } else {
+      this.fields = [];
     }
   }
 
@@ -18634,1663 +18621,7 @@ var CustomPropertyType = function () {
 }();
 
 exports.CustomPropertyType = CustomPropertyType;
-},{}],"js/Addons/Models/CustomProperty.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.CustomProperty = void 0;
-
-var _CustomPropertyType = require("./CustomPropertyType");
-
-var _CustomSection = require("./CustomSection");
-
-var CustomProperty = function () {
-  function CustomProperty(data) {
-    if (data) {
-      this.id = data.id;
-      this.name = data.name;
-      this.description = data.description;
-      this.type = new _CustomPropertyType.CustomPropertyType(data.type);
-      this.customSection = new _CustomSection.CustomSection(data.customSection);
-      this.race = data.race;
-      this.valeur = data.valeur;
-      this.valeurMax = data.valeurMax;
-      this.unite = data.unite;
-    }
-  }
-
-  return CustomProperty;
-}();
-
-exports.CustomProperty = CustomProperty;
-},{"./CustomPropertyType":"js/Addons/Models/CustomPropertyType.ts","./CustomSection":"js/Addons/Models/CustomSection.ts"}],"js/Addons/Models/CustomSection.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.CustomSection = void 0;
-
-var _Character = require("./Character");
-
-var _CustomProperty = require("./CustomProperty");
-
-var CustomSection = function () {
-  function CustomSection(data) {
-    if (data) {
-      this.id = data.id;
-      this.name = data.name;
-      this.description = data.description;
-      this.character = new _Character.Character(data.character);
-      this.customProperties = data.customProperties ? data.customProperties.map(function (_) {
-        return new _CustomProperty.CustomProperty(_);
-      }) : [];
-    } else {
-      this.customProperties = [];
-    }
-  }
-
-  return CustomSection;
-}();
-
-exports.CustomSection = CustomSection;
-},{"./Character":"js/Addons/Models/Character.ts","./CustomProperty":"js/Addons/Models/CustomProperty.ts"}],"js/Addons/Models/Character.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Character = void 0;
-
-var _CharacterType = require("./CharacterType");
-
-var _Race = require("./Race");
-
-var _CustomSection = require("./CustomSection");
-
-var Character = function () {
-  function Character(data) {
-    if (data) {
-      this.id = data.id;
-      this.name = data.name;
-      this.description = data.description;
-      this.type = new _CharacterType.CharacterType(data.type);
-      this.race = new _Race.Race(data.race);
-      this.customSections = data.customSections ? data.customSections.map(function (_) {
-        return new _CustomSection.CustomSection(_);
-      }) : [];
-    } else {
-      this.customSections = [];
-    }
-  }
-
-  return Character;
-}();
-
-exports.Character = Character;
-},{"./CharacterType":"js/Addons/Models/CharacterType.ts","./Race":"js/Addons/Models/Race.ts","./CustomSection":"js/Addons/Models/CustomSection.ts"}],"../node_modules/vue-select/dist/vue-select.js":[function(require,module,exports) {
-var define;
-!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.VueSelect=e():t.VueSelect=e()}("undefined"!=typeof self?self:this,(function(){return function(t){var e={};function n(o){if(e[o])return e[o].exports;var i=e[o]={i:o,l:!1,exports:{}};return t[o].call(i.exports,i,i.exports,n),i.l=!0,i.exports}return n.m=t,n.c=e,n.d=function(t,e,o){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var i in t)n.d(o,i,function(e){return t[e]}.bind(null,i));return o},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=8)}([function(t,e,n){var o=n(4),i=n(5),s=n(6);t.exports=function(t){return o(t)||i(t)||s()}},function(t,e){function n(e){return"function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?t.exports=n=function(t){return typeof t}:t.exports=n=function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},n(e)}t.exports=n},function(t,e,n){},function(t,e){t.exports=function(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}},function(t,e){t.exports=function(t){if(Array.isArray(t)){for(var e=0,n=new Array(t.length);e<t.length;e++)n[e]=t[e];return n}}},function(t,e){t.exports=function(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}},function(t,e){t.exports=function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}},function(t,e,n){"use strict";var o=n(2);n.n(o).a},function(t,e,n){"use strict";n.r(e);var o=n(0),i=n.n(o),s=n(1),r=n.n(s),a=n(3),l=n.n(a),c={props:{autoscroll:{type:Boolean,default:!0}},watch:{typeAheadPointer:function(){this.autoscroll&&this.maybeAdjustScroll()}},methods:{maybeAdjustScroll:function(){var t,e=(null===(t=this.$refs.dropdownMenu)||void 0===t?void 0:t.children[this.typeAheadPointer])||!1;if(e){var n=this.getDropdownViewport(),o=e.getBoundingClientRect(),i=o.top,s=o.bottom,r=o.height;if(i<n.top)return this.$refs.dropdownMenu.scrollTop=e.offsetTop;if(s>n.bottom)return this.$refs.dropdownMenu.scrollTop=e.offsetTop-(n.height-r)}},getDropdownViewport:function(){return this.$refs.dropdownMenu?this.$refs.dropdownMenu.getBoundingClientRect():{height:0,top:0,bottom:0}}}},u={data:function(){return{typeAheadPointer:-1}},watch:{filteredOptions:function(){for(var t=0;t<this.filteredOptions.length;t++)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t;break}}},methods:{typeAheadUp:function(){for(var t=this.typeAheadPointer-1;t>=0;t--)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t;break}},typeAheadDown:function(){for(var t=this.typeAheadPointer+1;t<this.filteredOptions.length;t++)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t;break}},typeAheadSelect:function(){var t=this.filteredOptions[this.typeAheadPointer];t&&this.select(t)}}},p={props:{loading:{type:Boolean,default:!1}},data:function(){return{mutableLoading:!1}},watch:{search:function(){this.$emit("search",this.search,this.toggleLoading)},loading:function(t){this.mutableLoading=t}},methods:{toggleLoading:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;return this.mutableLoading=null==t?!this.mutableLoading:t}}};function h(t,e,n,o,i,s,r,a){var l,c="function"==typeof t?t.options:t;if(e&&(c.render=e,c.staticRenderFns=n,c._compiled=!0),o&&(c.functional=!0),s&&(c._scopeId="data-v-"+s),r?(l=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),i&&i.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(r)},c._ssrRegister=l):i&&(l=a?function(){i.call(this,this.$root.$options.shadowRoot)}:i),l)if(c.functional){c._injectStyles=l;var u=c.render;c.render=function(t,e){return l.call(e),u(t,e)}}else{var p=c.beforeCreate;c.beforeCreate=p?[].concat(p,l):[l]}return{exports:t,options:c}}var d={Deselect:h({},(function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",width:"10",height:"10"}},[e("path",{attrs:{d:"M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"}})])}),[],!1,null,null,null).exports,OpenIndicator:h({},(function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",width:"14",height:"10"}},[e("path",{attrs:{d:"M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"}})])}),[],!1,null,null,null).exports},f={inserted:function(t,e,n){var o=n.context;if(o.appendToBody){var i=o.$refs.toggle.getBoundingClientRect(),s=i.height,r=i.top,a=i.left,l=i.width,c=window.scrollX||window.pageXOffset,u=window.scrollY||window.pageYOffset;t.unbindPosition=o.calculatePosition(t,o,{width:l+"px",left:c+a+"px",top:u+r+s+"px"}),document.body.appendChild(t)}},unbind:function(t,e,n){n.context.appendToBody&&(t.unbindPosition&&"function"==typeof t.unbindPosition&&t.unbindPosition(),t.parentNode&&t.parentNode.removeChild(t))}};var y=function(t){var e={};return Object.keys(t).sort().forEach((function(n){e[n]=t[n]})),JSON.stringify(e)},b=0;var g=function(){return++b};function v(t,e){var n=Object.keys(t);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(t);e&&(o=o.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),n.push.apply(n,o)}return n}function m(t){for(var e=1;e<arguments.length;e++){var n=null!=arguments[e]?arguments[e]:{};e%2?v(Object(n),!0).forEach((function(e){l()(t,e,n[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(n)):v(Object(n)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(n,e))}))}return t}var _={components:m({},d),directives:{appendToBody:f},mixins:[c,u,p],props:{value:{},components:{type:Object,default:function(){return{}}},options:{type:Array,default:function(){return[]}},disabled:{type:Boolean,default:!1},clearable:{type:Boolean,default:!0},searchable:{type:Boolean,default:!0},multiple:{type:Boolean,default:!1},placeholder:{type:String,default:""},transition:{type:String,default:"vs__fade"},clearSearchOnSelect:{type:Boolean,default:!0},closeOnSelect:{type:Boolean,default:!0},label:{type:String,default:"label"},autocomplete:{type:String,default:"off"},reduce:{type:Function,default:function(t){return t}},selectable:{type:Function,default:function(t){return!0}},getOptionLabel:{type:Function,default:function(t){return"object"===r()(t)?t.hasOwnProperty(this.label)?t[this.label]:console.warn('[vue-select warn]: Label key "option.'.concat(this.label,'" does not')+" exist in options object ".concat(JSON.stringify(t),".\n")+"https://vue-select.org/api/props.html#getoptionlabel"):t}},getOptionKey:{type:Function,default:function(t){if("object"!==r()(t))return t;try{return t.hasOwnProperty("id")?t.id:y(t)}catch(e){return console.warn("[vue-select warn]: Could not stringify this option to generate unique key. Please provide'getOptionKey' prop to return a unique key for each option.\nhttps://vue-select.org/api/props.html#getoptionkey",t,e)}}},onTab:{type:Function,default:function(){this.selectOnTab&&!this.isComposing&&this.typeAheadSelect()}},taggable:{type:Boolean,default:!1},tabindex:{type:Number,default:null},pushTags:{type:Boolean,default:!1},filterable:{type:Boolean,default:!0},filterBy:{type:Function,default:function(t,e,n){return(e||"").toLowerCase().indexOf(n.toLowerCase())>-1}},filter:{type:Function,default:function(t,e){var n=this;return t.filter((function(t){var o=n.getOptionLabel(t);return"number"==typeof o&&(o=o.toString()),n.filterBy(t,o,e)}))}},createOption:{type:Function,default:function(t){return"object"===r()(this.optionList[0])?l()({},this.label,t):t}},resetOnOptionsChange:{default:!1,validator:function(t){return["function","boolean"].includes(r()(t))}},clearSearchOnBlur:{type:Function,default:function(t){var e=t.clearSearchOnSelect,n=t.multiple;return e&&!n}},noDrop:{type:Boolean,default:!1},inputId:{type:String},dir:{type:String,default:"auto"},selectOnTab:{type:Boolean,default:!1},selectOnKeyCodes:{type:Array,default:function(){return[13]}},searchInputQuerySelector:{type:String,default:"[type=search]"},mapKeydown:{type:Function,default:function(t,e){return t}},appendToBody:{type:Boolean,default:!1},calculatePosition:{type:Function,default:function(t,e,n){var o=n.width,i=n.top,s=n.left;t.style.top=i,t.style.left=s,t.style.width=o}},dropdownShouldOpen:{type:Function,default:function(t){var e=t.noDrop,n=t.open,o=t.mutableLoading;return!e&&(n&&!o)}}},data:function(){return{uid:g(),search:"",open:!1,isComposing:!1,pushedTags:[],_value:[]}},computed:{isTrackingValues:function(){return void 0===this.value||this.$options.propsData.hasOwnProperty("reduce")},selectedValue:function(){var t=this.value;return this.isTrackingValues&&(t=this.$data._value),t?[].concat(t):[]},optionList:function(){return this.options.concat(this.pushTags?this.pushedTags:[])},searchEl:function(){return this.$scopedSlots.search?this.$refs.selectedOptions.querySelector(this.searchInputQuerySelector):this.$refs.search},scope:function(){var t=this,e={search:this.search,loading:this.loading,searching:this.searching,filteredOptions:this.filteredOptions};return{search:{attributes:m({disabled:this.disabled,placeholder:this.searchPlaceholder,tabindex:this.tabindex,readonly:!this.searchable,id:this.inputId,"aria-autocomplete":"list","aria-labelledby":"vs".concat(this.uid,"__combobox"),"aria-controls":"vs".concat(this.uid,"__listbox"),ref:"search",type:"search",autocomplete:this.autocomplete,value:this.search},this.dropdownOpen&&this.filteredOptions[this.typeAheadPointer]?{"aria-activedescendant":"vs".concat(this.uid,"__option-").concat(this.typeAheadPointer)}:{}),events:{compositionstart:function(){return t.isComposing=!0},compositionend:function(){return t.isComposing=!1},keydown:this.onSearchKeyDown,blur:this.onSearchBlur,focus:this.onSearchFocus,input:function(e){return t.search=e.target.value}}},spinner:{loading:this.mutableLoading},noOptions:{search:this.search,loading:this.mutableLoading,searching:this.searching},openIndicator:{attributes:{ref:"openIndicator",role:"presentation",class:"vs__open-indicator"}},listHeader:e,listFooter:e,header:m({},e,{deselect:this.deselect}),footer:m({},e,{deselect:this.deselect})}},childComponents:function(){return m({},d,{},this.components)},stateClasses:function(){return{"vs--open":this.dropdownOpen,"vs--single":!this.multiple,"vs--multiple":this.multiple,"vs--searching":this.searching&&!this.noDrop,"vs--searchable":this.searchable&&!this.noDrop,"vs--unsearchable":!this.searchable,"vs--loading":this.mutableLoading,"vs--disabled":this.disabled}},searching:function(){return!!this.search},dropdownOpen:function(){return this.dropdownShouldOpen(this)},searchPlaceholder:function(){return this.isValueEmpty&&this.placeholder?this.placeholder:void 0},filteredOptions:function(){var t=[].concat(this.optionList);if(!this.filterable&&!this.taggable)return t;var e=this.search.length?this.filter(t,this.search,this):t;if(this.taggable&&this.search.length){var n=this.createOption(this.search);this.optionExists(n)||e.unshift(n)}return e},isValueEmpty:function(){return 0===this.selectedValue.length},showClearButton:function(){return!this.multiple&&this.clearable&&!this.open&&!this.isValueEmpty}},watch:{options:function(t,e){var n=this;!this.taggable&&("function"==typeof n.resetOnOptionsChange?n.resetOnOptionsChange(t,e,n.selectedValue):n.resetOnOptionsChange)&&this.clearSelection(),this.value&&this.isTrackingValues&&this.setInternalValueFromOptions(this.value)},value:function(t){this.isTrackingValues&&this.setInternalValueFromOptions(t)},multiple:function(){this.clearSelection()},open:function(t){this.$emit(t?"open":"close")}},created:function(){this.mutableLoading=this.loading,void 0!==this.value&&this.isTrackingValues&&this.setInternalValueFromOptions(this.value),this.$on("option:created",this.pushTag)},methods:{setInternalValueFromOptions:function(t){var e=this;Array.isArray(t)?this.$data._value=t.map((function(t){return e.findOptionFromReducedValue(t)})):this.$data._value=this.findOptionFromReducedValue(t)},select:function(t){this.$emit("option:selecting",t),this.isOptionSelected(t)||(this.taggable&&!this.optionExists(t)&&this.$emit("option:created",t),this.multiple&&(t=this.selectedValue.concat(t)),this.updateValue(t),this.$emit("option:selected",t)),this.onAfterSelect(t)},deselect:function(t){var e=this;this.$emit("option:deselecting",t),this.updateValue(this.selectedValue.filter((function(n){return!e.optionComparator(n,t)}))),this.$emit("option:deselected",t)},clearSelection:function(){this.updateValue(this.multiple?[]:null)},onAfterSelect:function(t){this.closeOnSelect&&(this.open=!this.open,this.searchEl.blur()),this.clearSearchOnSelect&&(this.search="")},updateValue:function(t){var e=this;void 0===this.value&&(this.$data._value=t),null!==t&&(t=Array.isArray(t)?t.map((function(t){return e.reduce(t)})):this.reduce(t)),this.$emit("input",t)},toggleDropdown:function(t){var e=t.target!==this.searchEl;e&&t.preventDefault();var n=[].concat(i()(this.$refs.deselectButtons||[]),i()([this.$refs.clearButton]||!1));void 0===this.searchEl||n.filter(Boolean).some((function(e){return e.contains(t.target)||e===t.target}))?t.preventDefault():this.open&&e?this.searchEl.blur():this.disabled||(this.open=!0,this.searchEl.focus())},isOptionSelected:function(t){var e=this;return this.selectedValue.some((function(n){return e.optionComparator(n,t)}))},optionComparator:function(t,e){return this.getOptionKey(t)===this.getOptionKey(e)},findOptionFromReducedValue:function(t){var e=this,n=[].concat(i()(this.options),i()(this.pushedTags)).filter((function(n){return JSON.stringify(e.reduce(n))===JSON.stringify(t)}));return 1===n.length?n[0]:n.find((function(t){return e.optionComparator(t,e.$data._value)}))||t},closeSearchOptions:function(){this.open=!1,this.$emit("search:blur")},maybeDeleteValue:function(){if(!this.searchEl.value.length&&this.selectedValue&&this.selectedValue.length&&this.clearable){var t=null;this.multiple&&(t=i()(this.selectedValue.slice(0,this.selectedValue.length-1))),this.updateValue(t)}},optionExists:function(t){var e=this;return this.optionList.some((function(n){return e.optionComparator(n,t)}))},normalizeOptionForSlot:function(t){return"object"===r()(t)?t:l()({},this.label,t)},pushTag:function(t){this.pushedTags.push(t)},onEscape:function(){this.search.length?this.search="":this.searchEl.blur()},onSearchBlur:function(){if(!this.mousedown||this.searching){var t=this.clearSearchOnSelect,e=this.multiple;return this.clearSearchOnBlur({clearSearchOnSelect:t,multiple:e})&&(this.search=""),void this.closeSearchOptions()}this.mousedown=!1,0!==this.search.length||0!==this.options.length||this.closeSearchOptions()},onSearchFocus:function(){this.open=!0,this.$emit("search:focus")},onMousedown:function(){this.mousedown=!0},onMouseUp:function(){this.mousedown=!1},onSearchKeyDown:function(t){var e=this,n=function(t){return t.preventDefault(),!e.isComposing&&e.typeAheadSelect()},o={8:function(t){return e.maybeDeleteValue()},9:function(t){return e.onTab()},27:function(t){return e.onEscape()},38:function(t){return t.preventDefault(),e.typeAheadUp()},40:function(t){return t.preventDefault(),e.typeAheadDown()}};this.selectOnKeyCodes.forEach((function(t){return o[t]=n}));var i=this.mapKeydown(o,this);if("function"==typeof i[t.keyCode])return i[t.keyCode](t)}}},O=(n(7),h(_,(function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",{staticClass:"v-select",class:t.stateClasses,attrs:{dir:t.dir}},[t._t("header",null,null,t.scope.header),t._v(" "),n("div",{ref:"toggle",staticClass:"vs__dropdown-toggle",attrs:{id:"vs"+t.uid+"__combobox",role:"combobox","aria-expanded":t.dropdownOpen.toString(),"aria-owns":"vs"+t.uid+"__listbox","aria-label":"Search for option"},on:{mousedown:function(e){return t.toggleDropdown(e)}}},[n("div",{ref:"selectedOptions",staticClass:"vs__selected-options"},[t._l(t.selectedValue,(function(e){return t._t("selected-option-container",[n("span",{key:t.getOptionKey(e),staticClass:"vs__selected"},[t._t("selected-option",[t._v("\n            "+t._s(t.getOptionLabel(e))+"\n          ")],null,t.normalizeOptionForSlot(e)),t._v(" "),t.multiple?n("button",{ref:"deselectButtons",refInFor:!0,staticClass:"vs__deselect",attrs:{disabled:t.disabled,type:"button",title:"Deselect "+t.getOptionLabel(e),"aria-label":"Deselect "+t.getOptionLabel(e)},on:{click:function(n){return t.deselect(e)}}},[n(t.childComponents.Deselect,{tag:"component"})],1):t._e()],2)],{option:t.normalizeOptionForSlot(e),deselect:t.deselect,multiple:t.multiple,disabled:t.disabled})})),t._v(" "),t._t("search",[n("input",t._g(t._b({staticClass:"vs__search"},"input",t.scope.search.attributes,!1),t.scope.search.events))],null,t.scope.search)],2),t._v(" "),n("div",{ref:"actions",staticClass:"vs__actions"},[n("button",{directives:[{name:"show",rawName:"v-show",value:t.showClearButton,expression:"showClearButton"}],ref:"clearButton",staticClass:"vs__clear",attrs:{disabled:t.disabled,type:"button",title:"Clear Selected","aria-label":"Clear Selected"},on:{click:t.clearSelection}},[n(t.childComponents.Deselect,{tag:"component"})],1),t._v(" "),t._t("open-indicator",[t.noDrop?t._e():n(t.childComponents.OpenIndicator,t._b({tag:"component"},"component",t.scope.openIndicator.attributes,!1))],null,t.scope.openIndicator),t._v(" "),t._t("spinner",[n("div",{directives:[{name:"show",rawName:"v-show",value:t.mutableLoading,expression:"mutableLoading"}],staticClass:"vs__spinner"},[t._v("Loading...")])],null,t.scope.spinner)],2)]),t._v(" "),n("transition",{attrs:{name:t.transition}},[t.dropdownOpen?n("ul",{directives:[{name:"append-to-body",rawName:"v-append-to-body"}],key:"vs"+t.uid+"__listbox",ref:"dropdownMenu",staticClass:"vs__dropdown-menu",attrs:{id:"vs"+t.uid+"__listbox",role:"listbox",tabindex:"-1"},on:{mousedown:function(e){return e.preventDefault(),t.onMousedown(e)},mouseup:t.onMouseUp}},[t._t("list-header",null,null,t.scope.listHeader),t._v(" "),t._l(t.filteredOptions,(function(e,o){return n("li",{key:t.getOptionKey(e),staticClass:"vs__dropdown-option",class:{"vs__dropdown-option--selected":t.isOptionSelected(e),"vs__dropdown-option--highlight":o===t.typeAheadPointer,"vs__dropdown-option--disabled":!t.selectable(e)},attrs:{id:"vs"+t.uid+"__option-"+o,role:"option","aria-selected":o===t.typeAheadPointer||null},on:{mouseover:function(n){t.selectable(e)&&(t.typeAheadPointer=o)},click:function(n){n.preventDefault(),n.stopPropagation(),t.selectable(e)&&t.select(e)}}},[t._t("option",[t._v("\n          "+t._s(t.getOptionLabel(e))+"\n        ")],null,t.normalizeOptionForSlot(e))],2)})),t._v(" "),0===t.filteredOptions.length?n("li",{staticClass:"vs__no-options"},[t._t("no-options",[t._v("Sorry, no matching options.")],null,t.scope.noOptions)],2):t._e(),t._v(" "),t._t("list-footer",null,null,t.scope.listFooter)],2):n("ul",{staticStyle:{display:"none",visibility:"hidden"},attrs:{id:"vs"+t.uid+"__listbox",role:"listbox"}})]),t._v(" "),t._t("footer",null,null,t.scope.footer)],2)}),[],!1,null,null,null).exports),w={ajax:p,pointer:u,pointerScroll:c};n.d(e,"VueSelect",(function(){return O})),n.d(e,"mixins",(function(){return w}));e.default=O}])}));
-//# sourceMappingURL=vue-select.js.map
-},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/vue-hot-reload-api/dist/index.js":[function(require,module,exports) {
-var Vue // late bind
-var version
-var map = Object.create(null)
-if (typeof window !== 'undefined') {
-  window.__VUE_HOT_MAP__ = map
-}
-var installed = false
-var isBrowserify = false
-var initHookName = 'beforeCreate'
-
-exports.install = function (vue, browserify) {
-  if (installed) { return }
-  installed = true
-
-  Vue = vue.__esModule ? vue.default : vue
-  version = Vue.version.split('.').map(Number)
-  isBrowserify = browserify
-
-  // compat with < 2.0.0-alpha.7
-  if (Vue.config._lifecycleHooks.indexOf('init') > -1) {
-    initHookName = 'init'
-  }
-
-  exports.compatible = version[0] >= 2
-  if (!exports.compatible) {
-    console.warn(
-      '[HMR] You are using a version of vue-hot-reload-api that is ' +
-        'only compatible with Vue.js core ^2.0.0.'
-    )
-    return
-  }
-}
-
-/**
- * Create a record for a hot module, which keeps track of its constructor
- * and instances
- *
- * @param {String} id
- * @param {Object} options
- */
-
-exports.createRecord = function (id, options) {
-  if(map[id]) { return }
-
-  var Ctor = null
-  if (typeof options === 'function') {
-    Ctor = options
-    options = Ctor.options
-  }
-  makeOptionsHot(id, options)
-  map[id] = {
-    Ctor: Ctor,
-    options: options,
-    instances: []
-  }
-}
-
-/**
- * Check if module is recorded
- *
- * @param {String} id
- */
-
-exports.isRecorded = function (id) {
-  return typeof map[id] !== 'undefined'
-}
-
-/**
- * Make a Component options object hot.
- *
- * @param {String} id
- * @param {Object} options
- */
-
-function makeOptionsHot(id, options) {
-  if (options.functional) {
-    var render = options.render
-    options.render = function (h, ctx) {
-      var instances = map[id].instances
-      if (ctx && instances.indexOf(ctx.parent) < 0) {
-        instances.push(ctx.parent)
-      }
-      return render(h, ctx)
-    }
-  } else {
-    injectHook(options, initHookName, function() {
-      var record = map[id]
-      if (!record.Ctor) {
-        record.Ctor = this.constructor
-      }
-      record.instances.push(this)
-    })
-    injectHook(options, 'beforeDestroy', function() {
-      var instances = map[id].instances
-      instances.splice(instances.indexOf(this), 1)
-    })
-  }
-}
-
-/**
- * Inject a hook to a hot reloadable component so that
- * we can keep track of it.
- *
- * @param {Object} options
- * @param {String} name
- * @param {Function} hook
- */
-
-function injectHook(options, name, hook) {
-  var existing = options[name]
-  options[name] = existing
-    ? Array.isArray(existing) ? existing.concat(hook) : [existing, hook]
-    : [hook]
-}
-
-function tryWrap(fn) {
-  return function (id, arg) {
-    try {
-      fn(id, arg)
-    } catch (e) {
-      console.error(e)
-      console.warn(
-        'Something went wrong during Vue component hot-reload. Full reload required.'
-      )
-    }
-  }
-}
-
-function updateOptions (oldOptions, newOptions) {
-  for (var key in oldOptions) {
-    if (!(key in newOptions)) {
-      delete oldOptions[key]
-    }
-  }
-  for (var key$1 in newOptions) {
-    oldOptions[key$1] = newOptions[key$1]
-  }
-}
-
-exports.rerender = tryWrap(function (id, options) {
-  var record = map[id]
-  if (!options) {
-    record.instances.slice().forEach(function (instance) {
-      instance.$forceUpdate()
-    })
-    return
-  }
-  if (typeof options === 'function') {
-    options = options.options
-  }
-  if (record.Ctor) {
-    record.Ctor.options.render = options.render
-    record.Ctor.options.staticRenderFns = options.staticRenderFns
-    record.instances.slice().forEach(function (instance) {
-      instance.$options.render = options.render
-      instance.$options.staticRenderFns = options.staticRenderFns
-      // reset static trees
-      // pre 2.5, all static trees are cached together on the instance
-      if (instance._staticTrees) {
-        instance._staticTrees = []
-      }
-      // 2.5.0
-      if (Array.isArray(record.Ctor.options.cached)) {
-        record.Ctor.options.cached = []
-      }
-      // 2.5.3
-      if (Array.isArray(instance.$options.cached)) {
-        instance.$options.cached = []
-      }
-
-      // post 2.5.4: v-once trees are cached on instance._staticTrees.
-      // Pure static trees are cached on the staticRenderFns array
-      // (both already reset above)
-
-      // 2.6: temporarily mark rendered scoped slots as unstable so that
-      // child components can be forced to update
-      var restore = patchScopedSlots(instance)
-      instance.$forceUpdate()
-      instance.$nextTick(restore)
-    })
-  } else {
-    // functional or no instance created yet
-    record.options.render = options.render
-    record.options.staticRenderFns = options.staticRenderFns
-
-    // handle functional component re-render
-    if (record.options.functional) {
-      // rerender with full options
-      if (Object.keys(options).length > 2) {
-        updateOptions(record.options, options)
-      } else {
-        // template-only rerender.
-        // need to inject the style injection code for CSS modules
-        // to work properly.
-        var injectStyles = record.options._injectStyles
-        if (injectStyles) {
-          var render = options.render
-          record.options.render = function (h, ctx) {
-            injectStyles.call(ctx)
-            return render(h, ctx)
-          }
-        }
-      }
-      record.options._Ctor = null
-      // 2.5.3
-      if (Array.isArray(record.options.cached)) {
-        record.options.cached = []
-      }
-      record.instances.slice().forEach(function (instance) {
-        instance.$forceUpdate()
-      })
-    }
-  }
-})
-
-exports.reload = tryWrap(function (id, options) {
-  var record = map[id]
-  if (options) {
-    if (typeof options === 'function') {
-      options = options.options
-    }
-    makeOptionsHot(id, options)
-    if (record.Ctor) {
-      if (version[1] < 2) {
-        // preserve pre 2.2 behavior for global mixin handling
-        record.Ctor.extendOptions = options
-      }
-      var newCtor = record.Ctor.super.extend(options)
-      // prevent record.options._Ctor from being overwritten accidentally
-      newCtor.options._Ctor = record.options._Ctor
-      record.Ctor.options = newCtor.options
-      record.Ctor.cid = newCtor.cid
-      record.Ctor.prototype = newCtor.prototype
-      if (newCtor.release) {
-        // temporary global mixin strategy used in < 2.0.0-alpha.6
-        newCtor.release()
-      }
-    } else {
-      updateOptions(record.options, options)
-    }
-  }
-  record.instances.slice().forEach(function (instance) {
-    if (instance.$vnode && instance.$vnode.context) {
-      instance.$vnode.context.$forceUpdate()
-    } else {
-      console.warn(
-        'Root or manually mounted instance modified. Full reload required.'
-      )
-    }
-  })
-})
-
-// 2.6 optimizes template-compiled scoped slots and skips updates if child
-// only uses scoped slots. We need to patch the scoped slots resolving helper
-// to temporarily mark all scoped slots as unstable in order to force child
-// updates.
-function patchScopedSlots (instance) {
-  if (!instance._u) { return }
-  // https://github.com/vuejs/vue/blob/dev/src/core/instance/render-helpers/resolve-scoped-slots.js
-  var original = instance._u
-  instance._u = function (slots) {
-    try {
-      // 2.6.4 ~ 2.6.6
-      return original(slots, true)
-    } catch (e) {
-      // 2.5 / >= 2.6.7
-      return original(slots, null, true)
-    }
-  }
-  return function () {
-    instance._u = original
-  }
-}
-
-},{}],"js/Addons/SharedComponents/CustomSelect/SelectCustom.vue":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _vueSelect = _interopRequireDefault(require("vue-select"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
-  name: "SelectCustom",
-  components: {
-    vSelect: _vueSelect.default
-  },
-  props: {
-    name: {
-      type: String,
-      default: ""
-    },
-    id: {
-      type: String,
-      default: ""
-    },
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    url: {
-      type: String,
-      default: ""
-    },
-    optionsList: {
-      type: Array
-    },
-    defaultValue: {
-      type: String,
-      default: ""
-    },
-    placeholder: {
-      type: String,
-      default: ""
-    },
-    urlNewOption: {
-      type: String,
-      default: null
-    }
-  },
-  data: function data() {
-    return {
-      options: [],
-      selection: null,
-      newOptionName: null,
-      newOptionDescription: null,
-      errorMessage: null
-    };
-  },
-  mounted: function mounted() {
-    var $this = this;
-
-    if (this.url) {
-      fetch(this.url).then(function (res) {
-        res.json().then(function (json) {
-          return $this.options = json;
-        });
-      });
-    }
-
-    if (this.defaultValue && this.defaultValue !== "") {
-      this.selection = this.defaultValue;
-    }
-  },
-  methods: {
-    select: function select() {
-      this.$emit('input', this.selection);
-    },
-    reset: function reset() {
-      this.selection = null;
-    },
-    toggleModal: function toggleModal() {
-      $("#addNewOptionModal-".concat(this.name)).modal('toggle');
-    },
-    add: function add() {
-      if (!this.newOptionName || !this.newOptionName.length) {
-        return;
-      }
-
-      var $this = this;
-      $.ajax({
-        url: this.urlNewOption,
-        type: 'POST',
-        data: {
-          name: $this.newOptionName,
-          description: $this.newOptionDescription
-        }
-      }).done(function (data) {
-        $this.errorMessage = null;
-
-        if ($this.url) {
-          fetch($this.url).then(function (res) {
-            res.json().then(function (json) {
-              return $this.options = json;
-            });
-          });
-        }
-
-        $this.toggleModal();
-      }).fail(function (data) {
-        $this.errorMessage = "L'entité n'a pas pu être ajoutée";
-      });
-    }
-  }
-};
-exports.default = _default;
-        var $3d6e50 = exports.default || module.exports;
-      
-      if (typeof $3d6e50 === 'function') {
-        $3d6e50 = $3d6e50.options;
-      }
-    
-        /* template */
-        Object.assign($3d6e50, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "row" }, [
-      _vm.urlNewOption
-        ? _c("div", { staticClass: "col-md-1" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-sm btn-primary",
-                staticStyle: {
-                  height: "100%",
-                  "border-top-right-radius": "0",
-                  "border-bottom-right-radius": "0"
-                },
-                attrs: {
-                  type: "button",
-                  "data-bs-toggle": "modal",
-                  "data-bs-target": "#addNewOptionModal-" + _vm.name
-                }
-              },
-              [_c("i", { staticClass: "fa fa-plus" })]
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          class: "col-md-" + (_vm.urlNewOption ? "11" : "12"),
-          style: _vm.urlNewOption
-            ? "border-top-right-radius: 0; border-bottom-right-radius: 0;"
-            : ""
-        },
-        [
-          _c("v-select", {
-            attrs: {
-              value: _vm.selection,
-              id: _vm.id,
-              name: _vm.name,
-              multiple: _vm.multiple,
-              options: _vm.options,
-              label: "text",
-              placeholder: _vm.placeholder
-            },
-            on: { input: _vm.select, reset: _vm.reset },
-            scopedSlots: _vm._u([
-              {
-                key: "option",
-                fn: function(option) {
-                  return [_c("span", [_vm._v(_vm._s(option.text))])]
-                }
-              }
-            ]),
-            model: {
-              value: _vm.selection,
-              callback: function($$v) {
-                _vm.selection = $$v
-              },
-              expression: "selection"
-            }
-          })
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "addNewOptionModal-" + _vm.name,
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addNewOptionModal-" + _vm.name + "Label",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    staticClass: "modal-title",
-                    attrs: { id: "addNewOptionModal-" + _vm.name + "Label" }
-                  },
-                  [_vm._v("Ajouter un nouvel élément")]
-                ),
-                _vm._v(" "),
-                _c("button", {
-                  staticClass: "btn-close",
-                  attrs: {
-                    type: "button",
-                    "data-bs-dismiss": "modal",
-                    "aria-label": "Close"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body form-group" }, [
-                _vm.errorMessage
-                  ? _c("div", { staticClass: "row mb-2" }, [
-                      _c(
-                        "div",
-                        { staticClass: "col-md-12 alert alert-danger" },
-                        [_c("span", [_vm._v(_vm._s(_vm.errorMessage))])]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("div", { staticClass: "row mb-2" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.newOptionName,
-                          expression: "newOptionName"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", placeholder: "Nom" },
-                      domProps: { value: _vm.newOptionName },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.newOptionName = $event.target.value
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.newOptionDescription,
-                          expression: "newOptionDescription"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", placeholder: "Description" },
-                      domProps: { value: _vm.newOptionDescription },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.newOptionDescription = $event.target.value
-                        }
-                      }
-                    })
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Fermer")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    attrs: { type: "button" },
-                    on: { click: _vm.add }
-                  },
-                  [_vm._v("Ajouter")]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: null,
-            functional: undefined
-          };
-        })());
-      
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$3d6e50', $3d6e50);
-          } else {
-            api.reload('$3d6e50', $3d6e50);
-          }
-        }
-
-        
-      }
-    })();
-},{"vue-select":"../node_modules/vue-select/dist/vue-select.js","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.esm.js"}],"js/Addons/Components/Character/Character.vue":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _Character = require("../../Models/Character");
-
-var _CustomSection = require("../../Models/CustomSection");
-
-var _SelectCustom = _interopRequireDefault(require("../../SharedComponents/CustomSelect/SelectCustom"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
-  name: "Character",
-  components: {
-    SelectCustom: _SelectCustom.default
-  },
-  props: {
-    id: Number
-  },
-  data: function data() {
-    return {
-      character: _Character.Character
-    };
-  },
-  mounted: function mounted() {
-    if (this.id) {
-      var $this = this;
-      $.ajax({
-        url: '/Character/GetCharacterById',
-        type: 'GET'
-      }).done(function (data) {
-        $this.character = data;
-      });
-    } else {
-      var character = new _Character.Character();
-      character.customSections.push(new _CustomSection.CustomSection());
-      this.character = character;
-    }
-  },
-  methods: {
-    addNewSection: function addNewSection() {
-      this.character.customSections.push(new _CustomSection.CustomSection());
-    }
-  },
-  computed: {
-    races: function races() {
-      var races = null;
-      $.ajax({
-        url: '/Character/GetAllRacesForSelect',
-        type: 'GET'
-      }).done(function (data) {
-        races = data;
-      });
-      return races;
-    },
-    characterTypes: function characterTypes() {
-      var types = null;
-      $.ajax({
-        url: '/Character/GetAllCharacterTypesForSelect',
-        type: 'GET'
-      }).done(function (data) {
-        types = data;
-      });
-      return types;
-    }
-  }
-};
-exports.default = _default;
-        var $a8d444 = exports.default || module.exports;
-      
-      if (typeof $a8d444 === 'function') {
-        $a8d444 = $a8d444.options;
-      }
-    
-        /* template */
-        Object.assign($a8d444, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("form", [
-    _c(
-      "div",
-      { staticClass: "row" },
-      [
-        _c("div", { staticClass: "col-md-8 offset-md-2" }, [
-          _c("div", { staticClass: "row form-group mb-2" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.character.name,
-                    expression: "character.name"
-                  }
-                ],
-                staticClass: "form-control required",
-                attrs: { type: "text", placeholder: "Nom du personnage" },
-                domProps: { value: _vm.character.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.character, "name", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row form-group mb-2" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.character.description,
-                    expression: "character.description"
-                  }
-                ],
-                staticClass: "form-control required",
-                attrs: {
-                  type: "text",
-                  placeholder: "Description du personnage"
-                },
-                domProps: { value: _vm.character.description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.character, "description", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row mb-2" }, [
-            _c(
-              "div",
-              { staticClass: "col-md-6" },
-              [
-                _c("select-custom", {
-                  staticClass: "required",
-                  attrs: {
-                    url: "/Character/GetAllCharacterTypesForSelect",
-                    placeholder: "Type du personnage",
-                    "url-new-option": "/Character/AddNewCharacterType",
-                    name: "character_type"
-                  },
-                  model: {
-                    value: _vm.character.type,
-                    callback: function($$v) {
-                      _vm.$set(_vm.character, "type", $$v)
-                    },
-                    expression: "character.type"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-md-6" },
-              [
-                _c("select-custom", {
-                  staticClass: "required",
-                  attrs: {
-                    url: "/Character/GetAllRacesForSelect",
-                    placeholder: "Race du personnage",
-                    "url-new-option": "/Character/AddNewRace",
-                    name: "character_race"
-                  },
-                  model: {
-                    value: _vm.character.race,
-                    callback: function($$v) {
-                      _vm.$set(_vm.character, "race", $$v)
-                    },
-                    expression: "character.race"
-                  }
-                })
-              ],
-              1
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _vm.character.customSections
-          ? _vm._l(_vm.character.customSections, function(section) {
-              return _c("div", { staticClass: "row mb-2" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-12" },
-                  [_c("custom-section", { attrs: { section: section } })],
-                  1
-                )
-              ])
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12 text-center" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { type: "button" },
-                on: { click: _vm.addNewSection }
-              },
-              [_vm._v("Ajouter une section personnalisée")]
-            )
-          ])
-        ])
-      ],
-      2
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: null,
-            functional: undefined
-          };
-        })());
-      
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$a8d444', $a8d444);
-          } else {
-            api.reload('$a8d444', $a8d444);
-          }
-        }
-
-        
-      }
-    })();
-},{"../../Models/Character":"js/Addons/Models/Character.ts","../../Models/CustomSection":"js/Addons/Models/CustomSection.ts","../../SharedComponents/CustomSelect/SelectCustom":"js/Addons/SharedComponents/CustomSelect/SelectCustom.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.esm.js"}],"js/Addons/Components/Character/index.ts":[function(require,module,exports) {
-"use strict";
-
-var _vue = _interopRequireDefault(require("vue"));
-
-var _Character = _interopRequireDefault(require("./Character.vue"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue.default.component("character", _Character.default);
-
-if (document.getElementsByClassName("character")) {
-  var vue = new _vue.default({
-    el: ".character"
-  });
-}
-},{"vue":"../node_modules/vue/dist/vue.esm.js","./Character.vue":"js/Addons/Components/Character/Character.vue"}],"js/Addons/SharedComponents/CustomSelect/index.ts":[function(require,module,exports) {
-"use strict";
-
-var _vue = _interopRequireDefault(require("vue"));
-
-var _SelectCustom = _interopRequireDefault(require("./SelectCustom.vue"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue.default.component("select-custom", _SelectCustom.default);
-},{"vue":"../node_modules/vue/dist/vue.esm.js","./SelectCustom.vue":"js/Addons/SharedComponents/CustomSelect/SelectCustom.vue"}],"js/Addons/SharedComponents/CustomProperties/CustomSection.vue":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _CustomSection = require("../../Models/CustomSection");
-
-var _CustomProperty = require("../../Models/CustomProperty");
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
-  name: "CustomSection",
-  props: {
-    section: {
-      type: _CustomSection.CustomSection
-    }
-  },
-  data: function data() {
-    return {
-      customSection: _CustomSection.CustomSection
-    };
-  },
-  mounted: function mounted() {
-    if (this.section) {
-      this.customSection = this.section;
-
-      if (!this.customSection.customProperties.length) {
-        this.customSection.customProperties.push(new _CustomProperty.CustomProperty());
-      }
-    }
-  },
-  methods: {
-    addNewProperty: function addNewProperty() {
-      var property = new _CustomProperty.CustomProperty();
-      this.customSection.customProperties.push(property);
-    }
-  }
-};
-exports.default = _default;
-        var $197f8a = exports.default || module.exports;
-      
-      if (typeof $197f8a === 'function') {
-        $197f8a = $197f8a.options;
-      }
-    
-        /* template */
-        Object.assign($197f8a, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.customSection
-    ? _c("section", { staticClass: "custom-section" }, [
-        _c("div", { staticClass: "row mb-2" }, [
-          _c("div", { staticClass: "col form-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.customSection.name,
-                  expression: "customSection.name"
-                }
-              ],
-              staticClass: "form-control mb-2",
-              attrs: {
-                type: "text",
-                placeholder: "Nom de la section personnalisée"
-              },
-              domProps: { value: _vm.customSection.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.customSection, "name", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col form-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.customSection.description,
-                  expression: "customSection.description"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { placeholder: "Description de la section personnalisée" },
-              domProps: { value: _vm.customSection.description },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.customSection,
-                    "description",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _vm.customSection.customProperties
-          ? _c(
-              "div",
-              { staticClass: "row properties" },
-              [
-                _vm._l(_vm.customSection.customProperties, function(
-                  property,
-                  index
-                ) {
-                  return [
-                    _c(
-                      "div",
-                      {
-                        class:
-                          "col-3 custom-property " +
-                          ((index + 1) % 4 === 0 ||
-                          index ===
-                            _vm.customSection.customProperties.length - 1
-                            ? "last-property"
-                            : "")
-                      },
-                      [_c("custom-property", { attrs: { value: property } })],
-                      1
-                    )
-                  ]
-                })
-              ],
-              2
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-2" }, [
-          _c("div", { staticClass: "text-center btn-add-property" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { type: "button" },
-                on: { click: _vm.addNewProperty }
-              },
-              [_vm._v("Ajouter une propriété")]
-            )
-          ])
-        ])
-      ])
-    : _vm._e()
-}
-var staticRenderFns = []
-render._withStripped = true
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: null,
-            functional: undefined
-          };
-        })());
-      
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$197f8a', $197f8a);
-          } else {
-            api.reload('$197f8a', $197f8a);
-          }
-        }
-
-        
-      }
-    })();
-},{"../../Models/CustomSection":"js/Addons/Models/CustomSection.ts","../../Models/CustomProperty":"js/Addons/Models/CustomProperty.ts","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.esm.js"}],"js/Addons/SharedComponents/CustomProperties/CustomProperty.vue":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _CustomProperty = require("../../Models/CustomProperty");
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
-  name: "CustomProperty",
-  props: {
-    value: {
-      type: _CustomProperty.CustomProperty
-    }
-  },
-  data: function data() {
-    return {
-      property: _CustomProperty.CustomProperty
-    };
-  },
-  mounted: function mounted() {
-    if (this.value) {
-      this.property = this.value;
-    }
-  },
-  methods: {}
-};
-exports.default = _default;
-        var $41dcd7 = exports.default || module.exports;
-      
-      if (typeof $41dcd7 === 'function') {
-        $41dcd7 = $41dcd7.options;
-      }
-    
-        /* template */
-        Object.assign($41dcd7, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col form-group" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.property.name,
-              expression: "property.name"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { placeholder: "Nom de la propriété" },
-          domProps: { value: _vm.property.name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.property, "name", $event.target.value)
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-2" }, [
-      _c(
-        "div",
-        { staticClass: "col" },
-        [
-          _c("select-custom", {
-            staticClass: "required",
-            attrs: {
-              url: "/Character/GetAllCustomPropertyTypesForSelect",
-              placeholder: "Type de la propriété",
-              "url-new-option": "/Character/AddNewCustomPropertyType",
-              name: "type"
-            },
-            model: {
-              value: _vm.property.type,
-              callback: function($$v) {
-                _vm.$set(_vm.property, "type", $$v)
-              },
-              expression: "property.type"
-            }
-          })
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-2" }, [
-      _c("div", { staticClass: "col form-group" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.property.valeur,
-              expression: "property.valeur"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { placeholder: "Valeur" },
-          domProps: { value: _vm.property.valeur },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.property, "valeur", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col form-group" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.property.valeurMax,
-              expression: "property.valeurMax"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { placeholder: "Max" },
-          domProps: { value: _vm.property.valeurMax },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.property, "valeurMax", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col form-group" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.property.unite,
-              expression: "property.unite"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { placeholder: "Unité" },
-          domProps: { value: _vm.property.unite },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.property, "unite", $event.target.value)
-            }
-          }
-        })
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: null,
-            functional: undefined
-          };
-        })());
-      
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$41dcd7', $41dcd7);
-          } else {
-            api.reload('$41dcd7', $41dcd7);
-          }
-        }
-
-        
-      }
-    })();
-},{"../../Models/CustomProperty":"js/Addons/Models/CustomProperty.ts","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.esm.js"}],"js/Addons/SharedComponents/CustomProperties/index.ts":[function(require,module,exports) {
-"use strict";
-
-var _vue = _interopRequireDefault(require("vue"));
-
-var _CustomSection = _interopRequireDefault(require("./CustomSection.vue"));
-
-var _CustomProperty = _interopRequireDefault(require("./CustomProperty.vue"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue.default.component("custom-section", _CustomSection.default);
-
-_vue.default.component("custom-property", _CustomProperty.default);
-},{"vue":"../node_modules/vue/dist/vue.esm.js","./CustomSection.vue":"js/Addons/SharedComponents/CustomProperties/CustomSection.vue","./CustomProperty.vue":"js/Addons/SharedComponents/CustomProperties/CustomProperty.vue"}],"js/Addons/index.ts":[function(require,module,exports) {
-"use strict";
-
-require("./Components/Character/index");
-
-require("./SharedComponents/CustomSelect/index");
-
-require("./SharedComponents/CustomProperties/index");
-},{"./Components/Character/index":"js/Addons/Components/Character/index.ts","./SharedComponents/CustomSelect/index":"js/Addons/SharedComponents/CustomSelect/index.ts","./SharedComponents/CustomProperties/index":"js/Addons/SharedComponents/CustomProperties/index.ts"}],"../node_modules/process/browser.js":[function(require,module,exports) {
+},{"./CustomField":"js/Addons/Models/CustomField.ts"}],"../node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -31385,7 +29716,2434 @@ if ( typeof noGlobal === "undefined" ) {
 return jQuery;
 } );
 
-},{"process":"../node_modules/process/browser.js"}],"../node_modules/jquery-ui-dist/jquery-ui.js":[function(require,module,exports) {
+},{"process":"../node_modules/process/browser.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/vue-hot-reload-api/dist/index.js":[function(require,module,exports) {
+var Vue // late bind
+var version
+var map = Object.create(null)
+if (typeof window !== 'undefined') {
+  window.__VUE_HOT_MAP__ = map
+}
+var installed = false
+var isBrowserify = false
+var initHookName = 'beforeCreate'
+
+exports.install = function (vue, browserify) {
+  if (installed) { return }
+  installed = true
+
+  Vue = vue.__esModule ? vue.default : vue
+  version = Vue.version.split('.').map(Number)
+  isBrowserify = browserify
+
+  // compat with < 2.0.0-alpha.7
+  if (Vue.config._lifecycleHooks.indexOf('init') > -1) {
+    initHookName = 'init'
+  }
+
+  exports.compatible = version[0] >= 2
+  if (!exports.compatible) {
+    console.warn(
+      '[HMR] You are using a version of vue-hot-reload-api that is ' +
+        'only compatible with Vue.js core ^2.0.0.'
+    )
+    return
+  }
+}
+
+/**
+ * Create a record for a hot module, which keeps track of its constructor
+ * and instances
+ *
+ * @param {String} id
+ * @param {Object} options
+ */
+
+exports.createRecord = function (id, options) {
+  if(map[id]) { return }
+
+  var Ctor = null
+  if (typeof options === 'function') {
+    Ctor = options
+    options = Ctor.options
+  }
+  makeOptionsHot(id, options)
+  map[id] = {
+    Ctor: Ctor,
+    options: options,
+    instances: []
+  }
+}
+
+/**
+ * Check if module is recorded
+ *
+ * @param {String} id
+ */
+
+exports.isRecorded = function (id) {
+  return typeof map[id] !== 'undefined'
+}
+
+/**
+ * Make a Component options object hot.
+ *
+ * @param {String} id
+ * @param {Object} options
+ */
+
+function makeOptionsHot(id, options) {
+  if (options.functional) {
+    var render = options.render
+    options.render = function (h, ctx) {
+      var instances = map[id].instances
+      if (ctx && instances.indexOf(ctx.parent) < 0) {
+        instances.push(ctx.parent)
+      }
+      return render(h, ctx)
+    }
+  } else {
+    injectHook(options, initHookName, function() {
+      var record = map[id]
+      if (!record.Ctor) {
+        record.Ctor = this.constructor
+      }
+      record.instances.push(this)
+    })
+    injectHook(options, 'beforeDestroy', function() {
+      var instances = map[id].instances
+      instances.splice(instances.indexOf(this), 1)
+    })
+  }
+}
+
+/**
+ * Inject a hook to a hot reloadable component so that
+ * we can keep track of it.
+ *
+ * @param {Object} options
+ * @param {String} name
+ * @param {Function} hook
+ */
+
+function injectHook(options, name, hook) {
+  var existing = options[name]
+  options[name] = existing
+    ? Array.isArray(existing) ? existing.concat(hook) : [existing, hook]
+    : [hook]
+}
+
+function tryWrap(fn) {
+  return function (id, arg) {
+    try {
+      fn(id, arg)
+    } catch (e) {
+      console.error(e)
+      console.warn(
+        'Something went wrong during Vue component hot-reload. Full reload required.'
+      )
+    }
+  }
+}
+
+function updateOptions (oldOptions, newOptions) {
+  for (var key in oldOptions) {
+    if (!(key in newOptions)) {
+      delete oldOptions[key]
+    }
+  }
+  for (var key$1 in newOptions) {
+    oldOptions[key$1] = newOptions[key$1]
+  }
+}
+
+exports.rerender = tryWrap(function (id, options) {
+  var record = map[id]
+  if (!options) {
+    record.instances.slice().forEach(function (instance) {
+      instance.$forceUpdate()
+    })
+    return
+  }
+  if (typeof options === 'function') {
+    options = options.options
+  }
+  if (record.Ctor) {
+    record.Ctor.options.render = options.render
+    record.Ctor.options.staticRenderFns = options.staticRenderFns
+    record.instances.slice().forEach(function (instance) {
+      instance.$options.render = options.render
+      instance.$options.staticRenderFns = options.staticRenderFns
+      // reset static trees
+      // pre 2.5, all static trees are cached together on the instance
+      if (instance._staticTrees) {
+        instance._staticTrees = []
+      }
+      // 2.5.0
+      if (Array.isArray(record.Ctor.options.cached)) {
+        record.Ctor.options.cached = []
+      }
+      // 2.5.3
+      if (Array.isArray(instance.$options.cached)) {
+        instance.$options.cached = []
+      }
+
+      // post 2.5.4: v-once trees are cached on instance._staticTrees.
+      // Pure static trees are cached on the staticRenderFns array
+      // (both already reset above)
+
+      // 2.6: temporarily mark rendered scoped slots as unstable so that
+      // child components can be forced to update
+      var restore = patchScopedSlots(instance)
+      instance.$forceUpdate()
+      instance.$nextTick(restore)
+    })
+  } else {
+    // functional or no instance created yet
+    record.options.render = options.render
+    record.options.staticRenderFns = options.staticRenderFns
+
+    // handle functional component re-render
+    if (record.options.functional) {
+      // rerender with full options
+      if (Object.keys(options).length > 2) {
+        updateOptions(record.options, options)
+      } else {
+        // template-only rerender.
+        // need to inject the style injection code for CSS modules
+        // to work properly.
+        var injectStyles = record.options._injectStyles
+        if (injectStyles) {
+          var render = options.render
+          record.options.render = function (h, ctx) {
+            injectStyles.call(ctx)
+            return render(h, ctx)
+          }
+        }
+      }
+      record.options._Ctor = null
+      // 2.5.3
+      if (Array.isArray(record.options.cached)) {
+        record.options.cached = []
+      }
+      record.instances.slice().forEach(function (instance) {
+        instance.$forceUpdate()
+      })
+    }
+  }
+})
+
+exports.reload = tryWrap(function (id, options) {
+  var record = map[id]
+  if (options) {
+    if (typeof options === 'function') {
+      options = options.options
+    }
+    makeOptionsHot(id, options)
+    if (record.Ctor) {
+      if (version[1] < 2) {
+        // preserve pre 2.2 behavior for global mixin handling
+        record.Ctor.extendOptions = options
+      }
+      var newCtor = record.Ctor.super.extend(options)
+      // prevent record.options._Ctor from being overwritten accidentally
+      newCtor.options._Ctor = record.options._Ctor
+      record.Ctor.options = newCtor.options
+      record.Ctor.cid = newCtor.cid
+      record.Ctor.prototype = newCtor.prototype
+      if (newCtor.release) {
+        // temporary global mixin strategy used in < 2.0.0-alpha.6
+        newCtor.release()
+      }
+    } else {
+      updateOptions(record.options, options)
+    }
+  }
+  record.instances.slice().forEach(function (instance) {
+    if (instance.$vnode && instance.$vnode.context) {
+      instance.$vnode.context.$forceUpdate()
+    } else {
+      console.warn(
+        'Root or manually mounted instance modified. Full reload required.'
+      )
+    }
+  })
+})
+
+// 2.6 optimizes template-compiled scoped slots and skips updates if child
+// only uses scoped slots. We need to patch the scoped slots resolving helper
+// to temporarily mark all scoped slots as unstable in order to force child
+// updates.
+function patchScopedSlots (instance) {
+  if (!instance._u) { return }
+  // https://github.com/vuejs/vue/blob/dev/src/core/instance/render-helpers/resolve-scoped-slots.js
+  var original = instance._u
+  instance._u = function (slots) {
+    try {
+      // 2.6.4 ~ 2.6.6
+      return original(slots, true)
+    } catch (e) {
+      // 2.5 / >= 2.6.7
+      return original(slots, null, true)
+    }
+  }
+  return function () {
+    instance._u = original
+  }
+}
+
+},{}],"js/Addons/Components/CustomPropertyType/CustomPropertyType.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _CustomPropertyType = require("../../Models/CustomPropertyType");
+
+var _CustomField = require("../../Models/CustomField");
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "CustomPropertyType",
+  props: {
+    id: {
+      type: Number
+    }
+  },
+  data: function data() {
+    return {
+      type: _CustomPropertyType.CustomPropertyType
+    };
+  },
+  computed: {
+    isEdit: function isEdit() {
+      return !!this.id;
+    }
+  },
+  mounted: function mounted() {
+    if (this.id) {
+      var $this = this;
+
+      _jquery.default.ajax({
+        url: "/Admin/CustomPropertyType/GetTypeById/".concat(this.id),
+        type: 'GET'
+      }).done(function (data) {
+        $this.type = new _CustomPropertyType.CustomPropertyType(data);
+      });
+    } else {
+      this.type = new _CustomPropertyType.CustomPropertyType();
+    }
+  },
+  methods: {
+    save: function save() {
+      var url = "/Admin/CustomPropertyType/".concat(this.isEdit ? 'Update' : 'Create');
+      var $this = this;
+
+      _jquery.default.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+          model: this.type
+        }
+      }).done(function (url) {
+        window.location.href = url;
+      });
+    },
+    addField: function addField() {
+      if (!this.type.fields) {
+        this.type.fields = [];
+      }
+
+      this.type.fields.push(new _CustomField.CustomField());
+    },
+    deleteField: function deleteField(index) {
+      this.type.fields.splice(index, 1);
+    }
+  }
+};
+exports.default = _default;
+        var $df6d50 = exports.default || module.exports;
+      
+      if (typeof $df6d50 === 'function') {
+        $df6d50 = $df6d50.options;
+      }
+    
+        /* template */
+        Object.assign($df6d50, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "row mb-2" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.type.name,
+                  expression: "type.name"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Nom" },
+              domProps: { value: _vm.type.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.type, "name", $event.target.value)
+                }
+              }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mb-2" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.type.description,
+                  expression: "type.description"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { placeholder: "Description" },
+              domProps: { value: _vm.type.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.type, "description", $event.target.value)
+                }
+              }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.type.fields && _vm.type.fields.length
+        ? [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.type.fields, function(field, index) {
+              return [
+                _c("div", { key: index, staticClass: "row mb-2" }, [
+                  _c("div", { staticClass: "col-md-1" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteField(index)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fa fa-trash" })]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: field.name,
+                            expression: "field.name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Nom du champ" },
+                        domProps: { value: field.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(field, "name", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: field.description,
+                            expression: "field.description"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Description du champ"
+                        },
+                        domProps: { value: field.description },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(field, "description", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ])
+              ]
+            })
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mb-2" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "form-group text-center" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-sm",
+                attrs: { type: "button" },
+                on: { click: _vm.addField }
+              },
+              [_vm._v("Ajouter un champ")]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12 text-center" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              attrs: { type: "button" },
+              on: { click: _vm.save }
+            },
+            [_vm._v("Enregistrer")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-secondary",
+              attrs: { href: "/Admin/CustomPropertyType" }
+            },
+            [_vm._v("Annuler")]
+          )
+        ])
+      ])
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-2" }, [
+      _c("div", { staticClass: "col-md-12 text-center" }, [
+        _c("h4", [_vm._v("Champs")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-df6d50",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$df6d50', $df6d50);
+          } else {
+            api.reload('$df6d50', $df6d50);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"../../Models/CustomPropertyType":"js/Addons/Models/CustomPropertyType.ts","../../Models/CustomField":"js/Addons/Models/CustomField.ts","jquery":"../node_modules/jquery/dist/jquery.js","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.esm.js"}],"js/Addons/Components/CustomPropertyType/index.ts":[function(require,module,exports) {
+"use strict";
+
+var _vue = _interopRequireDefault(require("vue"));
+
+var _CustomPropertyType = _interopRequireDefault(require("./CustomPropertyType.vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue.default.component("custom-property-types", _CustomPropertyType.default);
+
+if (document.getElementsByClassName("customPropertyType").length > 0) {
+  var vue = new _vue.default({
+    el: ".customPropertyType"
+  });
+}
+},{"vue":"../node_modules/vue/dist/vue.esm.js","./CustomPropertyType.vue":"js/Addons/Components/CustomPropertyType/CustomPropertyType.vue"}],"../node_modules/vue-select/dist/vue-select.js":[function(require,module,exports) {
+var define;
+!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.VueSelect=e():t.VueSelect=e()}("undefined"!=typeof self?self:this,(function(){return function(t){var e={};function n(o){if(e[o])return e[o].exports;var i=e[o]={i:o,l:!1,exports:{}};return t[o].call(i.exports,i,i.exports,n),i.l=!0,i.exports}return n.m=t,n.c=e,n.d=function(t,e,o){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var i in t)n.d(o,i,function(e){return t[e]}.bind(null,i));return o},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=8)}([function(t,e,n){var o=n(4),i=n(5),s=n(6);t.exports=function(t){return o(t)||i(t)||s()}},function(t,e){function n(e){return"function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?t.exports=n=function(t){return typeof t}:t.exports=n=function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},n(e)}t.exports=n},function(t,e,n){},function(t,e){t.exports=function(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}},function(t,e){t.exports=function(t){if(Array.isArray(t)){for(var e=0,n=new Array(t.length);e<t.length;e++)n[e]=t[e];return n}}},function(t,e){t.exports=function(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}},function(t,e){t.exports=function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}},function(t,e,n){"use strict";var o=n(2);n.n(o).a},function(t,e,n){"use strict";n.r(e);var o=n(0),i=n.n(o),s=n(1),r=n.n(s),a=n(3),l=n.n(a),c={props:{autoscroll:{type:Boolean,default:!0}},watch:{typeAheadPointer:function(){this.autoscroll&&this.maybeAdjustScroll()}},methods:{maybeAdjustScroll:function(){var t,e=(null===(t=this.$refs.dropdownMenu)||void 0===t?void 0:t.children[this.typeAheadPointer])||!1;if(e){var n=this.getDropdownViewport(),o=e.getBoundingClientRect(),i=o.top,s=o.bottom,r=o.height;if(i<n.top)return this.$refs.dropdownMenu.scrollTop=e.offsetTop;if(s>n.bottom)return this.$refs.dropdownMenu.scrollTop=e.offsetTop-(n.height-r)}},getDropdownViewport:function(){return this.$refs.dropdownMenu?this.$refs.dropdownMenu.getBoundingClientRect():{height:0,top:0,bottom:0}}}},u={data:function(){return{typeAheadPointer:-1}},watch:{filteredOptions:function(){for(var t=0;t<this.filteredOptions.length;t++)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t;break}}},methods:{typeAheadUp:function(){for(var t=this.typeAheadPointer-1;t>=0;t--)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t;break}},typeAheadDown:function(){for(var t=this.typeAheadPointer+1;t<this.filteredOptions.length;t++)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t;break}},typeAheadSelect:function(){var t=this.filteredOptions[this.typeAheadPointer];t&&this.select(t)}}},p={props:{loading:{type:Boolean,default:!1}},data:function(){return{mutableLoading:!1}},watch:{search:function(){this.$emit("search",this.search,this.toggleLoading)},loading:function(t){this.mutableLoading=t}},methods:{toggleLoading:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;return this.mutableLoading=null==t?!this.mutableLoading:t}}};function h(t,e,n,o,i,s,r,a){var l,c="function"==typeof t?t.options:t;if(e&&(c.render=e,c.staticRenderFns=n,c._compiled=!0),o&&(c.functional=!0),s&&(c._scopeId="data-v-"+s),r?(l=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),i&&i.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(r)},c._ssrRegister=l):i&&(l=a?function(){i.call(this,this.$root.$options.shadowRoot)}:i),l)if(c.functional){c._injectStyles=l;var u=c.render;c.render=function(t,e){return l.call(e),u(t,e)}}else{var p=c.beforeCreate;c.beforeCreate=p?[].concat(p,l):[l]}return{exports:t,options:c}}var d={Deselect:h({},(function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",width:"10",height:"10"}},[e("path",{attrs:{d:"M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"}})])}),[],!1,null,null,null).exports,OpenIndicator:h({},(function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",width:"14",height:"10"}},[e("path",{attrs:{d:"M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"}})])}),[],!1,null,null,null).exports},f={inserted:function(t,e,n){var o=n.context;if(o.appendToBody){var i=o.$refs.toggle.getBoundingClientRect(),s=i.height,r=i.top,a=i.left,l=i.width,c=window.scrollX||window.pageXOffset,u=window.scrollY||window.pageYOffset;t.unbindPosition=o.calculatePosition(t,o,{width:l+"px",left:c+a+"px",top:u+r+s+"px"}),document.body.appendChild(t)}},unbind:function(t,e,n){n.context.appendToBody&&(t.unbindPosition&&"function"==typeof t.unbindPosition&&t.unbindPosition(),t.parentNode&&t.parentNode.removeChild(t))}};var y=function(t){var e={};return Object.keys(t).sort().forEach((function(n){e[n]=t[n]})),JSON.stringify(e)},b=0;var g=function(){return++b};function v(t,e){var n=Object.keys(t);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(t);e&&(o=o.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),n.push.apply(n,o)}return n}function m(t){for(var e=1;e<arguments.length;e++){var n=null!=arguments[e]?arguments[e]:{};e%2?v(Object(n),!0).forEach((function(e){l()(t,e,n[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(n)):v(Object(n)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(n,e))}))}return t}var _={components:m({},d),directives:{appendToBody:f},mixins:[c,u,p],props:{value:{},components:{type:Object,default:function(){return{}}},options:{type:Array,default:function(){return[]}},disabled:{type:Boolean,default:!1},clearable:{type:Boolean,default:!0},searchable:{type:Boolean,default:!0},multiple:{type:Boolean,default:!1},placeholder:{type:String,default:""},transition:{type:String,default:"vs__fade"},clearSearchOnSelect:{type:Boolean,default:!0},closeOnSelect:{type:Boolean,default:!0},label:{type:String,default:"label"},autocomplete:{type:String,default:"off"},reduce:{type:Function,default:function(t){return t}},selectable:{type:Function,default:function(t){return!0}},getOptionLabel:{type:Function,default:function(t){return"object"===r()(t)?t.hasOwnProperty(this.label)?t[this.label]:console.warn('[vue-select warn]: Label key "option.'.concat(this.label,'" does not')+" exist in options object ".concat(JSON.stringify(t),".\n")+"https://vue-select.org/api/props.html#getoptionlabel"):t}},getOptionKey:{type:Function,default:function(t){if("object"!==r()(t))return t;try{return t.hasOwnProperty("id")?t.id:y(t)}catch(e){return console.warn("[vue-select warn]: Could not stringify this option to generate unique key. Please provide'getOptionKey' prop to return a unique key for each option.\nhttps://vue-select.org/api/props.html#getoptionkey",t,e)}}},onTab:{type:Function,default:function(){this.selectOnTab&&!this.isComposing&&this.typeAheadSelect()}},taggable:{type:Boolean,default:!1},tabindex:{type:Number,default:null},pushTags:{type:Boolean,default:!1},filterable:{type:Boolean,default:!0},filterBy:{type:Function,default:function(t,e,n){return(e||"").toLowerCase().indexOf(n.toLowerCase())>-1}},filter:{type:Function,default:function(t,e){var n=this;return t.filter((function(t){var o=n.getOptionLabel(t);return"number"==typeof o&&(o=o.toString()),n.filterBy(t,o,e)}))}},createOption:{type:Function,default:function(t){return"object"===r()(this.optionList[0])?l()({},this.label,t):t}},resetOnOptionsChange:{default:!1,validator:function(t){return["function","boolean"].includes(r()(t))}},clearSearchOnBlur:{type:Function,default:function(t){var e=t.clearSearchOnSelect,n=t.multiple;return e&&!n}},noDrop:{type:Boolean,default:!1},inputId:{type:String},dir:{type:String,default:"auto"},selectOnTab:{type:Boolean,default:!1},selectOnKeyCodes:{type:Array,default:function(){return[13]}},searchInputQuerySelector:{type:String,default:"[type=search]"},mapKeydown:{type:Function,default:function(t,e){return t}},appendToBody:{type:Boolean,default:!1},calculatePosition:{type:Function,default:function(t,e,n){var o=n.width,i=n.top,s=n.left;t.style.top=i,t.style.left=s,t.style.width=o}},dropdownShouldOpen:{type:Function,default:function(t){var e=t.noDrop,n=t.open,o=t.mutableLoading;return!e&&(n&&!o)}}},data:function(){return{uid:g(),search:"",open:!1,isComposing:!1,pushedTags:[],_value:[]}},computed:{isTrackingValues:function(){return void 0===this.value||this.$options.propsData.hasOwnProperty("reduce")},selectedValue:function(){var t=this.value;return this.isTrackingValues&&(t=this.$data._value),t?[].concat(t):[]},optionList:function(){return this.options.concat(this.pushTags?this.pushedTags:[])},searchEl:function(){return this.$scopedSlots.search?this.$refs.selectedOptions.querySelector(this.searchInputQuerySelector):this.$refs.search},scope:function(){var t=this,e={search:this.search,loading:this.loading,searching:this.searching,filteredOptions:this.filteredOptions};return{search:{attributes:m({disabled:this.disabled,placeholder:this.searchPlaceholder,tabindex:this.tabindex,readonly:!this.searchable,id:this.inputId,"aria-autocomplete":"list","aria-labelledby":"vs".concat(this.uid,"__combobox"),"aria-controls":"vs".concat(this.uid,"__listbox"),ref:"search",type:"search",autocomplete:this.autocomplete,value:this.search},this.dropdownOpen&&this.filteredOptions[this.typeAheadPointer]?{"aria-activedescendant":"vs".concat(this.uid,"__option-").concat(this.typeAheadPointer)}:{}),events:{compositionstart:function(){return t.isComposing=!0},compositionend:function(){return t.isComposing=!1},keydown:this.onSearchKeyDown,blur:this.onSearchBlur,focus:this.onSearchFocus,input:function(e){return t.search=e.target.value}}},spinner:{loading:this.mutableLoading},noOptions:{search:this.search,loading:this.mutableLoading,searching:this.searching},openIndicator:{attributes:{ref:"openIndicator",role:"presentation",class:"vs__open-indicator"}},listHeader:e,listFooter:e,header:m({},e,{deselect:this.deselect}),footer:m({},e,{deselect:this.deselect})}},childComponents:function(){return m({},d,{},this.components)},stateClasses:function(){return{"vs--open":this.dropdownOpen,"vs--single":!this.multiple,"vs--multiple":this.multiple,"vs--searching":this.searching&&!this.noDrop,"vs--searchable":this.searchable&&!this.noDrop,"vs--unsearchable":!this.searchable,"vs--loading":this.mutableLoading,"vs--disabled":this.disabled}},searching:function(){return!!this.search},dropdownOpen:function(){return this.dropdownShouldOpen(this)},searchPlaceholder:function(){return this.isValueEmpty&&this.placeholder?this.placeholder:void 0},filteredOptions:function(){var t=[].concat(this.optionList);if(!this.filterable&&!this.taggable)return t;var e=this.search.length?this.filter(t,this.search,this):t;if(this.taggable&&this.search.length){var n=this.createOption(this.search);this.optionExists(n)||e.unshift(n)}return e},isValueEmpty:function(){return 0===this.selectedValue.length},showClearButton:function(){return!this.multiple&&this.clearable&&!this.open&&!this.isValueEmpty}},watch:{options:function(t,e){var n=this;!this.taggable&&("function"==typeof n.resetOnOptionsChange?n.resetOnOptionsChange(t,e,n.selectedValue):n.resetOnOptionsChange)&&this.clearSelection(),this.value&&this.isTrackingValues&&this.setInternalValueFromOptions(this.value)},value:function(t){this.isTrackingValues&&this.setInternalValueFromOptions(t)},multiple:function(){this.clearSelection()},open:function(t){this.$emit(t?"open":"close")}},created:function(){this.mutableLoading=this.loading,void 0!==this.value&&this.isTrackingValues&&this.setInternalValueFromOptions(this.value),this.$on("option:created",this.pushTag)},methods:{setInternalValueFromOptions:function(t){var e=this;Array.isArray(t)?this.$data._value=t.map((function(t){return e.findOptionFromReducedValue(t)})):this.$data._value=this.findOptionFromReducedValue(t)},select:function(t){this.$emit("option:selecting",t),this.isOptionSelected(t)||(this.taggable&&!this.optionExists(t)&&this.$emit("option:created",t),this.multiple&&(t=this.selectedValue.concat(t)),this.updateValue(t),this.$emit("option:selected",t)),this.onAfterSelect(t)},deselect:function(t){var e=this;this.$emit("option:deselecting",t),this.updateValue(this.selectedValue.filter((function(n){return!e.optionComparator(n,t)}))),this.$emit("option:deselected",t)},clearSelection:function(){this.updateValue(this.multiple?[]:null)},onAfterSelect:function(t){this.closeOnSelect&&(this.open=!this.open,this.searchEl.blur()),this.clearSearchOnSelect&&(this.search="")},updateValue:function(t){var e=this;void 0===this.value&&(this.$data._value=t),null!==t&&(t=Array.isArray(t)?t.map((function(t){return e.reduce(t)})):this.reduce(t)),this.$emit("input",t)},toggleDropdown:function(t){var e=t.target!==this.searchEl;e&&t.preventDefault();var n=[].concat(i()(this.$refs.deselectButtons||[]),i()([this.$refs.clearButton]||!1));void 0===this.searchEl||n.filter(Boolean).some((function(e){return e.contains(t.target)||e===t.target}))?t.preventDefault():this.open&&e?this.searchEl.blur():this.disabled||(this.open=!0,this.searchEl.focus())},isOptionSelected:function(t){var e=this;return this.selectedValue.some((function(n){return e.optionComparator(n,t)}))},optionComparator:function(t,e){return this.getOptionKey(t)===this.getOptionKey(e)},findOptionFromReducedValue:function(t){var e=this,n=[].concat(i()(this.options),i()(this.pushedTags)).filter((function(n){return JSON.stringify(e.reduce(n))===JSON.stringify(t)}));return 1===n.length?n[0]:n.find((function(t){return e.optionComparator(t,e.$data._value)}))||t},closeSearchOptions:function(){this.open=!1,this.$emit("search:blur")},maybeDeleteValue:function(){if(!this.searchEl.value.length&&this.selectedValue&&this.selectedValue.length&&this.clearable){var t=null;this.multiple&&(t=i()(this.selectedValue.slice(0,this.selectedValue.length-1))),this.updateValue(t)}},optionExists:function(t){var e=this;return this.optionList.some((function(n){return e.optionComparator(n,t)}))},normalizeOptionForSlot:function(t){return"object"===r()(t)?t:l()({},this.label,t)},pushTag:function(t){this.pushedTags.push(t)},onEscape:function(){this.search.length?this.search="":this.searchEl.blur()},onSearchBlur:function(){if(!this.mousedown||this.searching){var t=this.clearSearchOnSelect,e=this.multiple;return this.clearSearchOnBlur({clearSearchOnSelect:t,multiple:e})&&(this.search=""),void this.closeSearchOptions()}this.mousedown=!1,0!==this.search.length||0!==this.options.length||this.closeSearchOptions()},onSearchFocus:function(){this.open=!0,this.$emit("search:focus")},onMousedown:function(){this.mousedown=!0},onMouseUp:function(){this.mousedown=!1},onSearchKeyDown:function(t){var e=this,n=function(t){return t.preventDefault(),!e.isComposing&&e.typeAheadSelect()},o={8:function(t){return e.maybeDeleteValue()},9:function(t){return e.onTab()},27:function(t){return e.onEscape()},38:function(t){return t.preventDefault(),e.typeAheadUp()},40:function(t){return t.preventDefault(),e.typeAheadDown()}};this.selectOnKeyCodes.forEach((function(t){return o[t]=n}));var i=this.mapKeydown(o,this);if("function"==typeof i[t.keyCode])return i[t.keyCode](t)}}},O=(n(7),h(_,(function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",{staticClass:"v-select",class:t.stateClasses,attrs:{dir:t.dir}},[t._t("header",null,null,t.scope.header),t._v(" "),n("div",{ref:"toggle",staticClass:"vs__dropdown-toggle",attrs:{id:"vs"+t.uid+"__combobox",role:"combobox","aria-expanded":t.dropdownOpen.toString(),"aria-owns":"vs"+t.uid+"__listbox","aria-label":"Search for option"},on:{mousedown:function(e){return t.toggleDropdown(e)}}},[n("div",{ref:"selectedOptions",staticClass:"vs__selected-options"},[t._l(t.selectedValue,(function(e){return t._t("selected-option-container",[n("span",{key:t.getOptionKey(e),staticClass:"vs__selected"},[t._t("selected-option",[t._v("\n            "+t._s(t.getOptionLabel(e))+"\n          ")],null,t.normalizeOptionForSlot(e)),t._v(" "),t.multiple?n("button",{ref:"deselectButtons",refInFor:!0,staticClass:"vs__deselect",attrs:{disabled:t.disabled,type:"button",title:"Deselect "+t.getOptionLabel(e),"aria-label":"Deselect "+t.getOptionLabel(e)},on:{click:function(n){return t.deselect(e)}}},[n(t.childComponents.Deselect,{tag:"component"})],1):t._e()],2)],{option:t.normalizeOptionForSlot(e),deselect:t.deselect,multiple:t.multiple,disabled:t.disabled})})),t._v(" "),t._t("search",[n("input",t._g(t._b({staticClass:"vs__search"},"input",t.scope.search.attributes,!1),t.scope.search.events))],null,t.scope.search)],2),t._v(" "),n("div",{ref:"actions",staticClass:"vs__actions"},[n("button",{directives:[{name:"show",rawName:"v-show",value:t.showClearButton,expression:"showClearButton"}],ref:"clearButton",staticClass:"vs__clear",attrs:{disabled:t.disabled,type:"button",title:"Clear Selected","aria-label":"Clear Selected"},on:{click:t.clearSelection}},[n(t.childComponents.Deselect,{tag:"component"})],1),t._v(" "),t._t("open-indicator",[t.noDrop?t._e():n(t.childComponents.OpenIndicator,t._b({tag:"component"},"component",t.scope.openIndicator.attributes,!1))],null,t.scope.openIndicator),t._v(" "),t._t("spinner",[n("div",{directives:[{name:"show",rawName:"v-show",value:t.mutableLoading,expression:"mutableLoading"}],staticClass:"vs__spinner"},[t._v("Loading...")])],null,t.scope.spinner)],2)]),t._v(" "),n("transition",{attrs:{name:t.transition}},[t.dropdownOpen?n("ul",{directives:[{name:"append-to-body",rawName:"v-append-to-body"}],key:"vs"+t.uid+"__listbox",ref:"dropdownMenu",staticClass:"vs__dropdown-menu",attrs:{id:"vs"+t.uid+"__listbox",role:"listbox",tabindex:"-1"},on:{mousedown:function(e){return e.preventDefault(),t.onMousedown(e)},mouseup:t.onMouseUp}},[t._t("list-header",null,null,t.scope.listHeader),t._v(" "),t._l(t.filteredOptions,(function(e,o){return n("li",{key:t.getOptionKey(e),staticClass:"vs__dropdown-option",class:{"vs__dropdown-option--selected":t.isOptionSelected(e),"vs__dropdown-option--highlight":o===t.typeAheadPointer,"vs__dropdown-option--disabled":!t.selectable(e)},attrs:{id:"vs"+t.uid+"__option-"+o,role:"option","aria-selected":o===t.typeAheadPointer||null},on:{mouseover:function(n){t.selectable(e)&&(t.typeAheadPointer=o)},click:function(n){n.preventDefault(),n.stopPropagation(),t.selectable(e)&&t.select(e)}}},[t._t("option",[t._v("\n          "+t._s(t.getOptionLabel(e))+"\n        ")],null,t.normalizeOptionForSlot(e))],2)})),t._v(" "),0===t.filteredOptions.length?n("li",{staticClass:"vs__no-options"},[t._t("no-options",[t._v("Sorry, no matching options.")],null,t.scope.noOptions)],2):t._e(),t._v(" "),t._t("list-footer",null,null,t.scope.listFooter)],2):n("ul",{staticStyle:{display:"none",visibility:"hidden"},attrs:{id:"vs"+t.uid+"__listbox",role:"listbox"}})]),t._v(" "),t._t("footer",null,null,t.scope.footer)],2)}),[],!1,null,null,null).exports),w={ajax:p,pointer:u,pointerScroll:c};n.d(e,"VueSelect",(function(){return O})),n.d(e,"mixins",(function(){return w}));e.default=O}])}));
+//# sourceMappingURL=vue-select.js.map
+},{}],"js/Addons/SharedComponents/CustomSelect/SelectCustom.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _vueSelect = _interopRequireDefault(require("vue-select"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "SelectCustom",
+  components: {
+    vSelect: _vueSelect.default
+  },
+  props: {
+    name: {
+      type: String,
+      default: ""
+    },
+    id: {
+      type: String,
+      default: ""
+    },
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    url: {
+      type: String,
+      default: ""
+    },
+    optionsList: {
+      type: Array
+    },
+    defaultValue: {
+      type: String
+    },
+    placeholder: {
+      type: String,
+      default: ""
+    },
+    urlNewOption: {
+      type: String,
+      default: null
+    }
+  },
+  data: function data() {
+    return {
+      options: [],
+      selection: null,
+      newOptionName: null,
+      newOptionDescription: null,
+      errorMessage: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var $this = this;
+
+    if (this.url) {
+      fetch(this.url).then(function (res) {
+        res.json().then(function (json) {
+          $this.options = json;
+          $this.selection = $this.defaultValue ? json.find(function (_) {
+            return _.value === _this.defaultValue;
+          }) : null;
+        });
+      });
+    }
+  },
+  methods: {
+    select: function select() {
+      this.$emit('input', this.selection);
+    },
+    reset: function reset() {
+      this.selection = null;
+    },
+    toggleModal: function toggleModal() {
+      $("#addNewOptionModal-".concat(this.name)).modal('toggle');
+    },
+    add: function add() {
+      if (!this.newOptionName || !this.newOptionName.length) {
+        return;
+      }
+
+      var $this = this;
+      $.ajax({
+        url: this.urlNewOption,
+        type: 'POST',
+        data: {
+          name: $this.newOptionName,
+          description: $this.newOptionDescription
+        }
+      }).done(function (data) {
+        $this.errorMessage = null;
+
+        if ($this.url) {
+          fetch($this.url).then(function (res) {
+            res.json().then(function (json) {
+              return $this.options = json;
+            });
+          });
+        }
+
+        $this.toggleModal();
+        $this.newOptionName = "";
+        $this.newOptionDescription = "";
+      }).fail(function (data) {
+        $this.errorMessage = "L'entité n'a pas pu être ajoutée";
+      });
+    }
+  }
+};
+exports.default = _default;
+        var $3d6e50 = exports.default || module.exports;
+      
+      if (typeof $3d6e50 === 'function') {
+        $3d6e50 = $3d6e50.options;
+      }
+    
+        /* template */
+        Object.assign($3d6e50, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _vm.urlNewOption
+        ? _c("div", { staticClass: "col-md-1" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-sm btn-primary",
+                staticStyle: {
+                  height: "100%",
+                  "border-top-right-radius": "0",
+                  "border-bottom-right-radius": "0"
+                },
+                attrs: {
+                  type: "button",
+                  "data-bs-toggle": "modal",
+                  "data-bs-target": "#addNewOptionModal-" + _vm.name
+                }
+              },
+              [_c("i", { staticClass: "fa fa-plus" })]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          class: "col-md-" + (_vm.urlNewOption ? "11" : "12"),
+          style: _vm.urlNewOption
+            ? "border-top-right-radius: 0; border-bottom-right-radius: 0;"
+            : ""
+        },
+        [
+          _c("v-select", {
+            attrs: {
+              value: _vm.selection,
+              id: _vm.id,
+              name: _vm.name,
+              multiple: _vm.multiple,
+              options: _vm.options,
+              label: "text",
+              placeholder: _vm.placeholder
+            },
+            on: { input: _vm.select, reset: _vm.reset },
+            scopedSlots: _vm._u([
+              {
+                key: "option",
+                fn: function(option) {
+                  return [_c("span", [_vm._v(_vm._s(option.text))])]
+                }
+              }
+            ]),
+            model: {
+              value: _vm.selection,
+              callback: function($$v) {
+                _vm.selection = $$v
+              },
+              expression: "selection"
+            }
+          })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "addNewOptionModal-" + _vm.name,
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewOptionModal-" + _vm.name + "Label",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewOptionModal-" + _vm.name + "Label" }
+                  },
+                  [_vm._v("Ajouter un nouvel élément")]
+                ),
+                _vm._v(" "),
+                _c("button", {
+                  staticClass: "btn-close",
+                  attrs: {
+                    type: "button",
+                    "data-bs-dismiss": "modal",
+                    "aria-label": "Close"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body form-group" }, [
+                _vm.errorMessage
+                  ? _c("div", { staticClass: "row mb-2" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-12 alert alert-danger" },
+                        [_c("span", [_vm._v(_vm._s(_vm.errorMessage))])]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-2" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newOptionName,
+                          expression: "newOptionName"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", placeholder: "Nom" },
+                      domProps: { value: _vm.newOptionName },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.newOptionName = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newOptionDescription,
+                          expression: "newOptionDescription"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", placeholder: "Description" },
+                      domProps: { value: _vm.newOptionDescription },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.newOptionDescription = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Fermer")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button" },
+                    on: { click: _vm.add }
+                  },
+                  [_vm._v("Ajouter")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$3d6e50', $3d6e50);
+          } else {
+            api.reload('$3d6e50', $3d6e50);
+          }
+        }
+
+        
+      }
+    })();
+},{"vue-select":"../node_modules/vue-select/dist/vue-select.js","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.esm.js"}],"js/Addons/Models/CharacterType.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CharacterType = void 0;
+
+var CharacterType = function () {
+  function CharacterType(data) {
+    if (data) {
+      this.id = data.id;
+      this.name = data.name;
+      this.description = data.description;
+    }
+  }
+
+  return CharacterType;
+}();
+
+exports.CharacterType = CharacterType;
+},{}],"js/Addons/Models/CustomProperty.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CustomProperty = void 0;
+
+var _CustomPropertyType = require("./CustomPropertyType");
+
+var CustomProperty = function () {
+  function CustomProperty(data) {
+    if (data) {
+      this.id = data.id;
+      this.name = data.name;
+      this.description = data.description;
+      this.valeur = data.valeur;
+      this.valeurMax = data.valeurMax;
+      this.unite = data.unite;
+      this.type = new _CustomPropertyType.CustomPropertyType(data.type);
+    }
+  }
+
+  return CustomProperty;
+}();
+
+exports.CustomProperty = CustomProperty;
+},{"./CustomPropertyType":"js/Addons/Models/CustomPropertyType.ts"}],"js/Addons/Models/Race.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Race = void 0;
+
+var _CustomProperty = require("./CustomProperty");
+
+var Race = function () {
+  function Race(data) {
+    if (data) {
+      this.id = data.id;
+      this.name = data.name;
+      this.description = data.description;
+      this.customProperties = data.customProperties ? data.customProperties.map(function (_) {
+        return new _CustomProperty.CustomProperty(_);
+      }) : [];
+    } else {
+      this.customProperties = [];
+    }
+  }
+
+  return Race;
+}();
+
+exports.Race = Race;
+},{"./CustomProperty":"js/Addons/Models/CustomProperty.ts"}],"js/Addons/Models/CustomSection.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CustomSection = void 0;
+
+var _CustomProperty = require("./CustomProperty");
+
+var CustomSection = function () {
+  function CustomSection(data) {
+    if (data) {
+      this.id = data.id;
+      this.name = data.name;
+      this.description = data.description;
+      this.customProperties = data.customProperties ? data.customProperties.map(function (_) {
+        return new _CustomProperty.CustomProperty(_);
+      }) : [];
+    } else {
+      this.customProperties = [];
+    }
+  }
+
+  return CustomSection;
+}();
+
+exports.CustomSection = CustomSection;
+},{"./CustomProperty":"js/Addons/Models/CustomProperty.ts"}],"js/Addons/Models/Character.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Character = void 0;
+
+var _CharacterType = require("./CharacterType");
+
+var _Race = require("./Race");
+
+var _CustomSection = require("./CustomSection");
+
+var Character = function () {
+  function Character(data) {
+    if (data) {
+      this.id = data.id;
+      this.name = data.name;
+      this.description = data.description;
+      this.type = new _CharacterType.CharacterType(data.type);
+      this.race = new _Race.Race(data.race);
+      this.customSections = data.customSections ? data.customSections.map(function (_) {
+        return new _CustomSection.CustomSection(_);
+      }) : [];
+    } else {
+      this.customSections = [];
+    }
+  }
+
+  return Character;
+}();
+
+exports.Character = Character;
+},{"./CharacterType":"js/Addons/Models/CharacterType.ts","./Race":"js/Addons/Models/Race.ts","./CustomSection":"js/Addons/Models/CustomSection.ts"}],"js/Addons/Components/Character/Character.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _SelectCustom = _interopRequireDefault(require("../../SharedComponents/CustomSelect/SelectCustom"));
+
+var _Character = require("../../Models/Character");
+
+var _CustomSection = require("../../Models/CustomSection");
+
+var _CharacterType = require("../../Models/CharacterType");
+
+var _Race = require("../../Models/Race");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "Character",
+  components: {
+    SelectCustom: _SelectCustom.default
+  },
+  props: {
+    id: Number
+  },
+  data: function data() {
+    return {
+      character: _Character.Character,
+      type: null,
+      race: null,
+      typeId: null,
+      raceId: null
+    };
+  },
+  mounted: function mounted() {
+    if (this.id) {
+      var $this = this;
+
+      _jquery.default.ajax({
+        url: "/Character/GetCharacterById/".concat(this.id),
+        type: 'GET'
+      }).done(function (data) {
+        $this.character = new _Character.Character(data);
+
+        if (data && data.race) {
+          $this.typeId = data.type.id.toString();
+          $this.raceId = data.race.id.toString();
+        }
+      });
+    } else {
+      this.character = new _Character.Character();
+    }
+  },
+  methods: {
+    addNewSection: function addNewSection() {
+      this.character.customSections.push(new _CustomSection.CustomSection());
+    },
+    save: function save() {
+      _jquery.default.ajax({
+        url: "/Character/".concat(this.isEdit ? 'Edit' : 'Create'),
+        type: 'POST',
+        data: {
+          model: this.character
+        }
+      }).done(function (url) {
+        window.location.href = url;
+      });
+    }
+  },
+  computed: {
+    isEdit: function isEdit() {
+      return !!this.id;
+    },
+    races: function races() {
+      var races = null;
+
+      _jquery.default.ajax({
+        url: '/Character/GetAllRacesForSelect',
+        type: 'GET'
+      }).done(function (data) {
+        races = data;
+      });
+
+      return races;
+    },
+    characterTypes: function characterTypes() {
+      var types = null;
+
+      _jquery.default.ajax({
+        url: '/Character/GetAllCharacterTypesForSelect',
+        type: 'GET'
+      }).done(function (data) {
+        types = data;
+      });
+
+      return types;
+    }
+  },
+  watch: {
+    type: function type(val) {
+      var type = new _CharacterType.CharacterType();
+      type.id = val.value;
+      type.name = val.text;
+      this.character.type = type;
+    },
+    race: function race(val) {
+      var race = new _Race.Race();
+      race.id = val.value;
+      race.name = val.text;
+      this.character.race = race;
+    }
+  }
+};
+exports.default = _default;
+        var $a8d444 = exports.default || module.exports;
+      
+      if (typeof $a8d444 === 'function') {
+        $a8d444 = $a8d444.options;
+      }
+    
+        /* template */
+        Object.assign($a8d444, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("form", [
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _c("div", { staticClass: "col-md-8 offset-md-2" }, [
+          _c("div", { staticClass: "row form-group mb-2" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.character.name,
+                    expression: "character.name"
+                  }
+                ],
+                staticClass: "form-control required",
+                attrs: { type: "text", placeholder: "Nom du personnage" },
+                domProps: { value: _vm.character.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.character, "name", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row form-group mb-2" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.character.description,
+                    expression: "character.description"
+                  }
+                ],
+                staticClass: "form-control required",
+                attrs: {
+                  type: "text",
+                  placeholder: "Description du personnage"
+                },
+                domProps: { value: _vm.character.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.character, "description", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row mb-2" }, [
+            _c(
+              "div",
+              { staticClass: "col-md-6" },
+              [
+                _c("select-custom", {
+                  staticClass: "required",
+                  attrs: {
+                    url: "/Character/GetAllCharacterTypesForSelect",
+                    "default-value": _vm.typeId,
+                    placeholder: "Type du personnage",
+                    "url-new-option": "/Character/AddNewCharacterType",
+                    name: "character_type"
+                  },
+                  model: {
+                    value: _vm.type,
+                    callback: function($$v) {
+                      _vm.type = $$v
+                    },
+                    expression: "type"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-md-6" },
+              [
+                _c("select-custom", {
+                  staticClass: "required",
+                  attrs: {
+                    url: "/Character/GetAllRacesForSelect",
+                    "default-value": _vm.raceId,
+                    placeholder: "Race du personnage",
+                    "url-new-option": "/Character/AddNewRace",
+                    name: "character_race"
+                  },
+                  model: {
+                    value: _vm.race,
+                    callback: function($$v) {
+                      _vm.race = $$v
+                    },
+                    expression: "race"
+                  }
+                })
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.character.customSections
+          ? _vm._l(_vm.character.customSections, function(section) {
+              return _c("div", { staticClass: "row mb-2" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-12" },
+                  [_c("custom-section", { attrs: { section: section } })],
+                  1
+                )
+              ])
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-md-12 text-center" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: { click: _vm.addNewSection }
+              },
+              [_vm._v("Ajouter une section personnalisée")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12 text-center" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success",
+                attrs: { type: "button" },
+                on: { click: _vm.save }
+              },
+              [_vm._v("Enregistrer")]
+            )
+          ])
+        ])
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$a8d444', $a8d444);
+          } else {
+            api.reload('$a8d444', $a8d444);
+          }
+        }
+
+        
+      }
+    })();
+},{"jquery":"../node_modules/jquery/dist/jquery.js","../../SharedComponents/CustomSelect/SelectCustom":"js/Addons/SharedComponents/CustomSelect/SelectCustom.vue","../../Models/Character":"js/Addons/Models/Character.ts","../../Models/CustomSection":"js/Addons/Models/CustomSection.ts","../../Models/CharacterType":"js/Addons/Models/CharacterType.ts","../../Models/Race":"js/Addons/Models/Race.ts","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.esm.js"}],"js/Addons/Components/Character/index.ts":[function(require,module,exports) {
+"use strict";
+
+var _vue = _interopRequireDefault(require("vue"));
+
+var _Character = _interopRequireDefault(require("./Character.vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue.default.component("character", _Character.default);
+
+if (document.getElementsByClassName("character").length > 0) {
+  var vue = new _vue.default({
+    el: ".character"
+  });
+}
+},{"vue":"../node_modules/vue/dist/vue.esm.js","./Character.vue":"js/Addons/Components/Character/Character.vue"}],"js/Addons/Components/index.ts":[function(require,module,exports) {
+"use strict";
+
+require("./CustomPropertyType/index");
+
+require("./Character/index");
+},{"./CustomPropertyType/index":"js/Addons/Components/CustomPropertyType/index.ts","./Character/index":"js/Addons/Components/Character/index.ts"}],"js/Addons/SharedComponents/CustomFields/CustomFields.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _CustomField = require("../../Models/CustomField");
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "CustomFields",
+  props: {
+    name: {
+      type: String,
+      default: ""
+    },
+    id: {
+      type: String,
+      default: ""
+    }
+  },
+  data: function data() {
+    return {
+      customField: _CustomField.CustomField
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var $this = this;
+
+    if (this.url) {
+      fetch(this.url).then(function (res) {
+        res.json().then(function (json) {
+          $this.options = json;
+          $this.selection = $this.defaultValue ? json.find(function (_) {
+            return _.value === _this.defaultValue;
+          }) : null;
+        });
+      });
+    }
+  },
+  methods: {
+    select: function select() {
+      this.$emit('input', this.selection);
+    },
+    reset: function reset() {
+      this.selection = null;
+    },
+    toggleModal: function toggleModal() {
+      $("#addNewOptionModal-".concat(this.name)).modal('toggle');
+    },
+    add: function add() {
+      if (!this.newOptionName || !this.newOptionName.length) {
+        return;
+      }
+
+      var $this = this;
+      $.ajax({
+        url: this.urlNewOption,
+        type: 'POST',
+        data: {
+          name: $this.newOptionName,
+          description: $this.newOptionDescription
+        }
+      }).done(function (data) {
+        $this.errorMessage = null;
+
+        if ($this.url) {
+          fetch($this.url).then(function (res) {
+            res.json().then(function (json) {
+              return $this.options = json;
+            });
+          });
+        }
+
+        $this.toggleModal();
+        $this.newOptionName = "";
+        $this.newOptionDescription = "";
+      }).fail(function (data) {
+        $this.errorMessage = "L'entité n'a pas pu être ajoutée";
+      });
+    }
+  }
+};
+exports.default = _default;
+        var $5753be = exports.default || module.exports;
+      
+      if (typeof $5753be === 'function') {
+        $5753be = $5753be.options;
+      }
+    
+        /* template */
+        Object.assign($5753be, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _vm.urlNewOption
+        ? _c("div", { staticClass: "col-md-1" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-sm btn-primary",
+                staticStyle: {
+                  height: "100%",
+                  "border-top-right-radius": "0",
+                  "border-bottom-right-radius": "0"
+                },
+                attrs: {
+                  type: "button",
+                  "data-bs-toggle": "modal",
+                  "data-bs-target": "#addNewOptionModal-" + _vm.name
+                }
+              },
+              [_c("i", { staticClass: "fa fa-plus" })]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          class: "col-md-" + (_vm.urlNewOption ? "11" : "12"),
+          style: _vm.urlNewOption
+            ? "border-top-right-radius: 0; border-bottom-right-radius: 0;"
+            : ""
+        },
+        [
+          _c("v-select", {
+            attrs: {
+              value: _vm.selection,
+              id: _vm.id,
+              name: _vm.name,
+              multiple: _vm.multiple,
+              options: _vm.options,
+              label: "text",
+              placeholder: _vm.placeholder
+            },
+            on: { input: _vm.select, reset: _vm.reset },
+            scopedSlots: _vm._u([
+              {
+                key: "option",
+                fn: function(option) {
+                  return [_c("span", [_vm._v(_vm._s(option.text))])]
+                }
+              }
+            ]),
+            model: {
+              value: _vm.selection,
+              callback: function($$v) {
+                _vm.selection = $$v
+              },
+              expression: "selection"
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.customSection.customProperties, function(property, index) {
+            return [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-12" })
+              ])
+            ]
+          })
+        ],
+        2
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$5753be', $5753be);
+          } else {
+            api.reload('$5753be', $5753be);
+          }
+        }
+
+        
+      }
+    })();
+},{"../../Models/CustomField":"js/Addons/Models/CustomField.ts","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.esm.js"}],"js/Addons/SharedComponents/CustomFields/index.ts":[function(require,module,exports) {
+"use strict";
+
+var _vue = _interopRequireDefault(require("vue"));
+
+var _CustomFields = _interopRequireDefault(require("./CustomFields.vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue.default.component("custom-fields", _CustomFields.default);
+},{"vue":"../node_modules/vue/dist/vue.esm.js","./CustomFields.vue":"js/Addons/SharedComponents/CustomFields/CustomFields.vue"}],"js/Addons/SharedComponents/CustomProperties/CustomSection.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _CustomSection = require("../../Models/CustomSection");
+
+var _CustomProperty = require("../../Models/CustomProperty");
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "CustomSection",
+  props: {
+    section: {
+      type: _CustomSection.CustomSection
+    }
+  },
+  data: function data() {
+    return {
+      customSection: _CustomSection.CustomSection
+    };
+  },
+  mounted: function mounted() {
+    if (this.section) {
+      this.customSection = this.section;
+
+      if (!this.customSection.customProperties.length) {
+        this.customSection.customProperties.push(new _CustomProperty.CustomProperty());
+      }
+    }
+  },
+  methods: {
+    addNewProperty: function addNewProperty() {
+      var property = new _CustomProperty.CustomProperty();
+      this.customSection.customProperties.push(property);
+    }
+  }
+};
+exports.default = _default;
+        var $197f8a = exports.default || module.exports;
+      
+      if (typeof $197f8a === 'function') {
+        $197f8a = $197f8a.options;
+      }
+    
+        /* template */
+        Object.assign($197f8a, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.customSection
+    ? _c("section", { staticClass: "custom-section" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.customSection.name,
+                  expression: "customSection.name"
+                }
+              ],
+              staticClass: "form-control mb-2",
+              attrs: {
+                type: "text",
+                placeholder: "Nom de la section personnalisée"
+              },
+              domProps: { value: _vm.customSection.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.customSection, "name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.customSection.description,
+                  expression: "customSection.description"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { placeholder: "Description de la section personnalisée" },
+              domProps: { value: _vm.customSection.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.customSection,
+                    "description",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _vm.customSection.customProperties
+          ? _c(
+              "div",
+              { staticClass: "row properties" },
+              [
+                _vm._l(_vm.customSection.customProperties, function(
+                  property,
+                  index
+                ) {
+                  return [
+                    _c(
+                      "div",
+                      {
+                        class:
+                          "col-3 custom-property " +
+                          ((index + 1) % 4 === 0 ||
+                          index ===
+                            _vm.customSection.customProperties.length - 1
+                            ? "last-property"
+                            : "")
+                      },
+                      [_c("custom-property", { attrs: { value: property } })],
+                      1
+                    )
+                  ]
+                })
+              ],
+              2
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-2" }, [
+          _c("div", { staticClass: "text-center btn-add-property" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: { click: _vm.addNewProperty }
+              },
+              [_vm._v("Ajouter une propriété")]
+            )
+          ])
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$197f8a', $197f8a);
+          } else {
+            api.reload('$197f8a', $197f8a);
+          }
+        }
+
+        
+      }
+    })();
+},{"../../Models/CustomSection":"js/Addons/Models/CustomSection.ts","../../Models/CustomProperty":"js/Addons/Models/CustomProperty.ts","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.esm.js"}],"js/Addons/SharedComponents/CustomProperties/CustomProperty.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _CustomProperty = require("../../Models/CustomProperty");
+
+var _CustomPropertyType = require("../../Models/CustomPropertyType");
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "CustomProperty",
+  props: {
+    value: {
+      type: _CustomProperty.CustomProperty
+    }
+  },
+  data: function data() {
+    return {
+      property: _CustomProperty.CustomProperty,
+      type: null,
+      typeId: null
+    };
+  },
+  mounted: function mounted() {
+    if (this.value) {
+      this.property = this.value;
+
+      if (this.value.type) {
+        this.typeId = this.value.type.id.toString();
+      }
+    } else {
+      this.property = new _CustomProperty.CustomProperty();
+    }
+  },
+  watch: {
+    type: function type(val) {
+      var type = new _CustomPropertyType.CustomPropertyType();
+      type.id = val.value;
+      type.name = val.text;
+      this.property.type = type;
+    }
+  }
+};
+exports.default = _default;
+        var $41dcd7 = exports.default || module.exports;
+      
+      if (typeof $41dcd7 === 'function') {
+        $41dcd7 = $41dcd7.options;
+      }
+    
+        /* template */
+        Object.assign($41dcd7, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col form-group" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.property.name,
+              expression: "property.name"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { placeholder: "Nom de la propriété" },
+          domProps: { value: _vm.property.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.property, "name", $event.target.value)
+            }
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mt-2" }, [
+      _c(
+        "div",
+        { staticClass: "col" },
+        [
+          _c("select-custom", {
+            staticClass: "required",
+            attrs: {
+              url: "/Character/GetAllCustomPropertyTypesForSelect",
+              "default-value": _vm.typeId,
+              placeholder: "Type de la propriété",
+              name: "type"
+            },
+            model: {
+              value: _vm.type,
+              callback: function($$v) {
+                _vm.type = $$v
+              },
+              expression: "type"
+            }
+          })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mt-2" }, [
+      _c("div", { staticClass: "col form-group" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.property.valeur,
+              expression: "property.valeur"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { placeholder: "Valeur" },
+          domProps: { value: _vm.property.valeur },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.property, "valeur", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col form-group" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.property.valeurMax,
+              expression: "property.valeurMax"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { placeholder: "Max" },
+          domProps: { value: _vm.property.valeurMax },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.property, "valeurMax", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col form-group" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.property.unite,
+              expression: "property.unite"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { placeholder: "Unité" },
+          domProps: { value: _vm.property.unite },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.property, "unite", $event.target.value)
+            }
+          }
+        })
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$41dcd7', $41dcd7);
+          } else {
+            api.reload('$41dcd7', $41dcd7);
+          }
+        }
+
+        
+      }
+    })();
+},{"../../Models/CustomProperty":"js/Addons/Models/CustomProperty.ts","../../Models/CustomPropertyType":"js/Addons/Models/CustomPropertyType.ts","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.esm.js"}],"js/Addons/SharedComponents/CustomProperties/index.ts":[function(require,module,exports) {
+"use strict";
+
+var _vue = _interopRequireDefault(require("vue"));
+
+var _CustomSection = _interopRequireDefault(require("./CustomSection.vue"));
+
+var _CustomProperty = _interopRequireDefault(require("./CustomProperty.vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue.default.component("custom-section", _CustomSection.default);
+
+_vue.default.component("custom-property", _CustomProperty.default);
+},{"vue":"../node_modules/vue/dist/vue.esm.js","./CustomSection.vue":"js/Addons/SharedComponents/CustomProperties/CustomSection.vue","./CustomProperty.vue":"js/Addons/SharedComponents/CustomProperties/CustomProperty.vue"}],"js/Addons/SharedComponents/CustomSelect/index.ts":[function(require,module,exports) {
+"use strict";
+
+var _vue = _interopRequireDefault(require("vue"));
+
+var _SelectCustom = _interopRequireDefault(require("./SelectCustom.vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue.default.component("select-custom", _SelectCustom.default);
+},{"vue":"../node_modules/vue/dist/vue.esm.js","./SelectCustom.vue":"js/Addons/SharedComponents/CustomSelect/SelectCustom.vue"}],"js/Addons/SharedComponents/index.ts":[function(require,module,exports) {
+"use strict";
+
+require("./CustomFields/index");
+
+require("./CustomProperties/index");
+
+require("./CustomSelect/index");
+},{"./CustomFields/index":"js/Addons/SharedComponents/CustomFields/index.ts","./CustomProperties/index":"js/Addons/SharedComponents/CustomProperties/index.ts","./CustomSelect/index":"js/Addons/SharedComponents/CustomSelect/index.ts"}],"js/Addons/index.ts":[function(require,module,exports) {
+"use strict";
+
+require("./Components/index");
+
+require("./SharedComponents/index");
+},{"./Components/index":"js/Addons/Components/index.ts","./SharedComponents/index":"js/Addons/SharedComponents/index.ts"}],"../node_modules/jquery-ui-dist/jquery-ui.js":[function(require,module,exports) {
 var define;
 /*! jQuery UI - v1.12.0 - 2016-07-08
 * http://jqueryui.com
@@ -64870,7 +65628,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58653" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60570" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

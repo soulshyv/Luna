@@ -23,16 +23,21 @@
     <ItemGroup>
       <TypeScriptCompile Include="tsconfig.json" />
       <TypeScriptCompile Include="_wwwsrc\index.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Components\CustomPropertyType\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Components\Character\index.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Components\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\Character.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CharacterType.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomField.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomProperty.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomPropertyType.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomSection.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\Race.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\SharedComponents\CustomFields\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\SharedComponents\CustomProperties\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\SharedComponents\CustomSelect\index.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\SharedComponents\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\interface.d.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\site.d.ts" />
@@ -47,6 +52,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Areas\Admin\Views\Shared" />
       <Folder Include="_wwwsrc\js\Addons\Mixins" />
     </ItemGroup>
 
@@ -55,6 +61,10 @@
       <_ContentIncludedByDefault Remove="Views\Entity\Edit.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Entity\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Entity\_Form.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Entity\Add.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Entity\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Entity\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Entity\_Form.cshtml" />
     </ItemGroup>
 
 </Project>

@@ -1,3 +1,5 @@
+@model IEnumerable<Luna.Commons.Models.Dtos.CharacterDto>
+
 @{
     ViewData["Title"] = "Personnages";
 }
@@ -12,10 +14,11 @@
 
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered table-striped text-center">
+        <table class="table table-bordered table-striped table-sm text-center">
             <tr>
                 <th>Nom</th>
-                <th>Type de personnage</th>
+                <th>Type</th>
+                <th>Race</th>
                 <th></th>
             </tr>
             @foreach (var character in Model)
@@ -23,8 +26,9 @@
                 <tr>
                     <td>@character.Name</td>
                     <td>@character.Type?.Name</td>
+                    <td>@character.Race?.Name</td>
                     <td>
-                        <a asp-controller="Character" asp-action="Edit" asp-route-id="@character.Id" class="btn btn-primary">Modifier</a>
+                        <a asp-controller="Character" asp-action="Edit" asp-route-id="@character.Id" class="btn btn-primary btn-sm">Modifier</a>
                     </td>
                 </tr>
             }

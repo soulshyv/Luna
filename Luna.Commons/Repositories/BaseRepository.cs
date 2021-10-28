@@ -22,7 +22,7 @@ namespace Luna.Commons.Repositories
 
         public abstract Task<TModel> GetById(int id, CancellationToken ctk = default(CancellationToken));
 
-        public async Task<TModel[]> GetAll(CancellationToken ctk = default(CancellationToken))
+        public virtual async Task<TModel[]> GetAll(CancellationToken ctk = default(CancellationToken))
         {
             return await TableSet(DbContext).ToArrayAsync(cancellationToken: ctk);
         }

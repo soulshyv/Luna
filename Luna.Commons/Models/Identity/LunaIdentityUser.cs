@@ -26,6 +26,8 @@ namespace Luna.Commons.Models.Identity
         public virtual IList<CustomSection> CustomSections { get; set; }
         public virtual IList<CustomProperty> CustomProperties { get; set; }
         public virtual IList<CustomPropertyType> CustomPropertieTypes { get; set; }
+        public virtual IList<CustomField> CustomFields { get; set; }
+        public virtual IList<CustomPropertyHasCustomField> CustomPropertyHasCustomFields { get; set; }
         public virtual IList<Race> Races { get; set; }
     }
 }

@@ -1,28 +1,44 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Luna.Commons.Models.Dtos
 {
-    public class CharacterDto
+    public class CharacterDto : ModelBaseDto<Character>
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public CharacterType Type { get; set; }
-        public Race Race { get; set; }
-        public IEnumerable<CustomSection> CustomProperties { get; set; }
+        public CharacterTypeDto Type { get; set; }
+        public RaceDto Race { get; set; }
+        
+        public IEnumerable<CustomSectionDto> CustomSections { get; set; }
 
-        public CharacterDto(Character character)
+        public CharacterDto(Character character) : base(character)
         {
-            Id = character.Id;
-            Name = character.Name;
-            Description = character.Description;
-            Type = character.Type;
-            Race = character.Race;
-            CustomProperties = character.CustomSections;
+            Type = character.Type != null ? new CharacterTypeDto(character.Type) : null;
+            Race = character.Race != null ? new RaceDto(character.Race) : null;
+            
+            CustomSections = character.CustomSections?.Any() == true
+                ? character.CustomSections.Select(_ => new CustomSectionDto(_))
+                : null;
         }
 
         public CharacterDto()
         {
+        }
+
+        public Character ToSimpleModel(Guid userId)
+        {
+            return base.ToModel(userId);
+        }
+
+        public override Character ToModel(Guid userId)
+        {
+            var character = base.ToModel(userId);
+
+            character.Type = Type.ToModel(userId);
+            character.Race = Race.ToModel(userId);
+            character.CustomSections = CustomSections?.Select(_ => _.ToModel(userId)).ToList();
+
+            return character;
         }
     }
 }

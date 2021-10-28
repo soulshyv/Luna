@@ -38,17 +38,34 @@
         <e p="Migrations" t="Include">
           <e p="20211012203156_Init.cs" t="Include" />
           <e p="20211012203156_Init.Designer.cs" t="Include" />
+          <e p="20211018221623_UpdateCustomPropertySetRaceIdToNullable.cs" t="Include" />
+          <e p="20211018221623_UpdateCustomPropertySetRaceIdToNullable.Designer.cs" t="Include" />
+          <e p="20211018223958_UpdateDbContext.cs" t="Include" />
+          <e p="20211018223958_UpdateDbContext.Designer.cs" t="Include" />
+          <e p="20211024210953_AddCustomFields.cs" t="Include" />
+          <e p="20211024210953_AddCustomFields.Designer.cs" t="Include" />
+          <e p="20211027215259_AddTableCustomPropertyHasCustomField.cs" t="Include" />
+          <e p="20211027215259_AddTableCustomPropertyHasCustomField.Designer.cs" t="Include" />
           <e p="LunaDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
           <e p="AuthorBase.cs" t="Include" />
           <e p="Character.cs" t="Include" />
           <e p="CharacterType.cs" t="Include" />
+          <e p="CustomField.cs" t="Include" />
           <e p="CustomProperty.cs" t="Include" />
+          <e p="CustomPropertyHasCustomField.cs" t="Include" />
           <e p="CustomPropertyType.cs" t="Include" />
           <e p="CustomSection.cs" t="Include" />
           <e p="Dtos" t="Include">
             <e p="CharacterDto.cs" t="Include" />
+            <e p="CharacterTypeDto.cs" t="Include" />
+            <e p="CustomFieldDto.cs" t="Include" />
+            <e p="CustomPropertyDto.cs" t="Include" />
+            <e p="CustomPropertyTypeDto.cs" t="Include" />
+            <e p="CustomSectionDto.cs" t="Include" />
+            <e p="ModelBaseDto.cs" t="Include" />
+            <e p="RaceDto.cs" t="Include" />
           </e>
           <e p="GedDocument.cs" t="Include" />
           <e p="Identity" t="Include">
@@ -115,18 +132,28 @@
                   <e p="Character.vue" t="Include" />
                   <e p="index.ts" t="Include" />
                 </e>
+                <e p="CustomPropertyType" t="Include">
+                  <e p="CustomPropertyType.vue" t="Include" />
+                  <e p="index.ts" t="Include" />
+                </e>
+                <e p="index.ts" t="Include" />
               </e>
               <e p="index.ts" t="Include" />
               <e p="Mixins" t="Include" />
               <e p="Models" t="Include">
                 <e p="Character.ts" t="Include" />
                 <e p="CharacterType.ts" t="Include" />
+                <e p="CustomField.ts" t="Include" />
                 <e p="CustomProperty.ts" t="Include" />
                 <e p="CustomPropertyType.ts" t="Include" />
                 <e p="CustomSection.ts" t="Include" />
                 <e p="Race.ts" t="Include" />
               </e>
               <e p="SharedComponents" t="Include">
+                <e p="CustomFields" t="Include">
+                  <e p="CustomFields.vue" t="Include" />
+                  <e p="index.ts" t="Include" />
+                </e>
                 <e p="CustomProperties" t="Include">
                   <e p="CustomProperty.vue" t="Include" />
                   <e p="CustomSection.vue" t="Include" />
@@ -136,6 +163,7 @@
                   <e p="index.ts" t="Include" />
                   <e p="SelectCustom.vue" t="Include" />
                 </e>
+                <e p="index.ts" t="Include" />
               </e>
             </e>
             <e p="Global" t="Include">
@@ -166,6 +194,18 @@
             <e p="Views" t="Include">
               <e p="_ViewImports.cshtml" t="Include" />
               <e p="_ViewStart.cshtml" t="Include" />
+              <e p="CustomPropertyType" t="Include">
+                <e p="Add.cshtml" t="Include" />
+                <e p="Edit.cshtml" t="Include" />
+              </e>
+              <e p="Shared" t="Include">
+                <e p="Entity" t="Include">
+                  <e p="_Form.cshtml" t="Include" />
+                  <e p="Add.cshtml" t="Include" />
+                  <e p="Edit.cshtml" t="Include" />
+                  <e p="Index.cshtml" t="Include" />
+                </e>
+              </e>
               <e p="User" t="Include">
                 <e p="_Form.cshtml" t="Include" />
                 <e p="Add.cshtml" t="Include" />
@@ -302,7 +342,6 @@
         <e p="tsconfig.json" t="Include" />
         <e p="ViewModels" t="Include">
           <e p="AccountViewModel.cs" t="Include" />
-          <e p="CharacterViewModel.cs" t="Include" />
           <e p="EntityViewModel.cs" t="Include" />
           <e p="LoginViewModel.cs" t="Include" />
           <e p="UserViewModel.cs" t="Include" />
@@ -327,12 +366,6 @@
             <e p="_Layout.cshtml" t="Include" />
             <e p="_Layout.Login.cshtml" t="Include" />
             <e p="_ValidationScriptsPartial.cshtml" t="Include" />
-            <e p="Entity" t="Include">
-              <e p="_Form.cshtml" t="Include" />
-              <e p="Add.cshtml" t="Include" />
-              <e p="Edit.cshtml" t="Include" />
-              <e p="Index.cshtml" t="Include" />
-            </e>
             <e p="Error.cshtml" t="Include" />
           </e>
         </e>

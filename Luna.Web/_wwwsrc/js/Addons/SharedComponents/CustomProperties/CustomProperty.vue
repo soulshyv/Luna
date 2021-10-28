@@ -8,10 +8,10 @@
         <div class="row mt-2">
             <div class="col">
                 <select-custom
-                    v-model="property.type"
+                    v-model="type"
                     url="/Character/GetAllCustomPropertyTypesForSelect"
+                    :default-value="typeId"
                     placeholder="Type de la propriété"
-                    url-new-option="/Character/AddNewCustomPropertyType"
                     name="type"
                     class="required">
                 </select-custom>
@@ -34,26 +34,40 @@
 <script>
 
 import {CustomProperty} from "../../Models/CustomProperty";
+import {CustomPropertyType} from "../../Models/CustomPropertyType";
 
 export default {
     name: "CustomProperty",
     props: {
         value: {
-            type: CustomProperty
+            type: CustomProperty,
         }
     },
     data() {
         return {
-            property: CustomProperty
+            property: CustomProperty,
+            type: null,
+            typeId: null
         }
     },
     mounted() {
         if (this.value) {
             this.property = this.value;
+            
+            if (this.value.type) {
+                this.typeId = this.value.type.id.toString();
+            }
+        } else {
+            this.property = new CustomProperty();
         }
     },
-    methods: {
-
+    watch: {
+        type: function(val) {
+            let type = new CustomPropertyType();
+            type.id = val.value;
+            type.name = val.text;
+            this.property.type = type;
+        }
     }
 }
 </script>

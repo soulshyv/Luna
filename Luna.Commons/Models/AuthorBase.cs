@@ -3,7 +3,7 @@ using Luna.Commons.Models.Identity;
 
 namespace Luna.Commons.Models
 {
-    public class AuthorBase
+    public abstract class AuthorBase
     {
         public Guid UserId { get; set; }
         public DateTime Created { get; set; }

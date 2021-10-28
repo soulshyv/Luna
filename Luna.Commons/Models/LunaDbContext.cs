@@ -12,6 +12,8 @@ namespace Luna.Commons.Models
         public DbSet<CustomSection> CustomSections { get; set; }
         public DbSet<CustomProperty> CustomProperties { get; set; }
         public DbSet<CustomPropertyType> CustomPropertyTypes { get; set; }
+        public DbSet<CustomField> CustomFields { get; set; }
+        public DbSet<CustomPropertyHasCustomField> CustomPropertyHasCustomFields { get; set; }
 
         // public LunaDbContext()
         // {
@@ -29,6 +31,8 @@ namespace Luna.Commons.Models
             CustomSectionMapping(modelBuilder);
             CustomPropertyMapping(modelBuilder);
             CustomPropertyTypeMapping(modelBuilder);
+            CustomFieldMapping(modelBuilder);
+            CustomPropertyHasCustomFieldMapping(modelBuilder);
 
             CustomizeMapping(ref modelBuilder);
 
@@ -72,10 +76,7 @@ namespace Luna.Commons.Models
             modelBuilder.Entity<CustomProperty>().Property(_ => _.Description).HasColumnName("description").HasColumnType("blob");
             modelBuilder.Entity<CustomProperty>().Property(_ => _.CustomSectionId).HasColumnName("section_id").HasColumnType("int");
             modelBuilder.Entity<CustomProperty>().Property(_ => _.TypeId).HasColumnName("type_id").HasColumnType("int").IsRequired();
-            modelBuilder.Entity<CustomProperty>().Property(_ => _.RaceId).HasColumnName("race_id").HasColumnType("int");
-            modelBuilder.Entity<CustomProperty>().Property(_ => _.Valeur).HasColumnName("valeur").HasColumnType("int").IsRequired();
-            modelBuilder.Entity<CustomProperty>().Property(_ => _.ValeurMax).HasColumnName("valeur_max").HasColumnType("int");
-            modelBuilder.Entity<CustomProperty>().Property(_ => _.Unite).HasColumnName("unite").HasColumnType("varchar(100)");
+            modelBuilder.Entity<CustomProperty>().Property(_ => _.RaceId).HasColumnName("race_id").HasColumnType("int").IsRequired(false);
             modelBuilder.Entity<CustomProperty>().Property(_ => _.Created).HasColumnName("created").HasColumnType("datetime");
             modelBuilder.Entity<CustomProperty>().Property(_ => _.Modified).HasColumnName("modified").HasColumnType("datetime");
             modelBuilder.Entity<CustomProperty>().Property(_ => _.UserId).HasColumnName("user_id").HasColumnType("char(36)");
@@ -122,6 +123,34 @@ namespace Luna.Commons.Models
             
             modelBuilder.Entity<CustomPropertyType>().HasKey(_ => _.Id);
             modelBuilder.Entity<CustomPropertyType>().HasIndex(_ => _.Name).IsUnique();
+        }
+
+        private void CustomFieldMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CustomField>().ToTable("luna_rpg_custom_field");
+            modelBuilder.Entity<CustomField>().Property(_ => _.Id).HasColumnName("id").HasColumnType("int").IsRequired().ValueGeneratedOnAdd();
+            modelBuilder.Entity<CustomField>().Property(_ => _.Name).HasColumnName("nom").HasColumnType("varchar(255)").IsRequired();
+            modelBuilder.Entity<CustomField>().Property(_ => _.Description).HasColumnName("description").HasColumnType("blob");
+            modelBuilder.Entity<CustomField>().Property(_ => _.TypeId).HasColumnName("type_id").HasColumnType("int").IsRequired();
+            modelBuilder.Entity<CustomField>().Property(_ => _.Created).HasColumnName("created").HasColumnType("datetime");
+            modelBuilder.Entity<CustomField>().Property(_ => _.Modified).HasColumnName("modified").HasColumnType("datetime");
+            modelBuilder.Entity<CustomField>().Property(_ => _.UserId).HasColumnName("user_id").HasColumnType("char(36)");
+            
+            modelBuilder.Entity<CustomField>().HasKey(_ => _.Id);
+        }
+
+        private void CustomPropertyHasCustomFieldMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CustomPropertyHasCustomField>().ToTable("luna_rpg_custom_property_has_custom_property");
+            modelBuilder.Entity<CustomPropertyHasCustomField>().Property(_ => _.Id).HasColumnName("id").HasColumnType("int").IsRequired().ValueGeneratedOnAdd();
+            modelBuilder.Entity<CustomPropertyHasCustomField>().Property(_ => _.Valeur).HasColumnName("valeur").HasColumnType("blob").IsRequired();
+            modelBuilder.Entity<CustomPropertyHasCustomField>().Property(_ => _.PropertyId).HasColumnName("type_id").HasColumnType("int").IsRequired();
+            modelBuilder.Entity<CustomPropertyHasCustomField>().Property(_ => _.FieldId).HasColumnName("type_id").HasColumnType("int").IsRequired();
+            modelBuilder.Entity<CustomPropertyHasCustomField>().Property(_ => _.Created).HasColumnName("created").HasColumnType("datetime");
+            modelBuilder.Entity<CustomPropertyHasCustomField>().Property(_ => _.Modified).HasColumnName("modified").HasColumnType("datetime");
+            modelBuilder.Entity<CustomPropertyHasCustomField>().Property(_ => _.UserId).HasColumnName("user_id").HasColumnType("char(36)");
+            
+            modelBuilder.Entity<CustomField>().HasKey(_ => _.Id);
         }
 
         partial void CustomizeMapping(ref ModelBuilder modelBuilder);
@@ -180,8 +209,54 @@ namespace Luna.Commons.Models
                 .IsRequired()
                 .HasForeignKey("RaceId");
             modelBuilder.Entity<CustomProperty>()
+                .HasMany(_ => _.CustomPropertyHasCustomFields)
+                .WithOne(_ => _.CustomProperty)
+                .HasForeignKey("PropertyId");
+            modelBuilder.Entity<CustomProperty>()
                 .HasOne(_ => _.Author)
                 .WithMany(_ => _.CustomProperties)
+                .HasForeignKey("UserId");
+            
+            // CustomPropertyType
+            modelBuilder.Entity<CustomPropertyType>()
+                .HasMany(_ => _.CustomProperties)
+                .WithOne(_ => _.Type)
+                .HasForeignKey("TypeId");
+            modelBuilder.Entity<CustomPropertyType>()
+                .HasMany(_ => _.Fields)
+                .WithOne(_ => _.Type)
+                .HasForeignKey("TypeId");
+            modelBuilder.Entity<CustomPropertyType>()
+                .HasOne(_ => _.Author)
+                .WithMany(_ => _.CustomPropertieTypes)
+                .HasForeignKey("UserId");
+            
+            // CustomField
+            modelBuilder.Entity<CustomField>()
+                .HasOne(_ => _.Type)
+                .WithMany(_ => _.Fields)
+                .HasForeignKey("TypeId");
+            modelBuilder.Entity<CustomField>()
+                .HasMany(_ => _.CustomPropertyHasCustomFields)
+                .WithOne(_ => _.CustomField)
+                .HasForeignKey("TypeId");
+            modelBuilder.Entity<CustomField>()
+                .HasOne(_ => _.Author)
+                .WithMany(_ => _.CustomFields)
+                .HasForeignKey("UserId");
+            
+            // CustomPropertyHasCustomField
+            modelBuilder.Entity<CustomPropertyHasCustomField>()
+                .HasOne(_ => _.CustomProperty)
+                .WithMany(_ => _.CustomPropertyHasCustomFields)
+                .HasForeignKey("PropertyId");
+            modelBuilder.Entity<CustomPropertyHasCustomField>()
+                .HasOne(_ => _.CustomField)
+                .WithMany(_ => _.CustomPropertyHasCustomFields)
+                .HasForeignKey("FieldId");
+            modelBuilder.Entity<CustomPropertyHasCustomField>()
+                .HasOne(_ => _.Author)
+                .WithMany(_ => _.CustomPropertyHasCustomFields)
                 .HasForeignKey("UserId");
             
             // Race
@@ -206,16 +281,6 @@ namespace Luna.Commons.Models
             modelBuilder.Entity<CharacterType>()
                 .HasOne(_ => _.Author)
                 .WithMany(_ => _.CharacterTypes)
-                .HasForeignKey("UserId");
-            
-            // CustomPropertyType
-            modelBuilder.Entity<CustomPropertyType>()
-                .HasMany(_ => _.CustomProperties)
-                .WithOne(_ => _.Type)
-                .HasForeignKey("TypeId");
-            modelBuilder.Entity<CustomPropertyType>()
-                .HasOne(_ => _.Author)
-                .WithMany(_ => _.CustomPropertieTypes)
                 .HasForeignKey("UserId");
         }
         

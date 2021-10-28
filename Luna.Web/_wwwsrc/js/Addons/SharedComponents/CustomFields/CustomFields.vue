@@ -17,48 +17,23 @@
                         <span>{{ option.text }}</span>
                     </template>
                 </v-select>
-            </div>
-        </div>
-        <div class="modal fade" :id="`addNewOptionModal-${name}`" tabindex="-1" role="dialog" :aria-labelledby="`addNewOptionModal-${name}Label`" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" :id="`addNewOptionModal-${name}Label`">Ajouter un nouvel élément</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body form-group">
-                        <div v-if="errorMessage" class="row mb-2">
-                            <div class="col-md-12 alert alert-danger">
-                                <span>{{ errorMessage }}</span>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" v-model="newOptionName" placeholder="Nom" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <textarea type="text" class="form-control" v-model="newOptionDescription" placeholder="Description" ></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-success" @click="add">Ajouter</button>
-                    </div>
-                </div>
+              <template v-for="(property, index) in customSection.customProperties">
+                  <div class="row">
+                      <div class="col-md-12">
+                          
+                      </div>
+                  </div>
+              </template>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import vSelect from "vue-select";
+    import {CustomField} from "../../Models/CustomField";
 
     export default {
-        name: "SelectCustom",
-        components: { vSelect },
+        name: "CustomFields",
         props: {
             name: {
                 type: String,
@@ -67,37 +42,11 @@
             id: {
                 type: String,
                 default: ""
-            },
-            multiple: {
-                type: Boolean,
-                default: false
-            },
-            url: {
-                type: String,
-                default: ""
-            },
-            optionsList: {
-                type: Array
-            },
-            defaultValue: {
-                type: String
-            },
-            placeholder: {
-                type: String,
-                default: ""
-            },
-            urlNewOption: {
-                type: String,
-                default: null
             }
         },
         data() {
             return {
-                options: [],
-                selection: null,
-                newOptionName: null,
-                newOptionDescription: null,
-                errorMessage: null
+                customField: CustomField
             }
         },
         mounted() {

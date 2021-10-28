@@ -15,12 +15,12 @@ namespace Luna.Areas.Admin.Controllers
     where TModel : ModelBase, new()
     {
         protected abstract string _entityName { get; }
-        
+
         private IBaseRepository<TModel> _repo { get; set; }
-        private IBaseRepository<TModel> Repo => _repo ??= _scope.Resolve<IBaseRepository<TModel>>();
+        protected IBaseRepository<TModel> Repo => _repo ??= _scope.Resolve<IBaseRepository<TModel>>();
         
         private CurrentUserAccessor _cua { get; set; }
-        private CurrentUserAccessor CurrentUserAccessor => _cua ??= _scope.Resolve<CurrentUserAccessor>();
+        protected CurrentUserAccessor CurrentUserAccessor => _cua ??= _scope.Resolve<CurrentUserAccessor>();
         
         public EntityController(ILifetimeScope scope) : base(scope)
         {
@@ -31,12 +31,12 @@ namespace Luna.Areas.Admin.Controllers
             ViewBag.Title = _entityName;
             
             var entities = await Repo.GetAll();
-            
+
             return View("Entity/Index", entities);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public virtual async Task<IActionResult> Add()
         {
             ViewBag.Title = _entityName;
 
@@ -44,7 +44,7 @@ namespace Luna.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(EntityViewModel model)
+        public virtual async Task<IActionResult> Add(EntityViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace Luna.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public virtual async Task<IActionResult> Edit(int id)
         {
             ViewBag.Title = _entityName;
 
@@ -74,7 +74,7 @@ namespace Luna.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(EntityViewModel model)
+        public virtual async Task<IActionResult> Edit(EntityViewModel model)
         {
             if (model?.Id == null)
             {
@@ -93,7 +93,7 @@ namespace Luna.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Delete(int id)
+        public virtual async Task<IActionResult> Delete(int id)
         {
             await Repo.DeleteById(id);
             

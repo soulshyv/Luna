@@ -3,14 +3,16 @@ using System;
 using Luna.Commons.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Luna.Commons.Migrations
 {
     [DbContext(typeof(LunaDbContext))]
-    partial class LunaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211018223958_UpdateDbContext")]
+    partial class UpdateDbContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,47 +104,6 @@ namespace Luna.Commons.Migrations
                     b.ToTable("luna_rpg_character_type");
                 });
 
-            modelBuilder.Entity("Luna.Commons.Models.CustomField", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnName("created")
-                        .HasColumnType("datetime");
-
-                    b.Property<byte[]>("Description")
-                        .HasColumnName("description")
-                        .HasColumnType("blob");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnName("modified")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnName("nom")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnName("type_id")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnName("user_id")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TypeId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("luna_rpg_custom_field");
-                });
-
             modelBuilder.Entity("Luna.Commons.Models.CustomProperty", b =>
                 {
                     b.Property<int>("Id")
@@ -179,9 +140,21 @@ namespace Luna.Commons.Migrations
                         .HasColumnName("type_id")
                         .HasColumnType("int");
 
+                    b.Property<string>("Unite")
+                        .HasColumnName("unite")
+                        .HasColumnType("varchar(100)");
+
                     b.Property<Guid>("UserId")
                         .HasColumnName("user_id")
                         .HasColumnType("char(36)");
+
+                    b.Property<int>("Valeur")
+                        .HasColumnName("valeur")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ValeurMax")
+                        .HasColumnName("valeur_max")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -194,52 +167,6 @@ namespace Luna.Commons.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("luna_rpg_custom_property");
-                });
-
-            modelBuilder.Entity("Luna.Commons.Models.CustomPropertyHasCustomField", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnName("created")
-                        .HasColumnType("datetime");
-
-                    b.Property<int>("FieldId")
-                        .HasColumnName("type_id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnName("modified")
-                        .HasColumnType("datetime");
-
-                    b.Property<int>("PropertyId")
-                        .HasColumnName("type_id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnName("user_id")
-                        .HasColumnType("char(36)");
-
-                    b.Property<byte[]>("Valeur")
-                        .IsRequired()
-                        .HasColumnName("valeur")
-                        .HasColumnType("blob");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FieldId");
-
-                    b.HasIndex("PropertyId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("luna_rpg_custom_property_has_custom_property");
                 });
 
             modelBuilder.Entity("Luna.Commons.Models.CustomPropertyType", b =>
@@ -571,21 +498,6 @@ namespace Luna.Commons.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Luna.Commons.Models.CustomField", b =>
-                {
-                    b.HasOne("Luna.Commons.Models.CustomPropertyType", "Type")
-                        .WithMany("Fields")
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Luna.Commons.Models.Identity.LunaIdentityUser", "Author")
-                        .WithMany("CustomFields")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Luna.Commons.Models.CustomProperty", b =>
                 {
                     b.HasOne("Luna.Commons.Models.CustomSection", "CustomSection")
@@ -608,28 +520,6 @@ namespace Luna.Commons.Migrations
 
                     b.HasOne("Luna.Commons.Models.Identity.LunaIdentityUser", "Author")
                         .WithMany("CustomProperties")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Luna.Commons.Models.CustomPropertyHasCustomField", b =>
-                {
-                    b.HasOne("Luna.Commons.Models.CustomField", "CustomField")
-                        .WithMany("CustomPropertyHasCustomFields")
-                        .HasForeignKey("FieldId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Luna.Commons.Models.CustomProperty", "CustomProperty")
-                        .WithMany("CustomPropertyHasCustomFields")
-                        .HasForeignKey("PropertyId")
-                        .HasConstraintName("FK_luna_rpg_custom_property_has_custom_property_luna_rpg_custo~1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Luna.Commons.Models.Identity.LunaIdentityUser", "Author")
-                        .WithMany("CustomPropertyHasCustomFields")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

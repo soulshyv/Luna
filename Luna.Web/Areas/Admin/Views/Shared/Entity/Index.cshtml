@@ -16,7 +16,7 @@
                 <td>@entity.Description</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@entity.Id" class="btn btn-primary"><i class="fa fa-pencil"></i> Modifier</a>
-                    <a asp-action="Disable" asp-route-id="@entity.Id" class="btn btn-danger"><i class="fa fa-trash"></i>Supprimer</a>
+                    <a asp-action="Delete" asp-route-id="@entity.Id" class="btn btn-danger"><i class="fa fa-trash"></i> Supprimer</a>
                 </td>
             </tr>
         }

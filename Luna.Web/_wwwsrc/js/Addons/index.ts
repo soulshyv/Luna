@@ -1,4 +1,2 @@
-import "./Components/Character/index";
-
-import "./SharedComponents/CustomSelect/index";
-import "./SharedComponents/CustomProperties/index";
+import "./Components/index";
+import "./SharedComponents/index";

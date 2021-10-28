@@ -20,11 +20,11 @@
                     <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary"><i class="fa fa-pencil"></i> Modifier</a>
                     @if (user.IsActive)
                     {
-                        <a asp-action="Disable" asp-route-id="@user.Id" class="btn btn-danger"><i class="fa fa-times"></i> Activer</a>
+                        <a asp-action="Disable" asp-route-id="@user.Id" class="btn btn-danger"><i class="fa fa-times"></i> Désactiver</a>
                     }
                     else
                     {
-                        <a asp-action="Enable" asp-route-id="@user.Id" class="btn btn-primary"><i class="fa fa-refresh"></i> Désactiver</a>
+                        <a asp-action="Enable" asp-route-id="@user.Id" class="btn btn-primary"><i class="fa fa-refresh"></i> Activer</a>
                     }
                     @if (!user.EmailConfirmed)
                     {

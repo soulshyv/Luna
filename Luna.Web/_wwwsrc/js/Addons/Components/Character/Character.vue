@@ -15,8 +15,9 @@
                 <div class="row mb-2">
                     <div class="col-md-6">
                         <select-custom
-                            v-model="character.type"
+                            v-model="type"
                             url="/Character/GetAllCharacterTypesForSelect"
+                            :default-value="typeId"
                             placeholder="Type du personnage"
                             url-new-option="/Character/AddNewCharacterType"
                             name="character_type"
@@ -25,8 +26,9 @@
                     </div>
                     <div class="col-md-6">
                         <select-custom
-                            v-model="character.race"
+                            v-model="race"
                             url="/Character/GetAllRacesForSelect"
+                            :default-value="raceId"
                             placeholder="Race du personnage"
                             url-new-option="/Character/AddNewRace"
                             name="character_race"
@@ -42,9 +44,14 @@
                     </div>
                 </div>
             </template>
-            <div class="row">
+            <div class="row mb-2">
                 <div class="col-md-12 text-center">
                     <button type="button" class="btn btn-primary" @click="addNewSection">Ajouter une section personnalisée</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-success" @click="save">Enregistrer</button>
                 </div>
             </div>
         </div>
@@ -52,9 +59,12 @@
 </template>
 
 <script>
+    import $ from "jquery";
+    import SelectCustom from "../../SharedComponents/CustomSelect/SelectCustom";
     import {Character} from "../../Models/Character";
     import {CustomSection} from "../../Models/CustomSection";
-    import SelectCustom from "../../SharedComponents/CustomSelect/SelectCustom";
+    import {CharacterType} from "../../Models/CharacterType";
+    import {Race} from "../../Models/Race";
 
     export default {
         name: "Character",
@@ -64,32 +74,55 @@
         },
         data() {
             return {
-                character: Character
+                character: Character,
+                type: null,
+                race: null,
+                typeId: null,
+                raceId: null
             };
         },
         mounted() {
             if (this.id) {
                 let $this = this;
+                
                 $.ajax({
-                    url: '/Character/GetCharacterById',
+                    url: `/Character/GetCharacterById/${this.id}`,
                     type: 'GET'
                 }).done(function(data) {
-                    $this.character = data;
+                    $this.character = new Character(data);
+                    
+                    if (data && data.race) {
+                        $this.typeId = data.type.id.toString();
+                        $this.raceId = data.race.id.toString();
+                    }
                 });
             } else {
-                let character = new Character();
-                character.customSections.push(new CustomSection());
-                this.character = character;
+                this.character = new Character();
             }
         },
         methods: {
             addNewSection() {
                 this.character.customSections.push(new CustomSection());
+            },
+            save() {
+                $.ajax({
+                    url: `/Character/${this.isEdit ? 'Edit' : 'Create'}`,
+                    type: 'POST',
+                    data: {
+                        model: this.character
+                    }
+                }).done(function(url) {
+                    window.location.href = url;
+                });
             }
         },
         computed: {
+            isEdit() {
+                return !!this.id;
+            },
             races() {
                 let races = null;
+                
                 $.ajax({
                     url: '/Character/GetAllRacesForSelect',
                     type: 'GET'
@@ -110,6 +143,20 @@
                 });
                 
                 return types;
+            }
+        },
+        watch: {
+            type: function(val) {
+                let type = new CharacterType();
+                type.id = val.value;
+                type.name = val.text;
+                this.character.type = type;
+            },
+            race: function(val) {
+                let race = new Race();
+                race.id = val.value;
+                race.name = val.text;
+                this.character.race = race;
             }
         }
     }
