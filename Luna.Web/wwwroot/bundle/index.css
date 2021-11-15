@@ -15869,10 +15869,35 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   opacity: 1;
 }
 
+#character-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+#character-container #characters {
+  max-height: 100%;
+  width: 50%;
+  box-sizing: border-box;
+}
+#character-container #details {
+  max-height: 100%;
+  width: 50%;
+  box-sizing: border-box;
+}
+#character-container #dragbar {
+  padding: 6px;
+  cursor: col-resize;
+  background-color: silver;
+}
+
 .custom-section {
   border: 1px solid #302f2f;
   border-radius: 10px;
   padding: 15px;
+}
+.custom-section hr {
+  border-top: 1px solid #ffffff;
 }
 .custom-section .properties {
   display: flex;
@@ -15971,74 +15996,42 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: grey;
 }
 
+body {
+  background-color: #000000;
+  color: #d2d0d0;
+}
+
+.container-fluid .v-select, .container-fluid input, .container-fluid textarea, .container-fluid select, .container-fluid table, .container-fluid span {
+  background-color: #434343 !important;
+  color: #d2d0d0 !important;
+}
+.container-fluid .v-select .vs__actions > .vs__open-indicator, .container-fluid .v-select .vs__actions > .vs__clear {
+  fill: #d2d0d0;
+}
+.container-fluid .v-select ul {
+  background-color: #434343;
+  color: #d2d0d0;
+}
+.container-fluid .v-select .vs__dropdown-option {
+  background-color: #434343;
+  color: #d2d0d0;
+}
+.container-fluid .v-select .vs__dropdown-option--highlight {
+  background-color: #d2d0d0;
+}
+.container-fluid .v-select .vs__dropdown-option--highlight > * {
+  background-color: #d2d0d0;
+}
+.container-fluid th, .container-fluid td, .container-fluid button {
+  color: #d2d0d0 !important;
+}
+
+.navbar {
+  background-color: #434343;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
-  /* Vertically center the text there */
 }

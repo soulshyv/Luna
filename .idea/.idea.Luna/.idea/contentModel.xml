@@ -46,6 +46,20 @@
           <e p="20211024210953_AddCustomFields.Designer.cs" t="Include" />
           <e p="20211027215259_AddTableCustomPropertyHasCustomField.cs" t="Include" />
           <e p="20211027215259_AddTableCustomPropertyHasCustomField.Designer.cs" t="Include" />
+          <e p="20211113225317_MauvaisNomsColonnes.cs" t="Include" />
+          <e p="20211113225317_MauvaisNomsColonnes.Designer.cs" t="Include" />
+          <e p="20211113230931_MauvaisNomTable.cs" t="Include" />
+          <e p="20211113230931_MauvaisNomTable.Designer.cs" t="Include" />
+          <e p="20211113235039_ColonneInexistante.cs" t="Include" />
+          <e p="20211113235039_ColonneInexistante.Designer.cs" t="Include" />
+          <e p="20211114001231_MauvaisNomProprieteNavigation.cs" t="Include" />
+          <e p="20211114001231_MauvaisNomProprieteNavigation.Designer.cs" t="Include" />
+          <e p="20211115001913_AddOrderCustomProperty.cs" t="Include" />
+          <e p="20211115001913_AddOrderCustomProperty.Designer.cs" t="Include" />
+          <e p="20211115003642_AddOrderCustomSection.cs" t="Include" />
+          <e p="20211115003642_AddOrderCustomSection.Designer.cs" t="Include" />
+          <e p="20211115010629_CustomPropertyHasCustomFieldColumnValeurNullable.cs" t="Include" />
+          <e p="20211115010629_CustomPropertyHasCustomFieldColumnValeurNullable.Designer.cs" t="Include" />
           <e p="LunaDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -62,6 +76,7 @@
             <e p="CharacterTypeDto.cs" t="Include" />
             <e p="CustomFieldDto.cs" t="Include" />
             <e p="CustomPropertyDto.cs" t="Include" />
+            <e p="CustomPropertyHasCustomFieldDto.cs" t="Include" />
             <e p="CustomPropertyTypeDto.cs" t="Include" />
             <e p="CustomSectionDto.cs" t="Include" />
             <e p="ModelBaseDto.cs" t="Include" />
@@ -122,7 +137,12 @@
             <e p="images" t="Include">
               <e p="background.jpg" t="Include" />
             </e>
+            <e p="login.scss" t="Include" />
             <e p="site.scss" t="Include" />
+            <e p="utilities" t="Include">
+              <e p="_variables.scss" t="Include" />
+              <e p="imports.scss" t="Include" />
+            </e>
           </e>
           <e p="index.ts" t="Include" />
           <e p="js" t="Include">
@@ -130,6 +150,15 @@
               <e p="Components" t="Include">
                 <e p="Character" t="Include">
                   <e p="Character.vue" t="Include" />
+                  <e p="index.ts" t="Include" />
+                </e>
+                <e p="CustomFields" t="Include">
+                  <e p="CustomFields.vue" t="Include" />
+                  <e p="index.ts" t="Include" />
+                </e>
+                <e p="CustomProperties" t="Include">
+                  <e p="CustomProperty.vue" t="Include" />
+                  <e p="CustomSection.vue" t="Include" />
                   <e p="index.ts" t="Include" />
                 </e>
                 <e p="CustomPropertyType" t="Include">
@@ -145,20 +174,12 @@
                 <e p="CharacterType.ts" t="Include" />
                 <e p="CustomField.ts" t="Include" />
                 <e p="CustomProperty.ts" t="Include" />
+                <e p="CustomPropertyHasCustomFields.ts" t="Include" />
                 <e p="CustomPropertyType.ts" t="Include" />
                 <e p="CustomSection.ts" t="Include" />
                 <e p="Race.ts" t="Include" />
               </e>
               <e p="SharedComponents" t="Include">
-                <e p="CustomFields" t="Include">
-                  <e p="CustomFields.vue" t="Include" />
-                  <e p="index.ts" t="Include" />
-                </e>
-                <e p="CustomProperties" t="Include">
-                  <e p="CustomProperty.vue" t="Include" />
-                  <e p="CustomSection.vue" t="Include" />
-                  <e p="index.ts" t="Include" />
-                </e>
                 <e p="CustomSelect" t="Include">
                   <e p="index.ts" t="Include" />
                   <e p="SelectCustom.vue" t="Include" />
@@ -169,6 +190,9 @@
             <e p="Global" t="Include">
               <e p="index.ts" t="Include" />
               <e p="interface.d.ts" t="Include" />
+              <e p="Share" t="Include">
+                <e p="CharacterDragBar.ts" t="Include" />
+              </e>
               <e p="site.d.ts" t="Include" />
               <e p="Window" t="Include">
                 <e p="jquery.ts" t="Include" />
@@ -276,6 +300,7 @@
         <e p="node_modules\postcss-selector-parser" t="IncludeRecursive" />
         <e p="node_modules\pump" t="IncludeRecursive" />
         <e p="node_modules\sass" t="IncludeRecursive" />
+        <e p="node_modules\sortablejs" t="IncludeRecursive" />
         <e p="node_modules\spin" t="IncludeRecursive" />
         <e p="node_modules\terser" t="IncludeRecursive" />
         <e p="node_modules\timepicker" t="IncludeRecursive" />

@@ -4,6 +4,8 @@ namespace Luna.Commons.Models
 {
     public class CustomSection : ModelBase
     {
+        public virtual int Order { get; set; }
+        
         public virtual int CharacterId { get; set; }
         
         public virtual Character Character { get; set; }

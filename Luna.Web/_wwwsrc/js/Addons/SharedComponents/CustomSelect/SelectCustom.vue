@@ -11,7 +11,7 @@
                   <i class="fa fa-plus"></i>
                 </button>
             </div>
-            <div :class="`col-md-${urlNewOption ? '11' : '12'}`" :style="urlNewOption ? `border-top-right-radius: 0; border-bottom-right-radius: 0;` : ''">
+            <div :class="`col-md-${urlNewOption ? '11' : '12'}`" :style="urlNewOption ? `border-top-left-radius: 0; border-bottom-left-radius: 0; padding-left 0` : ''">
                 <v-select :value="selection" class="" v-model="selection" :id="id" :name="name" :multiple="multiple" :options="options" label="text" :placeholder="placeholder" @input="select" v-on:reset="reset">
                     <template slot="option" slot-scope="option">
                         <span>{{ option.text }}</span>

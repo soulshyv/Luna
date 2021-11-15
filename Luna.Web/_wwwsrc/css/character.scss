@@ -1,10 +1,41 @@
+@use "./utilities/variables" as v;
+
 // Character
+#character-container {
+  height: 100%;
+  width: 100%;
+  
+  display: flex;
+  gap: 15px;
+  
+  #characters {
+    max-height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+  }
+  
+  #details {
+    max-height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+  }
+
+  #dragbar {
+    padding: 6px;
+    cursor: col-resize;
+    background-color: silver;
+  }
+}
 
 // CustomSection
 .custom-section {
   border: 1px solid #302f2f;
   border-radius: 10px;
   padding: 15px;
+  
+  hr {
+    border-top: 1px solid v.$white;
+  }
   
   .properties {
     display: flex;

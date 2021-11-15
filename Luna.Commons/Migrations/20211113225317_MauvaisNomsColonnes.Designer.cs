@@ -3,14 +3,16 @@ using System;
 using Luna.Commons.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Luna.Commons.Migrations
 {
     [DbContext(typeof(LunaDbContext))]
-    partial class LunaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211113225317_MauvaisNomsColonnes")]
+    partial class MauvaisNomsColonnes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,10 +173,6 @@ namespace Luna.Commons.Migrations
                         .HasColumnName("nom")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int>("Order")
-                        .HasColumnName("order")
-                        .HasColumnType("int");
-
                     b.Property<int?>("RaceId")
                         .HasColumnName("race_id")
                         .HasColumnType("int");
@@ -223,11 +221,15 @@ namespace Luna.Commons.Migrations
                         .HasColumnName("property_id")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TypeId")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("UserId")
                         .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.Property<byte[]>("Valeur")
+                        .IsRequired()
                         .HasColumnName("valeur")
                         .HasColumnType("blob");
 
@@ -239,7 +241,7 @@ namespace Luna.Commons.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("luna_rpg_custom_property_has_custom_field");
+                    b.ToTable("luna_rpg_custom_property_has_custom_property");
                 });
 
             modelBuilder.Entity("Luna.Commons.Models.CustomPropertyType", b =>
@@ -307,10 +309,6 @@ namespace Luna.Commons.Migrations
                         .IsRequired()
                         .HasColumnName("nom")
                         .HasColumnType("varchar(255)");
-
-                    b.Property<int>("Order")
-                        .HasColumnName("order")
-                        .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
                         .HasColumnName("user_id")
@@ -628,6 +626,7 @@ namespace Luna.Commons.Migrations
                     b.HasOne("Luna.Commons.Models.CustomProperty", "CustomProperty")
                         .WithMany("CustomPropertyHasCustomFields")
                         .HasForeignKey("PropertyId")
+                        .HasConstraintName("FK_luna_rpg_custom_property_has_custom_property_luna_rpg_custo~1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

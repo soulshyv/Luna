@@ -29,6 +29,7 @@
     "moment": "^2.29.1",
     "moment-locale-fr": "^1.0.0",
     "pump": "^3.0.0",
+    "sortablejs": "^1.14.0",
     "spin": "0.0.1",
     "timepicker": "^1.13.18",
     "ts-loader": "^5.4.5",

@@ -1,15 +1,16 @@
 import {CustomPropertyType} from "./CustomPropertyType";
+import {CustomPropertyHasCustomFields} from "./CustomPropertyHasCustomFields";
 
 export class CustomProperty {
     public id: number;
     public name: string;
     public description: string;
     
-    public valeur: number;
-    public valeurMax: number;
-    public unite: string;
+    public order: number;
     
     public type: CustomPropertyType;
+
+    public customPropertyHasCustomFields: CustomPropertyHasCustomFields[];
 
     constructor(data?) {
         if (data) {
@@ -17,11 +18,13 @@ export class CustomProperty {
             this.name = data.name;
             this.description = data.description;
             
-            this.valeur = data.valeur;
-            this.valeurMax = data.valeurMax;
-            this.unite = data.unite;
+            this.order = data.order;
 
             this.type = new CustomPropertyType(data.type);
+            this.customPropertyHasCustomFields =
+                data.customPropertyHasCustomFields ?
+                data.customPropertyHasCustomFields.map(_ => new CustomPropertyHasCustomFields(_)) :
+                [];
         }
     }
 }

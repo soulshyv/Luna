@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Luna.Commons.Models;
+using Luna.Commons.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace Luna.Commons.Repositories.Implementations
@@ -36,9 +37,14 @@ namespace Luna.Commons.Repositories.Implementations
                 .Include(_ => _.CustomSections)
                     .ThenInclude(_ => _.CustomProperties)
                         .ThenInclude(_ => _.Type)
+                .Include(_ => _.CustomSections)
+                    .ThenInclude(_ => _.CustomProperties)
+                        .ThenInclude(_ => _.CustomPropertyHasCustomFields)
+                            .ThenInclude(_ => _.CustomField)
                 .SingleOrDefaultAsync(_ => _.Id == id, ctk);
         }
 
+        // Sections
         public async Task<CustomSection> CreateCustomSection(CustomSection section,
             CancellationToken ctk = default(CancellationToken))
         {
@@ -59,16 +65,15 @@ namespace Luna.Commons.Repositories.Implementations
             return section;
         }
 
-        public async Task<IEnumerable<CustomProperty>> CreateCustomProperties(IEnumerable<CustomProperty> properties,
+        // Propriétés
+        public async Task<CustomProperty> CreateCustomProperty(CustomProperty property,
             CancellationToken ctk = default(CancellationToken))
         {
-            var customProperties = properties.ToList();
-            
-            await DbContext.AddRangeAsync(customProperties, ctk);
+            await DbContext.AddAsync(property, ctk);
             
             await DbContext.SaveChangesAsync(ctk);
 
-            return customProperties;
+            return property;
         }
 
         public async Task<CustomProperty> UpdateCustomProperty(CustomProperty property,
@@ -81,36 +86,94 @@ namespace Luna.Commons.Repositories.Implementations
             return property;
         }
 
-        public async Task<bool> DeleteSectionWithProperties(CustomSection section,
+        // Champs
+        public async Task<CustomPropertyHasCustomField> CreateCustomField(CustomPropertyHasCustomField field,
             CancellationToken ctk = default(CancellationToken))
         {
-            var properties = section.CustomProperties;
+            await DbContext.AddAsync(field, ctk);
+            
+            await DbContext.SaveChangesAsync(ctk);
 
-            DbContext.RemoveRange(properties);
-            DbContext.Remove(section);
+            return field;
+        }
+        
+        public async Task<CustomPropertyHasCustomField> UpdateCustomField(CustomPropertyHasCustomField field,
+            CancellationToken ctk = default(CancellationToken))
+        {
+            DbContext.Update(field);
+            
+            await DbContext.SaveChangesAsync(ctk);
 
-            var res = await DbContext.SaveChangesAsync(ctk);
-
-            return res > 0;
+            return field;
         }
 
-        public async Task<bool> DeleteSectionsWithProperties(IEnumerable<CustomSection> sections,
+        // Suppressions
+        public async Task<bool> DeleteFields(IEnumerable<CustomPropertyHasCustomField> fields,
             CancellationToken ctk = default(CancellationToken))
         {
-            foreach (var section in sections)
+            DbContext.RemoveRange(fields);
+
+            var save = await DbContext.SaveChangesAsync(ctk);
+
+            return save > 0;
+        }
+
+        public async Task<bool> DeleteProperties(IEnumerable<CustomProperty> properties,
+            CancellationToken ctk = default(CancellationToken))
+        {
+            var customProperties = properties.ToList();
+            
+            foreach (var property in customProperties)
             {
-                var res = await DeleteSectionWithProperties(section, ctk);
+                var res = await DeleteFields(property.CustomPropertyHasCustomFields, ctk);
 
                 if (!res)
                 {
                     return false;
                 }
             }
+            
+            DbContext.RemoveRange(customProperties);
 
-            return true;
+            var save = await DbContext.SaveChangesAsync(ctk);
+
+            return save > 0;
         }
 
+        public async Task<bool> DeleteSectionsWithProperties(IEnumerable<CustomSection> sections,
+            CancellationToken ctk = default(CancellationToken))
+        {
+            var customSections = sections.ToList();
+            
+            foreach (var section in customSections)
+            {
+                var res = await DeleteProperties(section.CustomProperties, ctk);
+
+                if (!res)
+                {
+                    return false;
+                }
+            }
+            
+            DbContext.RemoveRange(customSections);
+
+            var save = await DbContext.SaveChangesAsync(ctk);
+
+            return save > 0;
+        }
+
+        // Suppressions générales
         public async Task<bool> DeleteAllCustomProperties(IEnumerable<CustomProperty> properties,
+            CancellationToken ctk = default(CancellationToken))
+        {
+            DbContext.RemoveRange(properties);
+
+            var res = await DbContext.SaveChangesAsync(ctk);
+
+            return res > 0;
+        }
+
+        public async Task<bool> DeleteAllCustomPropertiesHasCustomFields(IEnumerable<CustomPropertyHasCustomField> properties,
             CancellationToken ctk = default(CancellationToken))
         {
             DbContext.RemoveRange(properties);

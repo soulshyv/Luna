@@ -1,18 +1,23 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Luna.Commons.Models.Dtos
 {
     public class CustomPropertyDto : ModelBaseDto<CustomProperty>
     {
-        public int Valeur { get; set; }
-        public int? ValeurMax { get; set; }
-        public string Unite { get; set; }
+        public int Order { get; set; }
         
         public CustomPropertyTypeDto Type { get; set; }
+        public IEnumerable<CustomPropertyHasCustomFieldDto> CustomPropertyHasCustomFields { get; set; }
 
         public CustomPropertyDto(CustomProperty property) : base(property)
         {
+            Order = property.Order;
             Type = property.Type != null ? new CustomPropertyTypeDto(property.Type) : null;
+            CustomPropertyHasCustomFields = property.CustomPropertyHasCustomFields?.Any() == true
+                ? property.CustomPropertyHasCustomFields.Select(_ => new CustomPropertyHasCustomFieldDto(_)).ToList()
+                : null;
         }
 
         public CustomPropertyDto()
@@ -34,6 +39,8 @@ namespace Luna.Commons.Models.Dtos
         public CustomProperty ToSimpleModel(Guid userId)
         {
             var customProperty = base.ToModel(userId);
+
+            customProperty.Order = Order;
 
             return customProperty;
         }

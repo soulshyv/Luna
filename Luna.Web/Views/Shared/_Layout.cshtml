@@ -10,7 +10,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom box-shadow">
+            <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container">
                     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Luna</a>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -39,20 +39,14 @@
                             </li>
                         </ul>
                     </div>
-                    <a class="btn btn-default" asp-area="" asp-action="Logout" asp-controller="Account">Déconnexion</a>
+                    <a class="navbar-brand btn btn-default" asp-area="" asp-action="Logout" asp-controller="Account">Déconnexion</a>
                 </div>
             </nav>
         </header>
         
-        <div class="container p-3">
+        <div class="container-fluid vh-100 pt-3">
             @RenderBody()
         </div>
-
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2021 - <Luna></Luna>
-            </div>
-        </footer>
 
         <environment>
             <script src="~/bundle/index.js" asp-append-version="true"></script>

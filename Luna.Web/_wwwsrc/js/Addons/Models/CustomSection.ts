@@ -5,6 +5,8 @@ export class CustomSection {
     public name: string;
     public description: string;
     
+    public order: number;
+    
     public customProperties: CustomProperty[];
 
     constructor(data?) {
@@ -12,6 +14,8 @@ export class CustomSection {
             this.id = data.id;
             this.name = data.name;
             this.description = data.description;
+            
+            this.order = data.order;
             
             this.customProperties = data.customProperties ? data.customProperties.map(_ => new CustomProperty(_)) : [];
         } else {

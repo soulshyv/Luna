@@ -1,179 +1,56 @@
-$fa-font-path: '../../node_modules/font-awesome/fonts/';
-
-@import "../../node_modules/bootstrap/scss/bootstrap";
-
-@import "../../node_modules/timepicker/jquery.timepicker";
-@import "../../node_modules/jquery-ui-dist/jquery-ui.css";
-@import "../../node_modules/font-awesome/scss/font-awesome.scss";
-@import "../../node_modules/vue2-daterange-picker/dist/vue2-daterange-picker.css";
-
-@import "../../node_modules/vue-select/src/scss/vue-select";
+@use "./utilities/imports";
+@use "./utilities/variables" as v;
 
 @import "./character";
+@import "./login";
 
-$primary: #11998e;
-$secondary: #38ef7d;
-$white: #fff;
-$gray: #d2d0d0;
-
-.login {
-  background-image: url("./images/background.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+body {
+  background-color: v.$black;
   
-  #login-panel {
-    margin-top: 25%;
+  color: v.$lightgray;
+}
+
+.container-fluid {
+  .v-select, input, textarea, select, table, span {
+    background-color: v.$darkgray !important;
+    color: v.$lightgray !important;
+  }
+  
+  .v-select {
+    .vs__actions > .vs__open-indicator, .vs__actions > .vs__clear{
+      fill: v.$lightgray;
+    }
     
-    form {
-      padding: 10px 15px;
+    ul {
+      background-color: v.$darkgray ;
+      color: v.$lightgray;
+    }
 
-      .form__group {
-        position: relative;
-        padding: 15px 0 0;
-        width: 100%;
+    .vs__dropdown-option {
+      background-color: v.$darkgray;
+      color: v.$lightgray;
+    }
 
-        .form__field {
-          font-family: inherit;
-          width: 100%;
-          border: 0;
-          border-bottom: 2px solid $gray;
-          outline: 0;
-          font-size: 1.3rem;
-          color: $gray;
-          padding: 7px 0;
-          background: transparent;
-          transition: border-color 0.2s;
-
-          &::placeholder {
-            color: transparent;
-          }
-
-          &:placeholder-shown ~ .form__label {
-            font-size: 1.3rem;
-            cursor: text;
-            top: 20px;
-          }
-        }
-
-        .form__label {
-          position: absolute;
-          top: 0;
-          display: block;
-          font-size: 1rem;
-          color: $gray;
-        }
-
-        .form__field:focus {
-          ~ .form__label {
-            position: absolute;
-            top: 0;
-            display: block;
-            transition: 0.2s;
-            font-size: 1rem;
-            color: $primary;
-            font-weight:700;
-          }
-          padding-bottom: 6px;
-          font-weight: 700;
-          border-width: 3px;
-          border-image: linear-gradient(to right, $primary,$secondary);
-          border-image-slice: 1;
-        }
-
-        /* reset input */
-        .form__field{
-          &:required,&:invalid { box-shadow:none; }
-        }
-      }
+    .vs__dropdown-option--highlight {
+      background-color: v.$lightgray;
       
-      .checkbox {
-        padding-left: 12px;
-        margin-top: 10px;
-        color: $gray;
-        
-        input {
-          margin-left: 0;
-        }
-      }
-      
-      .btn-login {
-        width: 100%;
-        margin-top: 10px;
-        background-color: $gray;
-      }
-      
-      .btn-login:hover {
-        background-color: grey;
+      & > * {
+        background-color: v.$lightgray;
       }
     }
   }
+
+  th, td, button {
+    color: v.$lightgray !important;
+  }
+}
+
+.navbar {
+  background-color: v.$darkgray;
 }
 
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
 }

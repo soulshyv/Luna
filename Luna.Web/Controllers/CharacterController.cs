@@ -79,6 +79,19 @@ namespace Luna.Controllers
             return View(id);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetCharacterById(int id)
+        {
+            var character = await CharacterRepository.GetFullCharacterById(id);
+
+            if (character == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(new CharacterDto(character));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Edit(CharacterDto model)
         {
@@ -96,112 +109,188 @@ namespace Luna.Controllers
             character.TypeId = model.Type.ToModel(currentUserId).Id;
             character.RaceId = model.Race.ToModel(currentUserId).Id;
 
-            if (model.CustomSections?.Any() == true)
-            {
-                var sectionIds = new List<int>();
-                foreach (var modelCustomSection in model.CustomSections)
-                {
-                    CustomSection customSection = null;
-                    
-                    // Si on a un Id, on essaye de récupérer la section dans le perso
-                    if (modelCustomSection.Id.HasValue)
-                    {
-                        customSection =
-                            character.CustomSections.FirstOrDefault(_ => _.Id == modelCustomSection.Id.Value);
+            // Sections
+            await UpdateSections(model.CustomSections, character.CustomSections, character.Id, currentUserId);
 
-                        if (customSection != null)
-                        {
-                            customSection.Name = modelCustomSection.Name;
-                            customSection.Description = modelCustomSection.Description;
-
-                            await CharacterRepository.UpdateCustomSection(customSection);
-                        }
-                    }
-
-                    // Si toujours pas de section, on la crée à partir du model
-                    if (customSection == null)
-                    {
-                        customSection = modelCustomSection.ToSimpleModel(currentUserId);
-                        customSection.CharacterId = character.Id;
-                        
-                        await CharacterRepository.CreateCustomSection(customSection);
-                    }
-
-                    var propertyIds = new List<int>();
-                    
-                    // Nouvelles propriétés
-                    var newCustomProperties = modelCustomSection.CustomProperties
-                        .Where(_ => !_.Id.HasValue)
-                        .Select(_ =>
-                        {
-                            var cp = _.ToModel(currentUserId);
-                            cp.CustomSectionId = customSection.Id;
-                            return cp;
-                        })
-                        .ToList();
-                    if (newCustomProperties.Any())
-                    {
-                        await CharacterRepository.CreateCustomProperties(newCustomProperties);
-                    }
-                    
-                    propertyIds.AddRange(newCustomProperties.Select(_ => _.Id));
-
-                    // Si on a déjà des propriétés dans la section
-                    if (customSection.CustomProperties?.Any() == true)
-                    {
-                        // On met à jour celle qu'on a reçu depuis le formulaire
-                        foreach (var sectionCustomProperty in customSection.CustomProperties)
-                        {
-                            var modelCustomProperty =
-                                modelCustomSection.CustomProperties.FirstOrDefault(
-                                    _ => _.Id == sectionCustomProperty.Id);
-                            if (modelCustomProperty == null)
-                            {
-                                continue;
-                            }
-
-                            sectionCustomProperty.Name = modelCustomProperty.Name;
-                            sectionCustomProperty.Description = modelCustomProperty.Description;
-                            // sectionCustomProperty.Valeur = modelCustomProperty.Valeur;
-                            // sectionCustomProperty.ValeurMax = modelCustomProperty.ValeurMax;
-                            // sectionCustomProperty.Unite = modelCustomProperty.Unite;
-
-                            await CharacterRepository.UpdateCustomProperty(sectionCustomProperty);
-
-                            propertyIds.Add(sectionCustomProperty.Id);
-                        }
-
-                        // Et on supprime celle qu'on n'a pas pu identifier
-                        var propertiesToDelete = customSection.CustomProperties.Where(_ => !propertyIds.Contains(_.Id));
-                        await CharacterRepository.DeleteAllCustomProperties(propertiesToDelete);
-                    }
-
-                    sectionIds.Add(customSection.Id);
-                }
-                
-                // On supprime les sections qu'on ne retrouve plus
-                var sectionsToDelete = character.CustomSections.Where(_ => !sectionIds.Contains(_.Id));
-                await CharacterRepository.DeleteSectionsWithProperties(sectionsToDelete);
-            }
-            else
-            {
-                await CharacterRepository.DeleteSectionsWithProperties(character.CustomSections);
-            }
-            
             return Ok(Url.Action("Index", "Character"));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetCharacterById(int id)
+        private async Task UpdateSections(IEnumerable<CustomSectionDto> sectionDtos, IEnumerable<CustomSection> characterSections, int characterId, Guid currentUserId)
         {
-            var character = await CharacterRepository.GetFullCharacterById(id);
-
-            if (character == null)
-            {
-                return NotFound();
-            }
+            var listSectionDtos = sectionDtos?.ToList();
+            var listCharacterSections = characterSections?.ToList();
             
-            return Ok(new CharacterDto(character));
+            if (listSectionDtos?.Any() != true)
+            {
+                if (listCharacterSections?.Any() == true)
+                {
+                    await CharacterRepository.DeleteSectionsWithProperties(listCharacterSections);
+                }
+                
+                return;
+            }
+
+            var sectionIds = new List<int>();
+
+            foreach (var modelCustomSection in listSectionDtos)
+            {
+                CustomSection customSection = null;
+
+                // Si on a un Id, on essaye de récupérer la section dans le perso
+                if (modelCustomSection.Id.HasValue)
+                {
+                    customSection = listCharacterSections?.FirstOrDefault(_ => _.Id == modelCustomSection.Id.Value);
+
+                    if (customSection != null)
+                    {
+                        var cs = modelCustomSection.ToModel(currentUserId);
+
+                        customSection.Name = cs.Name;
+                        customSection.Description = cs.Description;
+
+                        await CharacterRepository.UpdateCustomSection(customSection);
+                    }
+                }
+
+                // Si toujours pas de section, on la crée à partir du model
+                if (customSection == null)
+                {
+                    customSection = modelCustomSection.ToSimpleModel(currentUserId);
+                    customSection.CharacterId = characterId;
+
+                    await CharacterRepository.CreateCustomSection(customSection);
+                }
+
+                // Propriétés
+                await UpdateProperties(modelCustomSection.CustomProperties, customSection.CustomProperties, customSection.Id, currentUserId);
+
+                sectionIds.Add(customSection.Id);
+            }
+
+            // On supprime les sections qu'on ne retrouve plus
+            var sectionsToDelete = listCharacterSections?.Where(_ => !sectionIds.Contains(_.Id)).ToList();
+            if (sectionsToDelete?.Any() == true)
+            {
+                await CharacterRepository.DeleteSectionsWithProperties(sectionsToDelete);
+            }
+        }
+
+        private async Task UpdateProperties(IEnumerable<CustomPropertyDto> sectionDtos,
+            IEnumerable<CustomProperty> characterSections, int characterSectionId, Guid currentUserId)
+        {
+            var listsectionDtos = sectionDtos?.ToList();
+            var listCharacterSections = characterSections?.ToList();
+            
+            if (listsectionDtos?.Any() != true)
+            {
+                if (listCharacterSections?.Any() == true)
+                {
+                    await CharacterRepository.DeleteProperties(listCharacterSections);
+                }
+
+                return;
+            }
+
+            var propertyIds = new List<int>();
+
+            foreach (var modelCustomProperty in listsectionDtos)
+            {
+                CustomProperty customProperty = null;
+
+                // Si on a un Id, on essaye de récupérer la propriété dans la section
+                if (modelCustomProperty.Id.HasValue)
+                {
+                    customProperty = listCharacterSections?.FirstOrDefault(_ => _.Id == modelCustomProperty.Id.Value);
+
+                    if (customProperty != null)
+                    {
+                        var cp = modelCustomProperty.ToModel(currentUserId);
+
+                        customProperty.Name = cp.Name;
+                        customProperty.Description = cp.Description;
+                        customProperty.TypeId = cp.TypeId;
+
+                        await CharacterRepository.UpdateCustomProperty(customProperty);
+                    }
+                }
+
+                // Si toujours pas de propriété, on la crée à partir du model
+                if (customProperty == null)
+                {
+                    customProperty = modelCustomProperty.ToModel(currentUserId);
+                    customProperty.CustomSectionId = characterSectionId;
+
+                    await CharacterRepository.CreateCustomProperty(customProperty);
+                }
+
+                // Champs
+                await UpdateFields(modelCustomProperty.CustomPropertyHasCustomFields, customProperty.CustomPropertyHasCustomFields, customProperty.Id, currentUserId);
+
+                propertyIds.Add(customProperty.Id);
+            }
+
+            // Et on supprime celle qu'on n'a pas pu identifier
+            var propertiesToDelete = listCharacterSections?.Where(_ => !propertyIds.Contains(_.Id)).ToList();
+            if (propertiesToDelete?.Any() == true)
+            {
+                await CharacterRepository.DeleteAllCustomProperties(propertiesToDelete);
+            }
+        }
+
+        private async Task UpdateFields(IEnumerable<CustomPropertyHasCustomFieldDto> propertieDtos,
+            IEnumerable<CustomPropertyHasCustomField> characterProperties, int characterPropertyId, Guid currentUserId)
+        {
+            var listFieldDtos = propertieDtos?.ToList();
+            var listCharacterFields = characterProperties?.ToList();
+            
+            if (listFieldDtos?.Any() != true)
+            {
+                if (listCharacterFields?.Any() == true)
+                {
+                    await CharacterRepository.DeleteFields(listCharacterFields);
+                }
+
+                return;
+            }
+
+            var fieldsIds = new List<int>();
+            foreach (var modelCustomField in listFieldDtos)
+            {
+                CustomPropertyHasCustomField customField = null;
+
+                // Si on a un Id, on essaye de récupérer le champ dans la propriété
+                if (modelCustomField.Id.HasValue)
+                {
+                    customField = listCharacterFields?.FirstOrDefault(_ => _.Id == modelCustomField.Id.Value);
+
+                    if (customField != null)
+                    {
+                        var cf = modelCustomField.ToModel(currentUserId);
+
+                        customField.Valeur = cf.Valeur;
+
+                        await CharacterRepository.UpdateCustomField(customField);
+                    }
+                }
+
+                // Si toujours pas de propriété, on la crée à partir du model
+                if (customField == null)
+                {
+                    customField = modelCustomField.ToModel(currentUserId);
+                    customField.PropertyId = characterPropertyId;
+
+                    await CharacterRepository.CreateCustomField(customField);
+                }
+
+                fieldsIds.Add(customField.Id);
+            }
+
+            // Et on supprime celle qu'on n'a pas pu identifier
+            var fieldsToDelete = listCharacterFields?.Where(_ => !fieldsIds.Contains(_.Id)).ToList();
+            if (fieldsToDelete?.Any() == true)
+            {
+                await CharacterRepository.DeleteAllCustomPropertiesHasCustomFields(fieldsToDelete);
+            }
         }
 
         [HttpGet]
@@ -280,6 +369,14 @@ namespace Luna.Controllers
             var types = await CustomPropertyTypeRepository.GetAll();
             
             return Ok(types.Select(_ => new SelectListItem(_.Name, _.Id.ToString())));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> LoadCustomFieldsForType(int id)
+        {
+            var type = await CustomPropertyTypeRepository.GetById(id);
+            
+            return Ok(type.Fields.Select(_ => new CustomFieldDto(_)));
         }
 
         [HttpPost]

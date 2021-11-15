@@ -1,0 +1,94 @@
+@use "./utilities/variables" as v;
+
+.login {
+  background-image: url("./images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  #login-panel {
+    margin-top: 25%;
+    
+    form {
+      padding: 10px 15px;
+
+      .form__group {
+        position: relative;
+        padding: 15px 0 0;
+        width: 100%;
+
+        .form__field {
+          font-family: inherit;
+          width: 100%;
+          border: 0;
+          border-bottom: 2px solid v.$lightgray;
+          outline: 0;
+          font-size: 1.3rem;
+          color: v.$lightgray;
+          padding: 7px 0;
+          background: transparent;
+          transition: border-color 0.2s;
+
+          &::placeholder {
+            color: transparent;
+          }
+
+          &:placeholder-shown ~ .form__label {
+            font-size: 1.3rem;
+            cursor: text;
+            top: 20px;
+          }
+        }
+
+        .form__label {
+          position: absolute;
+          top: 0;
+          display: block;
+          font-size: 1rem;
+          color: v.$lightgray;
+        }
+
+        .form__field:focus {
+          ~ .form__label {
+            position: absolute;
+            top: 0;
+            display: block;
+            transition: 0.2s;
+            font-size: 1rem;
+            color: v.$primary;
+            font-weight:700;
+          }
+          padding-bottom: 6px;
+          font-weight: 700;
+          border-width: 3px;
+          border-image: linear-gradient(to right, v.$primary, v.$secondary);
+          border-image-slice: 1;
+        }
+
+        /* reset input */
+        .form__field{
+          &:required,&:invalid { box-shadow:none; }
+        }
+      }
+      
+      .checkbox {
+        padding-left: 12px;
+        margin-top: 10px;
+        color: v.$lightgray;
+        
+        input {
+          margin-left: 0;
+        }
+      }
+      
+      .btn-login {
+        width: 100%;
+        margin-top: 10px;
+        background-color: v.$lightgray;
+      }
+      
+      .btn-login:hover {
+        background-color: grey;
+      }
+    }
+  }
+}

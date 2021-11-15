@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Luna.Commons.Models;
@@ -75,15 +78,55 @@ namespace Luna.Areas.Admin.Controllers
             type.Name = model.Name;
             type.Description = model.Description;
 
-            await customPropertyTypeRepository.DeleteCustomFields(type.Fields);
-
+            var fieldIds = new List<int>();
             foreach (var customFieldDto in model.Fields)
             {
-                var customField = customFieldDto.ToModel(userId);
-                customField.TypeId = type.Id;
+                
+                CustomField customField = null;
+                    
+                // Si on a un Id, on essaye de récupérer le champ dans le type
+                if (customFieldDto.Id.HasValue)
+                {
+                    customField =
+                        type.Fields.FirstOrDefault(_ => _.Id == customFieldDto.Id.Value);
 
-                await customPropertyTypeRepository.CreateCustomFields(customField);
+                    if (customField != null)
+                    {
+                        customField.Name = customFieldDto.Name;
+                        customField.Description = customFieldDto.Description;
+
+                        await customPropertyTypeRepository.UpdateCustomField(customField);
+                    }
+                }
+
+                // Si toujours pas de champ, on le crée à partir du model
+                if (customField == null)
+                {
+                    customField = customFieldDto.ToModel(userId);
+                    customField.TypeId = type.Id;
+                        
+                    await customPropertyTypeRepository.CreateCustomField(customField);
+
+                    var customPropertyHasCustomFields = await customPropertyTypeRepository.GetAllCustomPropertyHasCustomFieldByTypeId(type.Id);
+                    var customPropertyIds = customPropertyHasCustomFields.Select(_ => _.PropertyId).Distinct();
+                    var newCustomPropertyHasCustomFields = customPropertyIds.Select(_ => new CustomPropertyHasCustomField
+                    {
+                        FieldId = customField.Id,
+                        PropertyId = _,
+                        Created = DateTime.Now,
+                        Modified = DateTime.Now,
+                        UserId = userId
+                    });
+                    await customPropertyTypeRepository.CreateCustomPropertyHasCustomField(
+                        newCustomPropertyHasCustomFields
+                    );
+                }
+                
+                fieldIds.Add(customField.Id);
             }
+            
+            var fieldsToDelete = type.Fields.Where(_ => !fieldIds.Contains(_.Id));
+            await customPropertyTypeRepository.DeleteCustomFields(fieldsToDelete);
 
             return Ok(Url.Action("Index", "CustomPropertyType"));
         }

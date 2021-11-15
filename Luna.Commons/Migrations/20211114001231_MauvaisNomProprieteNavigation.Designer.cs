@@ -3,14 +3,16 @@ using System;
 using Luna.Commons.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Luna.Commons.Migrations
 {
     [DbContext(typeof(LunaDbContext))]
-    partial class LunaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211114001231_MauvaisNomProprieteNavigation")]
+    partial class MauvaisNomProprieteNavigation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,10 +173,6 @@ namespace Luna.Commons.Migrations
                         .HasColumnName("nom")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int>("Order")
-                        .HasColumnName("order")
-                        .HasColumnType("int");
-
                     b.Property<int?>("RaceId")
                         .HasColumnName("race_id")
                         .HasColumnType("int");
@@ -228,6 +226,7 @@ namespace Luna.Commons.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<byte[]>("Valeur")
+                        .IsRequired()
                         .HasColumnName("valeur")
                         .HasColumnType("blob");
 
@@ -307,10 +306,6 @@ namespace Luna.Commons.Migrations
                         .IsRequired()
                         .HasColumnName("nom")
                         .HasColumnType("varchar(255)");
-
-                    b.Property<int>("Order")
-                        .HasColumnName("order")
-                        .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
                         .HasColumnName("user_id")

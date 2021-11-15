@@ -23,6 +23,8 @@
     <ItemGroup>
       <TypeScriptCompile Include="tsconfig.json" />
       <TypeScriptCompile Include="_wwwsrc\index.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Components\CustomFields\index.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Components\CustomProperties\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Components\CustomPropertyType\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Components\Character\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Components\index.ts" />
@@ -31,15 +33,15 @@
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CharacterType.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomField.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomProperty.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomPropertyHasCustomFields.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomPropertyType.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\CustomSection.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\Models\Race.ts" />
-      <TypeScriptCompile Include="_wwwsrc\js\Addons\SharedComponents\CustomFields\index.ts" />
-      <TypeScriptCompile Include="_wwwsrc\js\Addons\SharedComponents\CustomProperties\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\SharedComponents\CustomSelect\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Addons\SharedComponents\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\index.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\interface.d.ts" />
+      <TypeScriptCompile Include="_wwwsrc\js\Global\Share\CharacterDragBar.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\site.d.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\Window\jquery.ts" />
       <TypeScriptCompile Include="_wwwsrc\js\Global\Window\moment.ts" />

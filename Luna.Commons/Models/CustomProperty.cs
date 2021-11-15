@@ -4,6 +4,8 @@ namespace Luna.Commons.Models
 {
     public class CustomProperty : ModelBase
     {
+        public virtual int Order { get; set; }
+    
         public virtual int CustomSectionId { get; set; }
         public virtual int TypeId { get; set; }
         public virtual int? RaceId { get; set; }

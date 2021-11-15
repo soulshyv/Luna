@@ -1,5 +1,7 @@
 import "@babel/polyfill";
 
+import "./Share/CharacterDragBar";
+
 import "./Window/jquery";
 import "./Window/moment";
 import "./Window/vue";
