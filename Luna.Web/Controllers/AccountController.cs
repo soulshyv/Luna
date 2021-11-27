@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace Luna.Controllers
 {
     [AllowAnonymous]
-    public class AccountController : BaseController
+    public class AccountController : LunaBaseController
     {
         private LunaSignInManager _signInManager;
         private LunaSignInManager SignInManager => _signInManager ??= _scope.Resolve<LunaSignInManager>();

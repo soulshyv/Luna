@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Luna.Mvc
 {
     [Authorize(AuthenticationSchemes = "Identity.Application")]
-    public class BaseController : Controller
+    public class LunaBaseController : Controller
     {
         protected ILifetimeScope _scope { get; set; }
         
@@ -16,7 +16,7 @@ namespace Luna.Mvc
         private LunaUserManager _lunaUserManager;
         private LunaUserManager LuneUserManager => _lunaUserManager ??= _scope.Resolve<LunaUserManager>();
         
-        public BaseController(ILifetimeScope scope)
+        public LunaBaseController(ILifetimeScope scope)
         {
             _scope = scope;
         }

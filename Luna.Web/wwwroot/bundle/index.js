@@ -30107,6 +30107,9 @@ var _default = {
     defaultValue: {
       type: String
     },
+    defaultValues: {
+      type: Array
+    },
     placeholder: {
       type: String,
       default: ""
@@ -30134,9 +30137,18 @@ var _default = {
       fetch(this.url).then(function (res) {
         res.json().then(function (json) {
           $this.options = json;
-          $this.selection = $this.defaultValue ? json.find(function (_) {
-            return _.value === _this.defaultValue;
-          }) : null;
+
+          if ($this.multiple === true && $this.defaultValues) {
+            var selections = [];
+            $this.defaultValues.forEach(function () {
+              selections.push(this);
+            });
+            $this.selection = selections;
+          } else if ($this.defaultValue) {
+            $this.selection = json.find(function (_) {
+              return _.value === _this.defaultValue;
+            });
+          }
         });
       });
     }
@@ -36167,6 +36179,12 @@ var _SelectCustom = _interopRequireDefault(require("./SelectCustom.vue"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue.default.component("select-custom", _SelectCustom.default);
+
+if (document.getElementsByClassName("select-custom").length > 0) {
+  var vue = new _vue.default({
+    el: ".select-custom"
+  });
+}
 },{"vue":"../node_modules/vue/dist/vue.esm.js","./SelectCustom.vue":"js/Addons/SharedComponents/CustomSelect/SelectCustom.vue"}],"js/Addons/SharedComponents/index.ts":[function(require,module,exports) {
 "use strict";
 
@@ -69694,7 +69712,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51673" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61444" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

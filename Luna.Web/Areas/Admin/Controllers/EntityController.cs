@@ -10,8 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Luna.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public abstract class EntityController<TModel> : BaseController
+    public abstract class EntityController<TModel> : LunaAdminController
     where TModel : ModelBase, new()
     {
         protected abstract string _entityName { get; }

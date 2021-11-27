@@ -8,14 +8,12 @@ using Luna.Commons.Models.Dtos;
 using Luna.Commons.Repositories.Implementations;
 using Luna.Commons.Services;
 using Luna.Mvc;
-using Luna.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
 
 namespace Luna.Controllers
 {
-    public class CharacterController : BaseController
+    public class CharacterController : LunaBaseController
     {
         private CharacterRepository _characterRepository { get; set; }
         private CharacterRepository CharacterRepository =>

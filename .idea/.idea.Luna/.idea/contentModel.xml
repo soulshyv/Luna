@@ -60,6 +60,8 @@
           <e p="20211115003642_AddOrderCustomSection.Designer.cs" t="Include" />
           <e p="20211115010629_CustomPropertyHasCustomFieldColumnValeurNullable.cs" t="Include" />
           <e p="20211115010629_CustomPropertyHasCustomFieldColumnValeurNullable.Designer.cs" t="Include" />
+          <e p="20211121214656_AddBaseRoles.cs" t="Include" />
+          <e p="20211121214656_AddBaseRoles.Designer.cs" t="Include" />
           <e p="LunaDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -87,6 +89,7 @@
             <e p="LunaIdentityRole.cs" t="Include" />
             <e p="LunaIdentityUser.cs" t="Include" />
           </e>
+          <e p="LunaApplicationRole.cs" t="Include" />
           <e p="LunaDbContext.cs" t="Include" />
           <e p="LunaDbContext.Identity.cs" t="Include" />
           <e p="ModelBase.cs" t="Include" />
@@ -250,7 +253,8 @@
           <e p="ErrorViewModel.cs" t="Include" />
         </e>
         <e p="Mvc" t="Include">
-          <e p="BaseController.cs" t="Include" />
+          <e p="LunaAdminController.cs" t="Include" />
+          <e p="LunaBaseController.cs" t="Include" />
         </e>
         <e p="node_modules\@babel\core" t="IncludeRecursive" />
         <e p="node_modules\@babel\plugin-proposal-decorators" t="IncludeRecursive" />

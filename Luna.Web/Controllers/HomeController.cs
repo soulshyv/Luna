@@ -8,7 +8,7 @@ using Luna.Mvc;
 
 namespace Luna.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : LunaBaseController
     {
         private readonly ILogger<HomeController> _logger;
 

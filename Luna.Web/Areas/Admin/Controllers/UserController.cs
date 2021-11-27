@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Luna.Commons.Authentication;
@@ -7,18 +8,18 @@ using Luna.Commons.Models.Identity;
 using Luna.Mvc;
 using Luna.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Luna.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class UserController : BaseController
+    public class UserController : LunaAdminController
     {
         private LunaUserManager _userManager;
         private LunaUserManager UserManager => _userManager ??= _scope.Resolve<LunaUserManager>();
         
-        private LunaDbContext _lunaDbContext;
-        private LunaDbContext LunaDbContext => _lunaDbContext ??= _scope.Resolve<LunaDbContext>();
+        private LunaRoleManager _roleManager;
+        private LunaRoleManager RoleManager => _roleManager ??= _scope.Resolve<LunaRoleManager>();
         
         public UserController(ILifetimeScope scope) : base(scope)
         {
@@ -26,7 +27,7 @@ namespace Luna.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var users = await LunaDbContext.Users.ToArrayAsync();
+            var users = await UserManager.Users.ToArrayAsync();
             
             return View(users);
         }
@@ -34,7 +35,12 @@ namespace Luna.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            return View(new UserViewModel());
+            var vm = new UserViewModel();
+
+            var allRoles = await RoleManager.Roles.ToArrayAsync();
+            vm.AllRoles = allRoles;
+            
+            return View(vm);
         }
 
         [HttpPost]
@@ -63,9 +69,15 @@ namespace Luna.Areas.Admin.Controllers
 
             await UserManager.CreateAsync(user);
 
+            if (model.Roles?.Any() == true)
+            {
+                await UserManager.AddToRolesAsync(user, model.Roles);
+            }
+
             var res = await UserManager.SendEmailConfirmation(user);
             if (!res)
             {
+                // Message d'erreur
                 return RedirectToAction("Index");
             }
 
@@ -77,7 +89,15 @@ namespace Luna.Areas.Admin.Controllers
         {
             var user = await UserManager.FindByIdAsync(id.ToString());
             
-            return View(new UserViewModel(user));
+            var vm = new UserViewModel(user);
+            
+            var role = (await UserManager.GetRolesAsync(user));
+            vm.Roles = role.ToList();
+
+            var allRoles = await RoleManager.Roles.ToArrayAsync();
+            vm.AllRoles = allRoles;
+            
+            return View(vm);
         }
 
         [HttpPost]
@@ -94,8 +114,24 @@ namespace Luna.Areas.Admin.Controllers
             user.Email = model.Email;
 
             await UserManager.UpdateAsync(user);
+
+            var currentRoles = await UserManager.GetRolesAsync(user);
+            await UserManager.RemoveFromRolesAsync(user, currentRoles);
+
+            if (model.Roles?.Any() == true)
+            {
+                await UserManager.AddToRolesAsync(user, model.Roles);
+            }
             
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllRolesForSelect()
+        {
+            var races = await RoleManager.Roles.ToArrayAsync();
+            
+            return Ok(races.Select(_ => new SelectListItem(_.Name, _.Id.ToString())));
         }
 
         [HttpGet]

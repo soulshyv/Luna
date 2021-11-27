@@ -82,6 +82,9 @@
             defaultValue: {
                 type: String
             },
+            defaultValues: {
+                type: Array
+            },
             placeholder: {
                 type: String,
                 default: ""
@@ -107,7 +110,18 @@
                 fetch(this.url).then(res => {
                     res.json().then(json => {
                         $this.options = json;
-                        $this.selection = $this.defaultValue ? json.find(_ => _.value === this.defaultValue) : null;
+                        
+                        if ($this.multiple === true && $this.defaultValues) {
+                            let selections = [];
+                            
+                            $this.defaultValues.forEach(function() {
+                                selections.push(this);
+                            });
+                            
+                            $this.selection = selections;
+                        } else if ($this.defaultValue) {
+                            $this.selection = json.find(_ => _.value === this.defaultValue);
+                        }
                     });
                 });
             }

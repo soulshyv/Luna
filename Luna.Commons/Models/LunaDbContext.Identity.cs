@@ -8,6 +8,7 @@ namespace Luna.Commons.Models
     public partial class LunaDbContext
     {
         public DbSet<LunaIdentityUser> Users { get; set; }
+        public DbSet<LunaIdentityRole> Roles { get; set; }
         
         partial void CustomizeMapping(ref ModelBuilder modelBuilder)
         {

@@ -6,13 +6,10 @@ using Autofac;
 using Luna.Commons.Models;
 using Luna.Commons.Models.Dtos;
 using Luna.Commons.Repositories.Implementations;
-using Luna.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace Luna.Areas.Admin.Controllers
 {
-    [Area("Admin")]
     public class CustomPropertyTypeController : EntityController<CustomPropertyType>
     {
         protected override string _entityName => "Type de propriété personnalisée";

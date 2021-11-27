@@ -1,5 +1,10 @@
 @model Luna.ViewModels.UserViewModel
 
+@if(Model.Id.HasValue)
+{
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+}
+            
 <div class="row mb-2">
     <div class="col-md-6">
         <div class="form-group">
@@ -19,9 +24,32 @@
         </div>
     </div>
 </div>
+<div class="row mb-2">
+    <div class="col-md-12">
+        <div class="form-group">
+            <select asp-for="Roles" class="form-control" multiple>
+                @foreach (var role in Model.AllRoles)
+                {
+                    <option value="@role.Name">@role.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
-        <button type="submit" class="btn btn-success">Ajouter</button>
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+        @if (Model.Id.HasValue && Model.IsActive)
+        {
+            if (Model.IsActive)
+            {
+                <a asp-action="Disable" asp-route-id="@Model.Id" class="btn btn-danger">Désactiver</a>
+            }
+            else
+            {
+                <a asp-action="Enable" asp-route-id="@Model.Id" class="btn btn-primary">Activer</a>
+            }
+        }
         <a asp-action="Index" class="btn btn-secondary">Annuler</a>
     </div>
 </div>
