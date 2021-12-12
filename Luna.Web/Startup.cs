@@ -1,6 +1,8 @@
 using System;
 using System.Data;
+using System.IO;
 using Autofac;
+using ERDF_DispoReseau.Commons.Csp;
 using Luna.Commons.Authentication;
 using Luna.Commons.Communication.Config;
 using Luna.Commons.Communication.Interfaces;
@@ -12,6 +14,7 @@ using Luna.Commons.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -86,6 +89,8 @@ namespace Luna
             services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.SameSite = SameSiteMode.Strict;
                 options.ExpireTimeSpan = TimeSpan.FromHours(1);
                 options.LoginPath = CookieAuthenticationDefaults.LoginPath;
                 options.AccessDeniedPath = CookieAuthenticationDefaults.LoginPath;
@@ -95,6 +100,8 @@ namespace Luna
             services.AddAuthentication().AddCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.SameSite = SameSiteMode.Strict;
                 options.ExpireTimeSpan = TimeSpan.FromHours(1);
                 options.LoginPath = CookieAuthenticationDefaults.LoginPath;
                 options.AccessDeniedPath = CookieAuthenticationDefaults.LoginPath;
@@ -129,6 +136,25 @@ namespace Luna
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path.StartsWithSegments("/robots.txt"))
+                {
+                    var robotsTxtPath = Path.Combine(env.ContentRootPath, "robots.txt");
+                    var output = "User-agent: *  \nDisallow: /";
+                    if (File.Exists(robotsTxtPath))
+                    {
+                        output = await File.ReadAllTextAsync(robotsTxtPath);
+                    }
+                    context.Response.ContentType = "text/plain";
+                    await context.Response.WriteAsync(output);
+                }
+                else
+                {
+                    await next();
+                }
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -149,6 +175,24 @@ namespace Luna
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 
                 endpoints.MapRazorPages();
+            });
+            
+            app.UseCsp(builder =>
+            {
+                builder.Defaults
+                    .AllowSelf();
+
+                builder.Scripts
+                    .AllowSelf();
+
+                builder.Styles
+                    .AllowSelf();
+
+                builder.Fonts
+                    .AllowSelf();
+
+                builder.Images
+                    .AllowSelf();
             });
         }
     }
