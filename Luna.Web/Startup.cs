@@ -88,6 +88,7 @@ namespace Luna
            
             services.ConfigureApplicationCookie(options =>
             {
+                options.Cookie.Name = ".Luna.Session";
                 options.Cookie.HttpOnly = true;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 options.Cookie.SameSite = SameSiteMode.Strict;
@@ -97,15 +98,12 @@ namespace Luna
                 options.SlidingExpiration = true;
             });
             
-            services.AddAuthentication().AddCookie(options =>
+            services.AddAntiforgery(options =>
             {
+                options.Cookie.Name = ".Antiforegery";
                 options.Cookie.HttpOnly = true;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 options.Cookie.SameSite = SameSiteMode.Strict;
-                options.ExpireTimeSpan = TimeSpan.FromHours(1);
-                options.LoginPath = CookieAuthenticationDefaults.LoginPath;
-                options.AccessDeniedPath = CookieAuthenticationDefaults.LoginPath;
-                options.SlidingExpiration = true;
             });
 
             // Repositories
@@ -118,6 +116,12 @@ namespace Luna
             
             services.AddSingleton(Configuration.GetSection("MailSettings").Get<MailSettings>());
             services.AddScoped<IMailService, MailService>();
+            
+            services.AddHsts(options =>
+            {
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(365);
+            });
             
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -139,15 +143,42 @@ namespace Luna
             
             app.Use(async (context, next) =>
             {
+                // En cas de détection d'attaque XSS par le navigateur, bloquer le rendu de la page
+                if (!context.Response.Headers.ContainsKey("X-XSS-Protection"))
+                {
+                    context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
+                }
+                    
+                // Se baser sur le content-type et ne pas essayer de le "deviner"
+                if (!context.Response.Headers.ContainsKey("X-Content-Type-Options"))
+                {
+                    context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                }
+                    
+                // Lorsque le site redirige vers un site externe, ne mettre que le domaine dans le referrer
+                if (!context.Response.Headers.ContainsKey("Referrer-Policy"))
+                {
+                    context.Response.Headers.Add("Referrer-Policy", "origin-when-cross-origin");
+                }
+                    
+                // Empêcher l'ouverture du site dans une iframe
+                if (!context.Response.Headers.ContainsKey("X-Frame-Options"))
+                {
+                    context.Response.Headers.Add("X-Frame-Options", "DENY");
+                }
+
                 if (context.Request.Path.StartsWithSegments("/robots.txt"))
                 {
                     var robotsTxtPath = Path.Combine(env.ContentRootPath, "robots.txt");
                     var output = "User-agent: *  \nDisallow: /";
+                    
                     if (File.Exists(robotsTxtPath))
                     {
                         output = await File.ReadAllTextAsync(robotsTxtPath);
                     }
+                    
                     context.Response.ContentType = "text/plain";
+                    
                     await context.Response.WriteAsync(output);
                 }
                 else
