@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <UserSecretsId>aspnet-Luna-740B60B7-1CAB-452A-9A15-7AFD43083DD9</UserSecretsId>
+        <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
         <RootNamespace>Luna</RootNamespace>
     </PropertyGroup>
 

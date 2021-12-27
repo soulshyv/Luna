@@ -1,0 +1,45 @@
+@model Luna.ViewModels.RegistrationViewModel
+
+@{
+    Layout = "_Layout.Login";
+    ViewData["Title"] = "Luna - Inscription";
+}
+
+<div class="row" id="login-panel">
+    <div class="col-md-4 offset-md-4">
+        <form asp-action="Registration" asp-controller="Account" method="post" autocomplete="off">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form__group field">
+                        <input asp-for="FirstName" class="form__field" id="firstname" placeholder="Prénom"/>
+                        <label for="firstname" class="form__label">Prénom</label>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form__group field">
+                        <input asp-for="LastName" class="form__field" id="lastname" placeholder="Nom"/>
+                        <label for="lastname" class="form__label">Nom</label>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form__group field">
+                        <input asp-for="Email" class="form__field" id="email" placeholder="Adresse mail"/>
+                        <label for="email" class="form__label">Adresse mail</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-login">Confirmer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
