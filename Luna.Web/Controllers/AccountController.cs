@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Autofac;
 using Luna.Commons.Authentication;
+using Luna.Commons.Models.Identity;
 using Luna.Mvc;
 using Luna.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +11,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Luna.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : LunaBaseController
     {
         private LunaSignInManager _signInManager;
@@ -26,6 +26,7 @@ namespace Luna.Controllers
         {
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Login(string returnUrl)
         {
@@ -34,6 +35,7 @@ namespace Luna.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -56,8 +58,6 @@ namespace Luna.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
@@ -66,6 +66,7 @@ namespace Luna.Controllers
             return RedirectToAction("Index", "Home", new { area = "" });
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async  Task<IActionResult> ConfirmEmail(Guid id, string token)
         {
@@ -86,6 +87,7 @@ namespace Luna.Controllers
             return View(vm);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> ConfirmEmail(AccountViewModel model)
         {

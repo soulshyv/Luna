@@ -10,15 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4b2bea2-7262-400c-b7eb-6e63a092db4f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Csp/CspMiddleware.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Csp/CspOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Commons/Csp/CspOptionsBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Luna.Web/robots.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Web/.parcel-cache/56eb5655c35963f4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Web/ViewModels/RegistrationViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Web/Views/Account/Registration.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luna.Web/appsettings.Release.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Luna/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/Areas/Admin/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Areas/Admin/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/User/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/User/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Luna.Web/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Controllers/AccountController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Luna.Web.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Luna.Web.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/Views/Account/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/Views/Account/Login.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/login.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Luna.Web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Luna.Web/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,8 +61,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EEE949CD-1095-4293-845F-94A591D9C4FF/41/IUserTwoFactorTokenProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EEE949CD-1095-4293-845F-94A591D9C4FF/1D/UserManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3F47DC4C-9CC7-428C-820B-2998ADA24224/7c/ab5dde4d/RazorPage`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Dev/Luna/Luna.Web/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/04749DAD-1C80-4292-87C0-DE883DA70092/FD/InsertDataOperation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://F:/Dev/Luna/Luna.Web/Startup.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Dev/Luna/Luna.Web/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/DD7BBB1E-B6CB-4178-A82C-D5136B2606B8/0/IHttpContextAccessor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/Shared/Entity/Add.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/51525F91-CF4D-4E8C-A8BC-DBD855ACBDDD/F/SignInManager.cs" root0="SKIP_HIGHLIGHTING" />
@@ -68,12 +73,12 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/859FD6AC-A889-4B44-86B7-9C135DC73F7D/3D/HttpPostAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0999EFCD-3E43-48C6-A17E-5FAC06D8B9A9/3/CookieAuthenticationDefaults.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Luna.Web/Areas/Admin/Views/Shared/Entity/Edit.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://F:/Dev/Luna/Luna.Web/Controllers/AccountController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/imports.scss" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/utilities/variables.scss" />
-      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/login.scss" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/utilities/_variables.scss" />
       <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/js/Global/characters.ts" />
       <option value="$PROJECT_DIR$/Luna.Web/Controllers/AccountController.cs" />
@@ -122,6 +127,7 @@
       <option value="$PROJECT_DIR$/Luna.Web/Areas/Admin/Controllers/UserController.cs" />
       <option value="$PROJECT_DIR$/Luna.Web/robots.txt" />
       <option value="$PROJECT_DIR$/Luna.Web/Startup.cs" />
+      <option value="$PROJECT_DIR$/Luna.Web/_wwwsrc/css/login.scss" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yPvVDPVo2wfKPbWy8TqOwuKDTF" />
@@ -150,59 +156,11 @@
     <property name="ts.external.directory.path" value="F:\Dev\Luna\Luna.Web\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Luna.Web: IIS Express">
-    <configuration name="Luna.Commons" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/Luna.Commons/Luna.Commons.csproj" />
-      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
-      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
-      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
-      <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <configuration name="Luna" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/../Luna.Web/Luna.Web.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
-      <option name="LAUNCH_PROFILE_NAME" value="Luna" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <configuration name="Luna: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/../Luna.Web/Luna.Web.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
-      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <configuration name="Luna.Web: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+  <component name="RunManager" selected="npm.build">
+    <configuration name="IIS Express - Dev" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Luna.Web/Luna.Web.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
-      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express - Development" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -214,10 +172,10 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="Luna.Web: Luna" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+    <configuration name="IIS Express - Prod" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Luna.Web/Luna.Web.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
-      <option name="LAUNCH_PROFILE_NAME" value="Luna" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express - Production" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -249,10 +207,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.IIS Express - Dev" />
+      <item itemvalue=".NET Launch Settings Profile.IIS Express - Prod" />
+      <item itemvalue="npm.build" />
+      <item itemvalue="npm.watch" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.watch" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.watch" />
       </list>
     </recent_temporary>
   </component>

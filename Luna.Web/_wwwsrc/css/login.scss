@@ -83,11 +83,16 @@
       .btn-login {
         width: 100%;
         margin-top: 10px;
-        background-color: v.$lightgray;
+        background-color: blue;
       }
       
       .btn-login:hover {
         background-color: grey;
+      }
+      
+      .registration {
+        text-decoration: none !important;
+        color: v.$lightgray !important;
       }
     }
   }
