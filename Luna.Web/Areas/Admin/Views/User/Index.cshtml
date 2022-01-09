@@ -21,7 +21,10 @@
                     
                     @if (user.IsActive)
                     {
-                        <a asp-action="Disable" asp-route-id="@user.Id" class="btn btn-danger"><i class="fa fa-times"></i> Désactiver</a>
+                        if (user.EmailConfirmed)
+                        {
+                            <a asp-action="Disable" asp-route-id="@user.Id" class="btn btn-danger"><i class="fa fa-times"></i> Désactiver</a>
+                        }
                     }
                     else
                     {
