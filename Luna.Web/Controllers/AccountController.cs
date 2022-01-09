@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Autofac;
 using Luna.Commons.Authentication;
+using Luna.Commons.Models;
 using Luna.Commons.Models.Identity;
 using Luna.Mvc;
 using Luna.ViewModels;
@@ -119,6 +120,52 @@ namespace Luna.Controllers
             // Message de succès : Votre compte a bien été activé et votre mot de passe a été défini
             
             return RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> Registration()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> Registration(RegistrationViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            
+            var checkUser = await UserManager.FindByEmailAsync(model.Email);
+
+            if (checkUser != null)
+            {
+                return BadRequest();
+            }
+
+            var user = new LunaIdentityUser
+            {
+                Email = model.Email,
+                UserName = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                IsActive = true
+            };
+
+            await UserManager.CreateAsync(user);
+
+            await UserManager.AddToRoleAsync(user, LunaApplicationRole.Joueur);
+
+            var res = await UserManager.SendEmailConfirmation(user);
+            if (!res)
+            {
+                // Message d'erreur
+                return View();
+            }
+
+            return RedirectToAction("Login");
         }
     }
 }
