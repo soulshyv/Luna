@@ -1,25 +1,39 @@
 ﻿@model ErrorViewModel
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "Une erreur s'est produite";
 }
+<div>
+    <h1 class="text-danger">
+        @ViewData["Title"]
+    </h1>
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
-
-@if (Model.ShowRequestId)
-{
     <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+        Informations à inclure dans l'eventuel rapport d'anomalie :
     </p>
-}
+    <ul>
+        <li>
+            ID de requête : <strong>@Model.RequestId</strong>
+        </li>
+    </ul>
 
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>The Development environment shouldn't be enabled for deployed applications.</strong>
-    It can result in displaying sensitive information from exceptions to end users.
-    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
-    and restarting the app.
-</p>
+    @if (Model.CanDisplayFullError)
+    {
+        var didDisplayError = false;
+        <p>Vos habilitations sur l'application vous permettent de voir la trace complete de l'erreur :</p>
+
+        if (Model.Error != null)
+        {
+            didDisplayError = true;
+            <div class="border border-danger" style="padding: 1em; margin-bottom: 1em;">
+                <pre>@Model.Error.ToString()</pre>
+            </div>
+        }
+
+        if (!didDisplayError)
+        {
+            <div class="border border-warning" style="padding: 1em; margin-bottom: 1em;">
+                <strong>Aucune trace disponible</strong>
+            </div>
+        }
+    }
+</div>

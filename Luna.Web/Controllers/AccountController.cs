@@ -94,7 +94,7 @@ namespace Luna.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Message d'erreur : Des informations saisies ne sont pas valides
+                Logger.LogError("Des informations saisies ne sont pas valides");
                 
                 return View(model);
             }
@@ -104,7 +104,8 @@ namespace Luna.Controllers
             var resEmailConfirmation = await UserManager.ConfirmEmailAsync(user, model.Token);
             if (!resEmailConfirmation.Succeeded)
             {
-                // Message d'erreur : Une erreur est survenue lors de la confirmation de l'e-mail (resEmailConfirmation.Errors.FirstOrDefault()?.Description)
+                // Message d'erreur : Une erreur est survenue lors de la confirmation de l'e-mail
+                Logger.LogError("Une erreur est survenue lors de la confirmation de l'e-mail : {Message}", new { Message = resEmailConfirmation.Errors.FirstOrDefault()?.Description});
                 
                 return View(model);
             }
@@ -112,7 +113,8 @@ namespace Luna.Controllers
             var resPasswordAdded = await UserManager.AddPasswordAsync(user, model.Password);
             if (!resPasswordAdded.Succeeded)
             {
-                // Message d'erreur : Une erreur est survenue lors de l'ajout du mot de passe (resPasswordAdded.Errors.FirstOrDefault()?.Description)
+                // Message d'erreur : Une erreur est survenue lors de l'ajout du mot de passe
+                Logger.LogError("Une erreur est survenue lors de l'ajout du mot de passe : {Message}", resPasswordAdded.Errors.FirstOrDefault()?.Description);
                 
                 return View(model);
             }
@@ -135,14 +137,27 @@ namespace Luna.Controllers
         {
             if (!ModelState.IsValid)
             {
+                Logger.LogInformation("Modèle invalide");
+            
                 return View(model);
             }
-            
-            var checkUser = await UserManager.FindByEmailAsync(model.Email);
 
-            if (checkUser != null)
+            try
             {
-                return BadRequest();
+                var checkUser = await UserManager.FindByEmailAsync(model.Email);
+
+                if (checkUser != null)
+                {
+                    Logger.LogWarning("Utilisateur existant");
+                    
+                    // Message de succès : Un mail de confirmation a été envoyé à l'adresse mail si celle-ci existe
+                
+                    return View();
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, e.Message);
             }
 
             var user = new LunaIdentityUser
@@ -154,14 +169,23 @@ namespace Luna.Controllers
                 IsActive = true
             };
 
-            await UserManager.CreateAsync(user);
+            try
+            {
+                await UserManager.CreateAsync(user);
 
-            await UserManager.AddToRoleAsync(user, LunaApplicationRole.Joueur);
+                await UserManager.AddToRoleAsync(user, LunaApplicationRole.Joueur);
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, e.Message);
+            }
 
             var res = await UserManager.SendEmailConfirmation(user);
             if (!res)
             {
                 // Message d'erreur
+                Logger.LogError("Erreur à l'envoi du mail de confirmation");
+
                 return View();
             }
 

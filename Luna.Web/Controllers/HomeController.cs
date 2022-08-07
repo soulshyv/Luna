@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Luna.Models;
 using Luna.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.Extensions.Hosting;
 
 namespace Luna.Controllers
 {
@@ -25,7 +28,14 @@ namespace Luna.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            
+            var vm = new ErrorViewModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
+                CanDisplayFullError = Scope.Resolve<IHostEnvironment>()?.IsDevelopment() ?? false,
+                Error = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error
+            };
+            return View(vm);
         }
     }
 }
