@@ -16,10 +16,10 @@ namespace Luna.Areas.Admin.Controllers
     public class UserController : LunaAdminController
     {
         private LunaUserManager _userManager;
-        private LunaUserManager UserManager => _userManager ??= _scope.Resolve<LunaUserManager>();
+        private LunaUserManager UserManager => _userManager ??= Scope.Resolve<LunaUserManager>();
         
         private LunaRoleManager _roleManager;
-        private LunaRoleManager RoleManager => _roleManager ??= _scope.Resolve<LunaRoleManager>();
+        private LunaRoleManager RoleManager => _roleManager ??= Scope.Resolve<LunaRoleManager>();
         
         public UserController(ILifetimeScope scope) : base(scope)
         {

@@ -16,10 +16,10 @@ namespace Luna.Areas.Admin.Controllers
         protected abstract string _entityName { get; }
 
         private IBaseRepository<TModel> _repo { get; set; }
-        protected IBaseRepository<TModel> Repo => _repo ??= _scope.Resolve<IBaseRepository<TModel>>();
+        protected IBaseRepository<TModel> Repo => _repo ??= Scope.Resolve<IBaseRepository<TModel>>();
         
         private CurrentUserAccessor _cua { get; set; }
-        protected CurrentUserAccessor CurrentUserAccessor => _cua ??= _scope.Resolve<CurrentUserAccessor>();
+        protected CurrentUserAccessor CurrentUserAccessor => _cua ??= Scope.Resolve<CurrentUserAccessor>();
         
         public EntityController(ILifetimeScope scope) : base(scope)
         {

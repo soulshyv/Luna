@@ -9,16 +9,16 @@ namespace Luna.Mvc
     [Authorize(AuthenticationSchemes = "Identity.Application")]
     public class LunaBaseController : Controller
     {
-        protected ILifetimeScope _scope { get; set; }
+        protected ILifetimeScope Scope { get; set; }
         
         protected LunaIdentityUser CurrentUser { get; set; }
         
         private LunaUserManager _lunaUserManager;
-        private LunaUserManager LuneUserManager => _lunaUserManager ??= _scope.Resolve<LunaUserManager>();
+        private LunaUserManager LuneUserManager => _lunaUserManager ??= Scope.Resolve<LunaUserManager>();
         
         public LunaBaseController(ILifetimeScope scope)
         {
-            _scope = scope;
+            Scope = scope;
         }
     }
 }

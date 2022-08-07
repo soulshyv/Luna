@@ -17,22 +17,22 @@ namespace Luna.Controllers
     {
         private CharacterRepository _characterRepository { get; set; }
         private CharacterRepository CharacterRepository =>
-            _characterRepository ??= _scope.Resolve<CharacterRepository>();
+            _characterRepository ??= Scope.Resolve<CharacterRepository>();
         
         private RaceRepository _raceRepository { get; set; }
         private RaceRepository RaceRepository =>
-            _raceRepository ??= _scope.Resolve<RaceRepository>();
+            _raceRepository ??= Scope.Resolve<RaceRepository>();
         
         private CharacterTypeRepository _characterTypeRepository { get; set; }
         private CharacterTypeRepository CharacterTypeRepository =>
-            _characterTypeRepository ??= _scope.Resolve<CharacterTypeRepository>();
+            _characterTypeRepository ??= Scope.Resolve<CharacterTypeRepository>();
         
         private CustomPropertyTypeRepository _CustomPropertyTypeRepository { get; set; }
         private CustomPropertyTypeRepository CustomPropertyTypeRepository =>
-            _CustomPropertyTypeRepository ??= _scope.Resolve<CustomPropertyTypeRepository>();
+            _CustomPropertyTypeRepository ??= Scope.Resolve<CustomPropertyTypeRepository>();
         
         private CurrentUserAccessor _cua { get; set; }
-        private CurrentUserAccessor CurrentUserAccessor => _cua ??= _scope.Resolve<CurrentUserAccessor>();
+        private CurrentUserAccessor CurrentUserAccessor => _cua ??= Scope.Resolve<CurrentUserAccessor>();
         
         public CharacterController(ILifetimeScope scope) : base(scope)
         {

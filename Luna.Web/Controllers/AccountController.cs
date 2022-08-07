@@ -15,13 +15,13 @@ namespace Luna.Controllers
     public class AccountController : LunaBaseController
     {
         private LunaSignInManager _signInManager;
-        private LunaSignInManager SignInManager => _signInManager ??= _scope.Resolve<LunaSignInManager>();
+        private LunaSignInManager SignInManager => _signInManager ??= Scope.Resolve<LunaSignInManager>();
         
         private LunaUserManager _userManager;
-        private LunaUserManager UserManager => _userManager ??= _scope.Resolve<LunaUserManager>();
+        private LunaUserManager UserManager => _userManager ??= Scope.Resolve<LunaUserManager>();
         
         private ILogger<AccountController> _logger;
-        private ILogger<AccountController> Logger => _logger ??= _scope.Resolve<ILogger<AccountController>>();
+        private ILogger<AccountController> Logger => _logger ??= Scope.Resolve<ILogger<AccountController>>();
         
         public AccountController(ILifetimeScope scope) : base(scope)
         {
