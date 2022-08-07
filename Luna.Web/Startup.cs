@@ -11,6 +11,7 @@ using Luna.Commons.Models;
 using Luna.Commons.Models.Identity;
 using Luna.Commons.Repositories;
 using Luna.Commons.Services;
+using Luna.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -64,6 +65,8 @@ namespace Luna
                 .AddRoleManager<LunaRoleManager>()
                 .AddSignInManager<LunaSignInManager>()
                 .AddClaimsPrincipalFactory<LunaClaimsPrincipalFactory>();
+            
+            services.AddTransient<IStartupFilter, MigrationStartupFilter<LunaDbContext>>();
             
             // Authentication
             services.AddScoped<SignInManager<LunaIdentityUser>, LunaSignInManager>();
