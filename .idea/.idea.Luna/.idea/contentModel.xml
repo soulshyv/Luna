@@ -101,7 +101,7 @@
           <e p="Race.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="Luna.Commons.AssemblyInfo.cs" t="Include" />
             </e>
@@ -129,7 +129,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Luna.Migrations.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="Luna.Migrations.AssemblyInfo.cs" t="Include" />
             </e>
@@ -214,6 +214,7 @@
         <e p="app.db" t="Include" />
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
+        <e p="appsettings.Release.json" t="Include" />
         <e p="Areas" t="Include">
           <e p="Admin" t="Include">
             <e p="Controllers" t="Include">
@@ -260,6 +261,7 @@
         <e p="Mvc" t="Include">
           <e p="LunaAdminController.cs" t="Include" />
           <e p="LunaBaseController.cs" t="Include" />
+          <e p="MigrationStartupFilter.cs" t="Include" />
         </e>
         <e p="node_modules\@babel\core" t="IncludeRecursive" />
         <e p="node_modules\@babel\plugin-proposal-decorators" t="IncludeRecursive" />
@@ -289,10 +291,10 @@
         <e p="node_modules\bootstrap-sass" t="IncludeRecursive" />
         <e p="node_modules\bootstrap-scss" t="IncludeRecursive" />
         <e p="node_modules\chalk" t="IncludeRecursive" />
-        <e p="node_modules\commander" t="IncludeRecursive" />
         <e p="node_modules\eonasdan-bootstrap-datetimepicker" t="IncludeRecursive" />
         <e p="node_modules\font-awesome" t="IncludeRecursive" />
         <e p="node_modules\guid-typescript" t="IncludeRecursive" />
+        <e p="node_modules\immutable" t="IncludeRecursive" />
         <e p="node_modules\jquery" t="IncludeRecursive" />
         <e p="node_modules\jquery-numeric" t="IncludeRecursive" />
         <e p="node_modules\jquery-ui" t="IncludeRecursive" />
@@ -310,8 +312,8 @@
         <e p="node_modules\pump" t="IncludeRecursive" />
         <e p="node_modules\sass" t="IncludeRecursive" />
         <e p="node_modules\sortablejs" t="IncludeRecursive" />
+        <e p="node_modules\source-map-js" t="IncludeRecursive" />
         <e p="node_modules\spin" t="IncludeRecursive" />
-        <e p="node_modules\terser" t="IncludeRecursive" />
         <e p="node_modules\timepicker" t="IncludeRecursive" />
         <e p="node_modules\ts-loader" t="IncludeRecursive" />
         <e p="node_modules\typescript\lib\lib.d.ts" t="IncludeRecursive" />
@@ -359,7 +361,7 @@
         <e p="node_modules\vue-template-compiler" t="IncludeRecursive" />
         <e p="node_modules\vue2-daterange-picker" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="Luna.Web.AssemblyInfo.cs" t="Include" />
               <e p="Luna.Web.RazorAssemblyInfo.cs" t="Include" />
@@ -379,6 +381,7 @@
           <e p="AccountViewModel.cs" t="Include" />
           <e p="EntityViewModel.cs" t="Include" />
           <e p="LoginViewModel.cs" t="Include" />
+          <e p="RegistrationViewModel.cs" t="Include" />
           <e p="UserViewModel.cs" t="Include" />
         </e>
         <e p="Views" t="Include">
@@ -387,6 +390,7 @@
           <e p="Account" t="Include">
             <e p="ConfirmEmail.cshtml" t="Include" />
             <e p="Login.cshtml" t="Include" />
+            <e p="Registration.cshtml" t="Include" />
           </e>
           <e p="Character" t="Include">
             <e p="Create.cshtml" t="Include" />
@@ -406,20 +410,20 @@
         </e>
         <e p="wwwroot" t="Include">
           <e p="bundle" t="Include">
-            <e p="background.c54fc52c.jpg" t="Include" />
-            <e p="fontawesome-webfont.80db1567.eot" t="Include" />
-            <e p="fontawesome-webfont.9ab71dbb.svg" t="Include" />
-            <e p="fontawesome-webfont.c3cf7ef2.woff" t="Include" />
-            <e p="fontawesome-webfont.cda54bb3.woff2" t="Include" />
-            <e p="fontawesome-webfont.cf80d36a.ttf" t="Include" />
+            <e p="background.df2b5ca5.jpg" t="Include" />
+            <e p="fontawesome-webfont.152c194f.ttf" t="Include" />
+            <e p="fontawesome-webfont.4a2277d0.eot" t="Include" />
+            <e p="fontawesome-webfont.4e039e70.woff" t="Include" />
+            <e p="fontawesome-webfont.9fb3877d.woff2" t="Include" />
+            <e p="fontawesome-webfont.a9acc805.svg" t="Include" />
             <e p="index.css" t="Include" />
             <e p="index.js" t="Include" />
-            <e p="ui-icons_444444_256x240.03f315c1.png" t="Include" />
-            <e p="ui-icons_555555_256x240.abc04f9b.png" t="Include" />
-            <e p="ui-icons_777620_256x240.17b0cafe.png" t="Include" />
-            <e p="ui-icons_777777_256x240.c1909d3d.png" t="Include" />
-            <e p="ui-icons_cc0000_256x240.56edf018.png" t="Include" />
-            <e p="ui-icons_ffffff_256x240.ab956bf3.png" t="Include" />
+            <e p="ui-icons_444444_256x240.b4e66bc7.png" t="Include" />
+            <e p="ui-icons_555555_256x240.d0adf2bb.png" t="Include" />
+            <e p="ui-icons_777620_256x240.8b0090c4.png" t="Include" />
+            <e p="ui-icons_777777_256x240.5dc8ba8e.png" t="Include" />
+            <e p="ui-icons_cc0000_256x240.c6e95ab5.png" t="Include" />
+            <e p="ui-icons_ffffff_256x240.1fe1fca1.png" t="Include" />
           </e>
           <e p="css" t="Include">
             <e p="site.css" t="Include" />
