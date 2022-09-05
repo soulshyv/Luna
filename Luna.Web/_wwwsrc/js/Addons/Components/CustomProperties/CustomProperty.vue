@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div style="width: 25px; padding-right: 35px;">
-                <button class="btn btn-secondary btn-property-move" style="cursor: grab"><i class="fa fa-arrows-alt"></i></button>
+                <button class="btn btn-secondary btn-property-move" style="cursor: grab"><i class="fa fa-arrows-alt btn-property-move"></i></button>
             </div>
             <div class="col form-group">
                 <input v-model="property.name" class="form-control" placeholder="Nom de la propriété" />

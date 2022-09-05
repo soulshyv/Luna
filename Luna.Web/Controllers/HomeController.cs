@@ -25,6 +25,10 @@ namespace Luna.Controllers
             return View();
         }
 
+        
+        // #if DEBUG
+        // [AllowAnonymous]
+        // #endif
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

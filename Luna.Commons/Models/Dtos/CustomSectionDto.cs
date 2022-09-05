@@ -26,7 +26,7 @@ namespace Luna.Commons.Models.Dtos
         {
             var customSection = base.ToModel(userId);
 
-            customSection.CustomProperties = CustomProperties.Select(_ => _.ToModel(userId)).ToList();
+            customSection.CustomProperties = CustomProperties?.Select(_ => _.ToModel(userId)).ToList();
             
             return customSection;
         }

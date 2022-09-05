@@ -139,7 +139,7 @@ namespace Luna.Controllers
                 {
                     customSection = listCharacterSections?.FirstOrDefault(_ => _.Id == modelCustomSection.Id.Value);
 
-                    if (customSection != null)
+                    if (customSection != null && !string.IsNullOrWhiteSpace(modelCustomSection.Name))
                     {
                         var cs = modelCustomSection.ToModel(currentUserId);
 
@@ -151,7 +151,7 @@ namespace Luna.Controllers
                 }
 
                 // Si toujours pas de section, on la crée à partir du model
-                if (customSection == null)
+                if (customSection == null && !string.IsNullOrWhiteSpace(modelCustomSection.Name))
                 {
                     customSection = modelCustomSection.ToSimpleModel(currentUserId);
                     customSection.CharacterId = characterId;
@@ -200,7 +200,7 @@ namespace Luna.Controllers
                 {
                     customProperty = listCharacterSections?.FirstOrDefault(_ => _.Id == modelCustomProperty.Id.Value);
 
-                    if (customProperty != null)
+                    if (customProperty != null && !string.IsNullOrWhiteSpace(modelCustomProperty.Name))
                     {
                         var cp = modelCustomProperty.ToModel(currentUserId);
 
@@ -213,7 +213,7 @@ namespace Luna.Controllers
                 }
 
                 // Si toujours pas de propriété, on la crée à partir du model
-                if (customProperty == null)
+                if (customProperty == null && !string.IsNullOrWhiteSpace(modelCustomProperty.Name))
                 {
                     customProperty = modelCustomProperty.ToModel(currentUserId);
                     customProperty.CustomSectionId = characterSectionId;
